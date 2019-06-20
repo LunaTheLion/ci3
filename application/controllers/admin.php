@@ -1,6 +1,6 @@
 <?php 
 	class admin extends CI_CONTROLLER{
-		public class view()
+		public function view()
 		{
 			echo "Hello";
 		}
