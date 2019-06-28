@@ -11,14 +11,14 @@
   <div class="login-box-body">
     <!-- <p class="login-box-msg">Sign in to start your session</p> -->
 
-    <form action="<?php echo base_url('register') ?>" method="post">
+    <form action="<?php echo base_url('Admin/signin') ?>" method="post">
       <div class="form-group has-feedback">
         <input type="hidden" name="char">
         <input type="email" class="form-control" placeholder="Email" name="email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password" name="email">
+        <input type="password" class="form-control" placeholder="Password" name="password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
