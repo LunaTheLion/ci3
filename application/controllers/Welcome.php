@@ -5,7 +5,7 @@ class Welcome extends CI_Controller {
 	public function view($page = 'login')
 	{
 
-		if(!file_exists(APPPATH.'views/'.$page.'.php'))
+		if(!file_exists(APPPATH.'views/admin/'.$page.'.php'))
 		{
 			show_404();
 		}
@@ -14,9 +14,9 @@ class Welcome extends CI_Controller {
 		{
 			$data['title'] = ucfirst($page);
 			//echo "Hello";
-			$this->load->view('templates/header');
-			$this->load->view($page,$data);
-			$this->load->view('templates/footer');
+			$this->load->view('admin/templates/header');
+			$this->load->view('admin/'.$page,$data);
+			$this->load->view('admin/templates/footer');
 		}
 		
 	}

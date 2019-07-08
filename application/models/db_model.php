@@ -18,6 +18,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					CREATE TABLE IF NOT EXISTS admin_tbl (
 						admin_id INT(7) AUTO_INCREMENT PRIMARY KEY,
 						admin_email VARCHAR(50) NOT NULL,
+						admin_username VARCHAR(30) NOT NULL,
+						admin_verified VARCHAR(30) NOT NULL,
 						admin_password VARCHAR(32) NOT NULL,
 						admin_type CHAR(11) NOT NULL,
 						admin_date_joined DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -36,6 +38,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					'admin_email' =>'saleandrentals@gmail.com',
 					'admin_password' =>'f6fdffe48c908deb0f4c3bd36c032e72',
 					'admin_type'=>'super_admin',
+					'admin_username' => 'saleandrentals',
+					'admin_verified' => 'verified',
 				);
 				$this->db->insert('admin_tbl',$admin_data);
 				return true;
