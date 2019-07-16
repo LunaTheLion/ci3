@@ -210,9 +210,9 @@ class Admin extends CI_CONTROLLER
 					else
 					{
 						$data['error'] =  "Password and Username doesn't match";
-						ECHO "PASSWORD AND USERNAME DOESNT MATCH";
-						$this->load->view('admin/templates/header');
-						$this->load->view('admin/login', $data);
+						// echo "Password and Username doesn't match";
+						$this->load->view('admin/templates/header',$data);
+						$this->load->view('admin/login');
 						$this->load->view('admin/templates/footer');
 					}
 				}
@@ -220,7 +220,7 @@ class Admin extends CI_CONTROLLER
 				else
 				{
 					//ask to open email for verification
-					echo "CHECK YOUR EMAIL";
+					// echo "CHECK YOUR EMAIL";
 					$this->load->view('admin/templates/header');
 					$this->load->view('admin/check-your-email');
 					$this->load->view('admin/templates/footer');	
@@ -230,9 +230,9 @@ class Admin extends CI_CONTROLLER
 			else
 			{
 				$data['error'] =  "Account doesn't exist to the database";
-				ECHO "ACCOUNT DOESN'T EXIST";
-				$this->load->view('admin/templates/header');
-				$this->load->view('admin/login', $data);
+				// ECHO "ACCOUNT DOESN'T EXIST";
+				$this->load->view('admin/templates/header', $data);
+				$this->load->view('admin/login');
 				$this->load->view('admin/templates/footer');
 			}
 

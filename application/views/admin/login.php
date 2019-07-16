@@ -14,20 +14,35 @@
     <form action="<?php echo base_url('Admin/login') ?>" method="post">
       <div class="form-group has-feedback">
         <input type="hidden" name="char">
-        <input type="email" class="form-control" placeholder="Email" name="email">
+        <input type="email" class="form-control" placeholder="Email" name="email" required value="<?php 
+          
+        if(!empty($_POST['email']))
+        {
+          echo $_POST['email'];
+        }
+        else {
+          echo "";
+        }?>">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password" name="password">
+        <input type="password" class="form-control" placeholder="Password" name="password" required>
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
         <div class="col-xs-8">
-         <!--  <div class="checkbox icheck">
-            <label>
-              <input type="checkbox"/> Remember Me
-            </label>
-          </div> -->
+        
+         <div class="form-group has-error">
+         
+           <span class="help-block">
+             <?php 
+              if(!empty($error))
+              {
+                echo $error;
+              }
+              ?>
+           </span>
+         </div>
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
@@ -37,13 +52,13 @@
       </div>
     </form>
 
-    <div class="social-auth-links text-center">
+<!--     <div class="social-auth-links text-center">
       <p>- OR -</p>
       <a href="<?php echo base_url('facebook') ?>" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
         Facebook</a>
       <a href="<?php echo base_url('google') ?>" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
         Google+</a>
-    </div>
+    </div> -->
     <!-- /.social-auth-links -->
 
     <a href="<?php echo base_url('forgotpass') ?>">I forgot my password</a><br>
