@@ -11,6 +11,8 @@
        
         <li class="active">Manage Listings</li>
       </ol>
+      <br>
+      <a href="<?php echo base_url('admin/create_listing') ?>" class="btn btn-success">Create Listing</a>
     </section>
 
     <!-- Main content -->

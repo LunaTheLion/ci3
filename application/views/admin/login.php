@@ -1,16 +1,18 @@
-<body style="background-color: yellow; height: 100%; margin-top: 3%; margin-right: 5%; margin-left: 5%;">
+<body style="height: 100%; margin-top: 3%; margin-right: 5%; margin-left: 5%; background-image: url(<?php echo base_url('assets/img/pic.jpg')?>); -webkit-background-size: cover; background-position: center center; background-repeat: no-repeat;">
   
 <div class="row">
   <div class="col-md-4"></div>
   <div class="col-md-4">
     <div class="login-box">
-  <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b></a>
-  </div>
+ <div class="login-box-header" style="backface-visibility: 2px;">
+   
+ </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
     <!-- <p class="login-box-msg">Sign in to start your session</p> -->
-
+    <div class="login-logo">
+      <a href="../../index2.html"><b >Admin</b></a>
+    </div>
     <form action="<?php echo base_url('Admin/login') ?>" method="post">
       <div class="form-group has-feedback">
         <input type="hidden" name="char">
@@ -62,8 +64,6 @@
     <!-- /.social-auth-links -->
 
     <a href="<?php echo base_url('forgotpass') ?>">I forgot my password</a><br>
-    <a href="register.html" class="text-center">Register a new account</a>
-
   </div>
   <!-- /.login-box-body -->
 </div>

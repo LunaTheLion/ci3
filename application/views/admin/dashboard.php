@@ -9,6 +9,7 @@
       <h1>
         Dashboard
         <small>Control panel</small>
+        <a href="<?php echo base_url('SendsmsController/index') ?>">Click me for Message</a>
       </h1>
                <p><?php 
        // echo "<pre>";

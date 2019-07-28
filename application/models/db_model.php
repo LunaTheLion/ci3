@@ -76,11 +76,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				$this->db->query("
 					CREATE TABLE IF NOT EXISTS project_tbl (
 						project_id INT(11) AUTO_INCREMENT PRIMARY KEY,
+						project_property_type VARCHAR(10) NOT NULL,
 						project_title VARCHAR(40) NOT NULL,
 						project_title_slug VARCHAR(40) NOT NULL,
 						project_about VARCHAR(8000) NOT NULL,
 						project_address VARCHAR(150) NOT NULL,
 						project_location VARCHAR(100) NOT NULL,
+						project_building VARCHAR(100) NOT NULL,
 						project_price INT(20) NOT NULL,
 						project_unit_status INT(3) NOT NULL,
 						project_lot_area INT(10) NOT NULL,

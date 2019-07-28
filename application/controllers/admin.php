@@ -30,7 +30,17 @@ class Admin extends CI_CONTROLLER
 	}
 	public function vregistration()
 	{
-
+		$data['title'] = "Account Registration";
+		$namepart = $this->session->userdata('useremail');
+		$get = $this->mm->acc($namepart);
+		$admin = array(
+		'admin_id' => $get->admin_id,
+		'admin_username'=>$get->admin_username,
+		'admin_type'=>$get->admin_type,
+		'admin_email' => $get->admin_email,
+		'admin_status' =>$get->admin_status, 
+		);
+		$this->session->set_userdata($admin);
 		$this->load->helper(array('form','url'));
 		$this->load->library('form_validation');		
 		$this->form_validation->set_error_delimiters('<label class="text-danger">', '</label>');
@@ -41,13 +51,36 @@ class Admin extends CI_CONTROLLER
 
 		if($this->form_validation->run() == False)
 		{	
-			$data['title'] = "Register Admin";
-			$this->load->view('admin/template/header', $data);
-			$this->load->view('admin/admin-register');
-			$this->load->view('admin/template/footer');	
+			// $data['title'] = "Register Admin";
+			// $this->load->view('admin/template/header', $data);
+			// $this->load->view('admin/admin-register');
+			// $this->load->view('admin/template/footer');	
+
+			
+
+			$data['error'] = validation_errors();
+
+			$data['title'] = "Add New Account";
+			$namepart = $this->session->userdata('useremail');
+			$get = $this->mm->acc($namepart);
+			$admin = array(
+			'admin_id' => $get->admin_id,
+			'admin_username'=>$get->admin_username,
+			'admin_type'=>$get->admin_type,
+			'admin_email' => $get->admin_email,
+			'admin_status' =>$get->admin_status, 
+			);
+			$this->session->set_userdata($admin);
+			$this->load->view('admin/templates/header', $admin);
+			$this->load->view('admin/main-header',$data);
+			$this->load->view('admin/main-sidebar');
+			$this->load->view('admin/manage_accounts/add-new-account');
+			// $this->load->view('admin/admin-footer');
+			$this->load->view('admin/templates/footer');
 		}
 		else
 		{	
+
 			$this->load->library('encryption');
 			$encryptedPass = $this->encryption->encrypt($this->input->post('password'));
 			$encryptedPass = md5($this->input->post('password'));
@@ -81,9 +114,9 @@ class Admin extends CI_CONTROLLER
 					$this->load->library('email', $config);
 					$this->email->from('megaworldcondotel@gmail.com');
 					$this->email->to($email);
-					$this->email->subject('Signed as Megaworld Condotel Projects Admin!');
+					$this->email->subject('Signed as Sale and Rentals Admin!');
 					
-					$msg = 'Thank you for signing up ! <a href="'.base_url().'admin/new_admin/'.$email.'/'.$pass.'">Click me to register to Megaworld Condotel Projects</a>';
+					$msg = 'Thank you for signing up ! <a href="'.base_url().'admin/new_admin/'.$email.'/'.$pass.'">Click me to register to Sale and Rentals as Admin</a>';
 
 					$this->email->message($msg);
 					$this->email->set_newline("\r\n");
@@ -209,7 +242,7 @@ class Admin extends CI_CONTROLLER
 					}
 					else
 					{
-						$data['error'] =  "Password and Username doesn't match";
+						$data['error'] =  Validation_errors();
 						// echo "Password and Username doesn't match";
 						$this->load->view('admin/templates/header',$data);
 						$this->load->view('admin/login');
@@ -221,7 +254,8 @@ class Admin extends CI_CONTROLLER
 				{
 					//ask to open email for verification
 					// echo "CHECK YOUR EMAIL";
-					$this->load->view('admin/templates/header');
+					$data['error'] = "Please Check your email";
+					$this->load->view('admin/templates/header', $data);
 					$this->load->view('admin/check-your-email');
 					$this->load->view('admin/templates/footer');	
 				}
@@ -441,7 +475,25 @@ class Admin extends CI_CONTROLLER
 		$this->load->view('admin/manage_accounts/add-new-account');
 		$this->load->view('admin/templates/footer');
 	}
-
+	public function create_listing()
+	{
+		$data['title'] = "Create Listing";
+		$namepart = $this->session->userdata('useremail');
+		$get = $this->mm->acc($namepart);
+		$admin = array(
+		'admin_id' => $get->admin_id,
+		'admin_username'=>$get->admin_username,
+		'admin_type'=>$get->admin_type,
+		'admin_email' => $get->admin_email,
+		'admin_status' =>$get->admin_status, 
+		);
+		$this->session->set_userdata($admin);
+		$this->load->view('admin/templates/header', $admin);
+		$this->load->view('admin/main-header');
+		$this->load->view('admin/main-sidebar');
+		$this->load->view('admin/create-listing');
+		$this->load->view('admin/templates/footer');	
+	}
 
 	public function get_inquiries()
 	{
