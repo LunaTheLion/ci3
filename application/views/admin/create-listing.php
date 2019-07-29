@@ -16,13 +16,13 @@
 
     <!-- Main content -->
     <section class="content">
-      
+      <?php echo form_open_multipart('property/create_project') ?>
       <div class="row">
         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
           <div class="box box-info">
             <div class="box-header with-border">
               <h3 class="box-title">
-                <?php if(!empty($this->session->flashdata('title')))
+              <!--   <?php if(!empty($this->session->flashdata('title')))
                 {
                   echo "Edit ".$this->session->flashdata('title');
                 }
@@ -30,7 +30,7 @@
                 {
                   echo "Add Property";
                 }
-                ?>
+                ?> -->
               </h3>
               <!-- <a href="<?php echo base_url('upload_multiple/sample') ?>" class="btn btn-info">Sample</a> -->
              
@@ -40,7 +40,7 @@
               <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
                 
-                     <?php
+                  <!--    <?php
                       if(!empty($this->session->flashdata('title')))
                       {
                          echo form_open_multipart('property/update_project/'.$this->session->flashdata('id').'');
@@ -50,58 +50,40 @@
                          echo form_open_multipart('property/create_project');
                       }
 
-                     ?>
+                     ?> -->
+                    
                      <label for="turnover">Property Type</label>
                      
                      <div class="row">
                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                       <input type="checkbox" name="condo" id="condo" value="Twin Suite"> Condo<br> 
+                       <input type="radio" name="propertyType" id="propertyType" value="Condo"> Condo<br> 
                        </div>
                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                       <input type="checkbox" name="hnl" id="hnl" value="Queen Suite">House and Lot<br>
+                       <input type="radio" name="propertyType" id="propertyType" value="House and Lot">House and Lot<br>
                        </div>
                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                       <input type="checkbox" name="que" id="que" value="Queen Suite"> Lot<br>
+                       <input type="radio" name="propertyType" id="propertyType" value="Lot"> Lot<br>
                        </div>
                      </div>
                      <br>
                      <div class="form-group">
                      <label for="Twin Suite">Property Status</label><br>
-                       <!-- <input type="text" name="unitType" id="unitType" class="form-control" placeholder="Input Unit Types" required value="<?php 
-                         if(!empty($this->session->flashdata('unit type')))
-                         {
-                           echo $this->session->flashdata('unit type');
-                         }
-                         else
-                         {
-                           echo "";
-                         }
-                        ?>">    --> 
-                        <!-- input Group -->
+                  
 
                        <div class="row">
                          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                         <input type="checkbox" name="twin" id="twin" value="Twin Suite">Rent Only<br> 
-                         <div class="card" style="box-shadow: 0px 0px 0px 0px ;display: none;" id="twin_info">
-                           <input type="text" class="form-control" name="twin_size" placeholder="Size in SQM"><p></p>
-                           <input type="text" class="form-control" name="twin_price" placeholder="Price">
-                         </div>
+                         <input type="radio" name="propertyStatus" id="propertyStatus" value="1">Rent Only<br> 
+                       
                       
                          </div>
                          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                         <input type="checkbox" name="que" id="que" value="Queen Suite">Sale Only <br>
-                         <div class="card" style="box-shadow: 0px 0px 0px 0px ;display: none;" id="que_info">
-                           <input type="text" class="form-control" name="que_size" placeholder="Size in SQM"><p></p>
-                           <input type="text" class="form-control" name="que_price" placeholder="Price">
-                         </div>
+                         <input type="radio" name="propertyStatus" id="propertyStatus" value="2">Sale Only <br>
+                        
                        
                          </div>
                          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                         <input type="checkbox" name="exe" id="exe" value="Executive Suite">Rent and Sale <br>   
-                         <div class="card" style="box-shadow: 0px 0px 0px 0px ;display: none;" id="exe_info">
-                           <input type="text" class="form-control" name="exe_size" placeholder="Size in SQM"><p></p>
-                           <input type="text" class="form-control" name="exe_price" placeholder="Price">
-                         </div>
+                         <input type="radio" name="propertyStatus" id="propertyStatus" value="3">Rent and Sale <br>   
+                         
                          </div>
                       
                        </div>
@@ -156,35 +138,58 @@
                       }
                      ?>" >
                     </div>
-       
-                  <div class="form-group">
-                    <label for="link">Enter the URL for youtube Video</label>
-                    <input type="url" name="video" class="form-control" placeholder="Youtube Video URL here"  value="<?php 
-                      if(!empty($this->session->flashdata('url')))
+                    <div class="form-group">
+                      <label for="propertyLotArea">Lot Area (Sqm)</label>
+                      <input type="number" class="form-control" id="propertyLotArea" name="propertyLotArea" placeholder="Lot Area"  value="<?php 
+                      if(!empty($this->session->flashdata('price')))
                       {
-                        echo $this->session->flashdata('url');
+                        echo $this->session->flashdata('price');
                       }
                       else
                       {
                         echo "";
                       }
-                     ?>">
-                  </div>   
+                     ?>" >
+                    </div>
+                    <div class="form-group">
+                      <label for="propertyFloorArea">Floor Area (Sqm)</label>
+                      <input type="number" class="form-control" id="propertyFloorArea" name="propertyFloorArea" placeholder="Floor Area" value="<?php 
+                      if(!empty($this->session->flashdata('price')))
+                      {
+                        echo $this->session->flashdata('price');
+                      }
+                      else
+                      {
+                        echo "";
+                      }
+                     ?>" >
+                    </div>
+                
            
                 </div>
                 <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
                 <div class="form-group">
                   <label for="propertyBed">Bedroom</label>
-                  <input type="text" class="form-control" name="propertyBed" id="propertyBed" required placeholder="Bedroom Count">
+                  <input type="number" class="form-control" name="propertyBed" id="propertyBed" required placeholder="Bedroom Count" value="0">
                 </div>
                 <div class="form-group">
                   <label for="propertyBath">Bathroom</label>
-                  <input type="text" class="form-control" name="propertyBath" id="propertyBath" required placeholder="Bathroom Count">
+                  <input type="number" class="form-control" name="propertyBath" id="propertyBath" required placeholder="Bathroom Count" value="0">
                 </div>
                 <div class="form-group">
                   <label for="propertyParking">Parking</label>
-                  <input type="text" class="form-control" name="propertyParking" id="propertyParking" required placeholder="Parking Count">
+                  <input type="number" class="form-control" name="propertyParking" id="propertyParking" required placeholder="Parking Count" value="0">
                 </div>
+                <label>Others</label>
+               <div class="row">
+                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">  
+                 <input type="checkbox" name="propertyPet" id="propertyPet" value="1">Pet Friendly<br> 
+                 </div>
+                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                 <input type="checkbox" name="propertyGarden" id="propertyGarden" value="1">With Garden <br>            
+                 </div>
+               </div>
+               <br>
                   <div class="form-group">
                     <label for="files">Upload Property Facade</label>
                     <input type="file" id="files" name="files[]" multiple required  />
@@ -197,28 +202,20 @@
                 </div>                   
               </div>
               <form>
-                <textarea class="textarea" placeholder="Place some text here"
+                <textarea class="textarea" name="propertyDescription" placeholder="Place some text here"
                           style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
               </form>
             </div>
             <div class="box-footer">
-                <!-- <button class="btn btn-info btn-flat pull-right" type="submit">Submit</button> -->
-                <input type="submit" name="button" value="<?php 
-                 if(!empty($this->session->userdata('title')))
-                 {
-                   echo "Submit Changes";
-                 }
-                 else
-                 {
-                   echo "Upload";
-                 }
-                ?>" class="btn btn-info pull-right" />
-              </form>
+                
+             <input type="submit" name="button" value="Upload" class="btn btn-info pull-right" />
+
+             </form>
             </div>
           </div>
         </div>
       </div>
-          
+        
     </section>
     <!-- /.content -->
   </div>
@@ -237,47 +234,7 @@
 
 <script>
 $(document).ready(function(){
- $('#programmer_form').on('submit', function(event){
-  event.preventDefault();
-  if($.trim($('#name').val()).length == 0)
-  {
-   alert("Please Enter Your Name");
-   return false;
-  }
-  else if($.trim($('#landmark').val()).length == 0)
-  {
-   alert("Please Enter Atleast one Skill");
-   return false;
-  }
-  else
-  {
-   var form_data = $(this).serialize();
-
-   $('#submit').attr("disabled","disabled");
-   $.ajax({
-    url:"insert.php",
-    method:"POST",
-    data:form_data,
-    beforeSend:function(){
-     $('#submit').val('Submitting...');
-    },
-    success:function(data){
-     if(data != '')
-     {
-      $('#name').val('');
-      $('#skill').tokenfield('setTokens',[]);
-      $('#success_message').html(data);
-      $('#submit').attr("disabled", false);
-      $('#submit').val('Submit');
-     }
-    }
-   });
-   setInterval(function(){
-    $('#success_message').html('');
-   }, 5000);
-  }
- });
- 
+ $('#')
 });
 </script>
  <script type="text/javascript">
