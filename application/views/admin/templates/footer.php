@@ -41,6 +41,56 @@
 <script src="<?php echo base_url('assets/dist/js/pages/dashboard.js') ?>"></script> 
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url('assets/dist/js/demo.js') ?>"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+   
+ if(window.File && window.FileList && window.FileReader) 
+ {
+
+   $("#files").on("change",function(e) {
+     var files = e.target.files ,
+      filesLength = files.length ;
+         for (var i = 0; i < filesLength ; i++) {
+           var f = files[i]
+           var fileReader = new FileReader();
+           fileReader.onload = (function(e) {
+           var file = e.target;
+             $("<img></img>",{
+               class : "imageThumb",
+               src : e.target.result,
+               title : file.name
+               }).insertAfter("#files");
+           });
+           fileReader.readAsDataURL(f);
+           }
+         });
+
+   $("#imageAmenities").on("change",function(e) {
+     var files = e.target.files ,
+      filesLength = files.length ;
+         for (var i = 0; i < filesLength ; i++) {
+           var f = files[i]
+           var fileReader = new FileReader();
+           fileReader.onload = (function(e) {
+           var file = e.target;
+             $("<img></img>",{
+               class : "imageThumb",
+               src : e.target.result,
+               title : file.name
+               }).insertAfter("#imageAmenities");
+           });
+           fileReader.readAsDataURL(f);
+           }
+         });
+   } 
+   else 
+   { 
+     alert("Your browser doesn't support to File API");
+   }
+   
+   });
+   
+</script>
 </body>
 </html>
 <!-- data table -->

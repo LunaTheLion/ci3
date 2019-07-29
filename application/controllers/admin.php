@@ -20,7 +20,7 @@ class Admin extends CI_CONTROLLER
 			$this->db_model->create_admin_table();
 			$this->db_model->create_owner_table();
 			$this->db_model->create_inquiries_table();
-			$this->db_model->create_project_table();
+			$this->db_model->create_property_table();
 			$this->db_model->insert_default_admin();
 						//print success page
 			$this->load->view('admin/templates/header');

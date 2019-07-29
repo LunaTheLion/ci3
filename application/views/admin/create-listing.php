@@ -59,7 +59,7 @@
                        <input type="radio" name="propertyType" id="propertyType" value="Condo"> Condo<br> 
                        </div>
                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                       <input type="radio" name="propertyType" id="propertyType" value="House and Lot">House and Lot<br>
+                       <input type="radio" name="propertyType" id="propertyType" value="House and Lot"> House and Lot<br>
                        </div>
                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                        <input type="radio" name="propertyType" id="propertyType" value="Lot"> Lot<br>
@@ -72,17 +72,17 @@
 
                        <div class="row">
                          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                         <input type="radio" name="propertyStatus" id="propertyStatus" value="1">Rent Only<br> 
+                         <input type="radio" name="propertyStatus" id="propertyStatus" value="1"> Rent Only<br> 
                        
                       
                          </div>
                          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                         <input type="radio" name="propertyStatus" id="propertyStatus" value="2">Sale Only <br>
+                         <input type="radio" name="propertyStatus" id="propertyStatus" value="2"> Sale Only <br>
                         
                        
                          </div>
                          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                         <input type="radio" name="propertyStatus" id="propertyStatus" value="3">Rent and Sale <br>   
+                         <input type="radio" name="propertyStatus" id="propertyStatus" value="3"> Rent and Sale <br>   
                          
                          </div>
                       
@@ -190,17 +190,34 @@
                  </div>
                </div>
                <br>
-                  <div class="form-group">
+                 <!--  <div class="form-group">
                     <label for="files">Upload Property Facade</label>
-                    <input type="file" id="files" name="files[]" multiple required  />
+                    <input type="file" id="files" name="files[]" required  />
                   </div>           
-                  <hr>   
+                  <hr> -->
+                  <label for="files">Upload Property Facade</label>
+                  <input type='file' id="myfacade" name="files[]" required>
+                  <div id="previews"></div>
+                      <p>&nbsp;</p> 
+                  <hr>  
                   <div class="form-group">
                     <label for="imageUnit">Upload Amenities</label>
                     <input type="file" id="imageAmenities" name="imageAmenities[]" multiple required />
                   </div>
                 </div>                   
               </div>
+            <!--   <form runat="server">
+                <input type='file' id="imgInp" />
+                <img id="blah" src="#" alt="your image" />
+              </form> -->
+        <!--       <script
+                  src="https://code.jquery.com/jquery-3.2.1.min.js"
+                  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+                  crossorigin="anonymous"></script>
+               -->
+              
+                    
+
               <form>
                 <textarea class="textarea" name="propertyDescription" placeholder="Place some text here"
                           style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
@@ -232,57 +249,135 @@
 </div>
 <!-- ./wrapper -->
 
-<script>
-$(document).ready(function(){
- $('#')
-});
-</script>
+
  <script type="text/javascript">
  $(document).ready(function() {
+  // function readURL(input) {
+  //   if (input.files && input.files[0]) 
+  //   {
+  //     var reader = new FileReader();
+      
+  //     reader.onload = function(e) 
+  //     {
+  //       $('#blah').attr('src', e.target.result);
+  //     }
+      
+  //     reader.readAsDataURL(input.files[0]);
+  //   }
+  // }
+
+  // $("#imgInp").change(function() {
+  //   readURL(this);
+  // });
+  // $(function() {
+  //     // Multiple images preview in browser
+  //     var imagesPreview = function(input, placeToInsertImagePreview) {
+
+  //         if (input.files) {
+  //             var filesAmount = input.files.length;
+
+  //             for (i = 0; i < filesAmount; i++) {
+  //                 var reader = new FileReader();
+
+  //                 reader.onload = function(event) {
+  //                     $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+  //                 }
+
+  //                 reader.readAsDataURL(input.files[i]);
+  //             }
+  //         }
+
+  //     };
+
+  //     $('#gallery-photo-add').on('change', function() {
+  //         imagesPreview(this, 'div.gallery');
+  //     });
+  // });
+
+  $('document').ready(function() {
+          var images = function(input, imgPreview) {
+      
+              if (input.files) {
+                  var filesAmount = input.files.length;
+      
+                  for (i = 0; i < filesAmount; i++) {
+                      var reader = new FileReader();
+      
+                      reader.onload = function(event) {
+                          $($.parseHTML("<img class='imageThumb'>")).attr('src', event.target.result).appendTo(imgPreview);
+                      }
+                      reader.readAsDataURL(input.files[i]);
+                  }
+              }
+      
+          };
+      
+          $('#myfacade').on('change', function() {
+              images(this, '#previews');
+          });
+              
+              //clear the file list when image is clicked
+          $('body').on('click','img',function(){
+              $('#myfacade').val("");
+              $('#previews').html("");
+      
+          });
+      });
+
     
-  if(window.File && window.FileList && window.FileReader) 
-  {
+  // if(window.File && window.FileList && window.FileReader) 
+  // {//sizes for the image show is in the style on the header
+  //   //this code is to show the images selected 
+  //   $("#files").on("change",function(e) 
+  //   {
+  //     var files = e.target.files ,
+  //      filesLength = files.length ;
+  //         for (var i = 1; i < filesLength ; i++) 
+  //         {
+  //           var f = files[i]
+  //           var fileReader = new FileReader();
+  //           fileReader.onload = (function(e) 
+  //           {
+  //           var file = e.target;
+  //             $("<img></img>",{
+  //               class : "imageThumb",
+  //               src : e.target.result,
+  //               title : file.name
+  //               }).insertAfter("#files");
+  //           });
+  //           fileReader.readAsDataURL(f);
+  //           }
+  //     });
+  //   $('body').on('click','img',function(){
+  //       $('img').val("");
+    
+  //   });
 
-    $("#files").on("change",function(e) {
-      var files = e.target.files ,
-       filesLength = files.length ;
-          for (var i = 0; i < filesLength ; i++) {
-            var f = files[i]
-            var fileReader = new FileReader();
-            fileReader.onload = (function(e) {
-            var file = e.target;
-              $("<img></img>",{
-                class : "imageThumb",
-                src : e.target.result,
-                title : file.name
-                }).insertAfter("#files");
-            });
-            fileReader.readAsDataURL(f);
-            }
-          });
-
-    $("#imageAmenities").on("change",function(e) {
-      var files = e.target.files ,
-       filesLength = files.length ;
-          for (var i = 0; i < filesLength ; i++) {
-            var f = files[i]
-            var fileReader = new FileReader();
-            fileReader.onload = (function(e) {
-            var file = e.target;
-              $("<img></img>",{
-                class : "imageThumb",
-                src : e.target.result,
-                title : file.name
-                }).insertAfter("#imageAmenities");
-            });
-            fileReader.readAsDataURL(f);
-            }
-          });
-    } 
-    else 
-    { 
-      alert("Your browser doesn't support to File API");
-    }
+  //   $("#imageAmenities").on("change",function(e) 
+  //   {
+  //     var files = e.target.files ,
+  //      filesLength = files.length ;
+  //         for (var i = 1; i < filesLength ; i++) 
+  //         {
+  //           var f = files[i]
+  //           var fileReader = new FileReader();
+  //           fileReader.onload = (function(e) 
+  //           {
+  //           var file = e.target;
+  //             $("<img></img>",{
+  //               class : "imageThumb",
+  //               src : e.target.result,
+  //               title : file.name
+  //               }).insertAfter("#imageAmenities");
+  //           });
+  //           fileReader.readAsDataURL(f);
+  //           }
+  //     });
+  //   } 
+  //   else 
+  //   { 
+  //     alert("Your browser doesn't support to File API");
+  //   }
     
     });
     

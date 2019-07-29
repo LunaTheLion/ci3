@@ -42,4 +42,39 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <!-- from footer -->
+  <script src="<?php echo base_url('assets/bower_components/jquery/dist/jquery.min.js') ?>"></script>
+  <!-- from megaword -->
+
 </head>
+<style>
+       input[type="file"] {
+        display:block;
+       }
+       .imageThumb {
+        max-height: 75px;
+        border: 2px solid;
+        border-color: #3c8dbc;
+        margin: 10px 10px 0 0;
+        padding: 1px;
+        }
+       .pip {
+         display: inline-block;
+         margin: 10px 10px 0 0;
+       }
+       .remove {
+         display: block;
+         background: #444;
+         border: 1px solid black;
+         color: white;
+         text-align: center;
+         cursor: pointer;
+       }
+       .remove:hover {
+         background: white;
+         color: black;
+       }
+       img{
+           cursor: pointer;
+           }
+       </style>
