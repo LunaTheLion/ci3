@@ -242,9 +242,9 @@ class Admin extends CI_CONTROLLER
 					}
 					else
 					{
-						$data['error'] =  Validation_errors();
-						// echo "Password and Username doesn't match";
-						$this->load->view('admin/templates/header',$data);
+						$data['error'] =  "Password and Username doesn't match";
+						 // echo "Password and Username doesn't match";
+						$this->load->view('admin/templates/header', $data);
 						$this->load->view('admin/login');
 						$this->load->view('admin/templates/footer');
 					}
@@ -264,7 +264,7 @@ class Admin extends CI_CONTROLLER
 			else
 			{
 				$data['error'] =  "Account doesn't exist to the database";
-				// ECHO "ACCOUNT DOESN'T EXIST";
+				 // ECHO "ACCOUNT DOESN'T EXIST";
 				$this->load->view('admin/templates/header', $data);
 				$this->load->view('admin/login');
 				$this->load->view('admin/templates/footer');
@@ -531,10 +531,10 @@ class Admin extends CI_CONTROLLER
 		echo json_encode($inquiries);
 	}
 
-	public function get_projects()
+	public function get_properties()
 	{
-		$projects = $this->mm->projects();
-		echo json_encode($projects);
+		$properties = $this->mm->properties();
+		echo json_encode($properties);
 	}
 	public function add_project()
 	{
@@ -610,33 +610,39 @@ class Admin extends CI_CONTROLLER
 		$this->load->view('admin/admin-footer');
 		$this->load->view('admin/template/footer');	
 	}
-	public function edit_project($id,$slug)
+	public function edit_property($id,$slug)
 	{
-		$get = $this->mm->edit_project($id);
+		$get = $this->mm->get_property_by_id($id);
 		
-		$project = array(
-			"id" =>$get->id,
-			"title" =>$get->title,
-			"price" =>$get->price,
-			"url" =>$get->URL,
-			"address" =>$get->address,
-			"location" =>$get->location,
-			"about" =>$get->about,
-			"facade" => $get->facade,
-			"amenities" =>$get->amenities,
-			"unit type" =>$get->unit_type,
-			"features" =>$get->features_dev_hghlts,
-			"nearby" =>$get->nearby_establishments,
-			// "url" =>$get->url,
+		$property_details = array(
+			"id" =>$get->property_id,
+			"title" =>$get->property_title,
+			"title_slug"=>$get->property_title_slug,
+			"facade" => $get->property_facade,
+			"price" =>$get->property_price,
+			"address" =>$get->property_address,
+			"location" =>$get->property_location,
+			'building' =>$get->property_building,
+			"details" =>$get->property_additional_details,
+			"facade" => $get->property_facade,
+			"bed" => $get->property_bed,
+			"pet" => $get->property_pet,
+			"property_type" =>$get->property_type,
+			"property_status" =>$get->property_status,
+			"garden" =>$get->property_garden,
+			"parking" =>$get->property_parking,
+			"bath" => $get->property_bath,
+			"floor_area" => $get->property_floor_area,
+			"lot_area" => $get->property_lot_area,
+			"code" => $get->property_code,
 		);
-		$this->session->set_flashdata($project);
-
-		$this->load->view('admin/template/header');
-		$this->load->view('admin/admin-header');
-		$this->load->view('admin/admin-main-sidebar');
-		$this->load->view('admin/add-project',$project);
-		$this->load->view('admin/admin-footer');
-		$this->load->view('admin/template/footer');	
+		$this->session->set_flashdata($property_details);
+		$this->load->view('admin/templates/header');
+		$this->load->view('admin/main-header');
+		$this->load->view('admin/main-sidebar');
+		$this->load->view('admin/create-listing', $property_details);
+		// $this->load->view('admin/admin-footer');
+		$this->load->view('admin/templates/footer');
 	}
 	
 	public function mng_featured_photos()

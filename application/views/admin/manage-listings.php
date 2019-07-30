@@ -30,59 +30,30 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Property Title</th>
-                  <th>Image</th>
-                  <th>Price</th>
-                  <th>Status</th>
-                  <th>Activity</th>
+                  <th><center>Property Title</center></th>
+                  <th><center>Image</center></th>
+                  <th><center>Price</center></th>
+                  <th><center>Status</center></th>
+                  <th><center>Activity</center></th>
+
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0
-                  </td>
-                  <td>Win 95+</td>
-                  <td> 4</td>
-                  <td>
-                    <center>
-                      <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-eye-slash"></i> Hide</button>
-                      <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Unhide</button>
-                      <button type="button" class="btn btn-success btn-xs"><i class="fa fa-share"></i> Replace</button>
-                    </center>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 5.0
-                  </td>
-                  <td>Win 95+</td>
-                  <td>5</td>
-                  <td>C</td>
-                </tr>
-                <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 5.5
-                  </td>
-                  <td>Win 95+</td>
-                  <td>5.5</td>
-                  <td>A</td>
-                </tr>
-                <tr>
+                <tbody id="properties">
+               
+<!--                 <tr>
                   <td>Sample House in Makati</td>
                   <td>
                     <img class="img-responsive pad" src="<?php echo base_url('assets/dist/img/photo2.png') ?>" alt="Photo" style="height: 100px; width: 150px;">
                   </td>
                   <td>50,000 || 700 sqm</td>
                   <td>Sale</td>
-                  <td><center>
+                  <td>
+                    <center>
                     <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-eye-slash"></i> Hide</button>
                     <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Unhide</button>
                     <button type="button" class="btn btn-success btn-xs"><i class="fa fa-folder-open"></i>View</button>
-                    </center></td>
+                    </center>
+                  </td>
                 </tr>
                 <tr>
                   <td>Sample Unit in Makati</td>
@@ -220,267 +191,16 @@
                   <td>Win 95+ / OSX.1+</td>
                   <td>1.5</td>
                   <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Mozilla 1.6</td>
-                  <td>Win 95+ / OSX.1+</td>
-                  <td>1.6</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Mozilla 1.7</td>
-                  <td>Win 98+ / OSX.1+</td>
-                  <td>1.7</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Mozilla 1.8</td>
-                  <td>Win 98+ / OSX.1+</td>
-                  <td>1.8</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Seamonkey 1.1</td>
-                  <td>Win 98+ / OSX.2+</td>
-                  <td>1.8</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Epiphany 2.20</td>
-                  <td>Gnome</td>
-                  <td>1.8</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Webkit</td>
-                  <td>Safari 1.2</td>
-                  <td>OSX.3</td>
-                  <td>125.5</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Webkit</td>
-                  <td>Safari 1.3</td>
-                  <td>OSX.3</td>
-                  <td>312.8</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Webkit</td>
-                  <td>Safari 2.0</td>
-                  <td>OSX.4+</td>
-                  <td>419.3</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Webkit</td>
-                  <td>Safari 3.0</td>
-                  <td>OSX.4+</td>
-                  <td>522.1</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Webkit</td>
-                  <td>OmniWeb 5.5</td>
-                  <td>OSX.4+</td>
-                  <td>420</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Webkit</td>
-                  <td>iPod Touch / iPhone</td>
-                  <td>iPod</td>
-                  <td>420.1</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Webkit</td>
-                  <td>S60</td>
-                  <td>S60</td>
-                  <td>413</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera 7.0</td>
-                  <td>Win 95+ / OSX.1+</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera 7.5</td>
-                  <td>Win 95+ / OSX.2+</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera 8.0</td>
-                  <td>Win 95+ / OSX.2+</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera 8.5</td>
-                  <td>Win 95+ / OSX.2+</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera 9.0</td>
-                  <td>Win 95+ / OSX.3+</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera 9.2</td>
-                  <td>Win 88+ / OSX.3+</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera 9.5</td>
-                  <td>Win 88+ / OSX.3+</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera for Wii</td>
-                  <td>Wii</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Nokia N800</td>
-                  <td>N800</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Nintendo DS browser</td>
-                  <td>Nintendo DS</td>
-                  <td>8.5</td>
-                  <td>C/A<sup>1</sup></td>
-                </tr>
-                <tr>
-                  <td>KHTML</td>
-                  <td>Konqureror 3.1</td>
-                  <td>KDE 3.1</td>
-                  <td>3.1</td>
-                  <td>C</td>
-                </tr>
-                <tr>
-                  <td>KHTML</td>
-                  <td>Konqureror 3.3</td>
-                  <td>KDE 3.3</td>
-                  <td>3.3</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>KHTML</td>
-                  <td>Konqureror 3.5</td>
-                  <td>KDE 3.5</td>
-                  <td>3.5</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Tasman</td>
-                  <td>Internet Explorer 4.5</td>
-                  <td>Mac OS 8-9</td>
-                  <td>-</td>
-                  <td>X</td>
-                </tr>
-                <tr>
-                  <td>Tasman</td>
-                  <td>Internet Explorer 5.1</td>
-                  <td>Mac OS 7.6-9</td>
-                  <td>1</td>
-                  <td>C</td>
-                </tr>
-                <tr>
-                  <td>Tasman</td>
-                  <td>Internet Explorer 5.2</td>
-                  <td>Mac OS 8-X</td>
-                  <td>1</td>
-                  <td>C</td>
-                </tr>
-                <tr>
-                  <td>Misc</td>
-                  <td>NetFront 3.1</td>
-                  <td>Embedded devices</td>
-                  <td>-</td>
-                  <td>C</td>
-                </tr>
-                <tr>
-                  <td>Misc</td>
-                  <td>NetFront 3.4</td>
-                  <td>Embedded devices</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Misc</td>
-                  <td>Dillo 0.8</td>
-                  <td>Embedded devices</td>
-                  <td>-</td>
-                  <td>X</td>
-                </tr>
-                <tr>
-                  <td>Misc</td>
-                  <td>Links</td>
-                  <td>Text only</td>
-                  <td>-</td>
-                  <td>X</td>
-                </tr>
-                <tr>
-                  <td>Misc</td>
-                  <td>Lynx</td>
-                  <td>Text only</td>
-                  <td>-</td>
-                  <td>X</td>
-                </tr>
-                <tr>
-                  <td>Misc</td>
-                  <td>IE Mobile</td>
-                  <td>Windows Mobile 6</td>
-                  <td>-</td>
-                  <td>C</td>
-                </tr>
-                <tr>
-                  <td>Misc</td>
-                  <td>PSP browser</td>
-                  <td>PSP</td>
-                  <td>-</td>
-                  <td>C</td>
-                </tr>
-                <tr>
-                  <td>Other browsers</td>
-                  <td>All others</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>U</td>
-                </tr>
+                </tr> -->
+               
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
+                  <th>Property Title</th>
+                  <th>Image</th>
+                  <th>Price</th>
+                  <th>Status</th>
+                  <th>Activity</th>
                 </tr>
                 </tfoot>
               </table>
@@ -699,3 +419,100 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
+<script type="text/javascript">
+  $('document').ready(function(){
+    // window.onload = function(){
+    //   get_properties();
+    //   function get_properties()
+    //   {
+    //     $.ajax({
+    //       type: 'ajax',
+    //       url:'<?php echo base_url()?>Admin/get_properties',
+    //       async:false,
+    //       dataType:'json',
+    //       success: function(data){
+    //         console.log(data);
+    //       },
+    //       error: function()
+    //       {
+    //         alert("Uhm, another try?");
+    //       }
+    //     })
+    //   }
+    // }
+    window.onload = function() {
+        get_properties();
+       function get_properties()
+       {
+          $.ajax({
+            type: 'ajax',
+            url: '<?php echo base_url()?>Admin/get_properties',
+            async: false,
+            dataType: 'json',
+            success: function(data)
+            {
+              console.log(data);
+              var html = '';
+              var i;
+              for(i=0; i<data.length; i++)
+              {
+                html +=  "<tr>"+
+                      "<td>"+data[i].property_title+"</td>"+
+                      "<td><img  src='<?php echo base_url('uploads/')?>"+data[i].property_title_slug+"/facade/"+data[i].property_facade+"' style='height: 100px; width: 150px;'/>"+
+                      "<td>"+data[i].property_price+"</td>"+
+                      "<td>"+data[i].property_status+"</td>"+
+                      "<td>"+
+                     
+                       "<center>"+
+                    "<a href='javascript;:' class='btn btn-danger btn-xs item-hide' data="+data[i].property_id+"><i class='fa fa-eye-slash'></i> Hide</a>"+
+                    "<a href='' class='btn btn-primary btn-xs item-unhide' data="+data[i].property_id+"><i class='fa fa-eye'></i> Unhide</a>"+
+                    "<a href='<?php echo base_url('Admin/edit_property/') ?>"+data[i].property_id+"/"+data[i].property_title_slug+"' class='btn btn-success btn-xs item-view'><i class='fa fa-folder-open'></i>View</a>"+
+                    "</center>"+
+
+                    "</tr>";
+                    
+              }$('#properties').html(html);
+            },
+            error: function()
+            {
+              alert('Could not load data');
+            }
+          })
+       }
+       $('#inquiries').on('click', '.item-delete', function(){
+        var id = $(this).attr('data');
+        $('#deleteModal').modal('show');
+        $('#deleteModal').find('.modal-title').text('Delete Project');
+        $('#btnDelete').click(function(){
+          $.ajax({
+             type: 'ajax',
+             method: 'get',
+             async: false,
+             url:'<?php echo base_url() ?>admin/delete_project/',
+             data:{id,id},
+             dataType: 'json',
+             success: function(response)
+             {
+              if(response.success)
+              {
+                $('#deleteModal').modal('hide');
+                $('.alert-success').html('Project is deleted successfully').fadeIn().delay(4000).fadeOut('slow');
+                window.location.reload();
+              }
+              else
+              {
+                alert('Error');
+              }
+             },
+             error: function()
+             {
+              alert('Could not Delete Project')
+             },
+
+          })
+        })
+       })
+    }
+  });
+ 
+</script>

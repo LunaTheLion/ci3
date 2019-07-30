@@ -42,9 +42,9 @@ class Property_Model extends CI_Model
 			'property_date_posted' =>date('Y-m-d g:i'),
 			'property_status' => $this->input->post('propertyStatus'),
 		);
-		echo "<pre>";
-		print_r($propertydetails);
-		echo "</pre>";
+		// echo "<pre>";
+		// print_r($propertydetails);
+		// echo "</pre>";
 		return $this->db->insert('property_tbl', $propertydetails);
 	}
 	public function update_project($facade,$id)

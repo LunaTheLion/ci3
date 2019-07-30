@@ -195,12 +195,12 @@ class Admin_model extends CI_Model{
 		return $query->num_rows();
 	}
 
-	public function projects()
+	public function properties()
 	{
 		$this->db->select('*');
-		$this->db->order_by('date_posted', 'DESC');
-		$this->db->where('status', 0);
-		$query = $this->db->get('project_tbl');
+		$this->db->order_by('property_date_posted', 'DESC');
+		$this->db->where('property_system_status', 1);
+		$query = $this->db->get('property_tbl');
 		return $query->result();
 	}
 	public function articles()
@@ -256,13 +256,13 @@ class Admin_model extends CI_Model{
 		$query = $this->db->get('articles_tbl');
 		return $query->row();
 	}
-	public function edit_project($id)
+	public function get_property_by_id($id)
 	{
 		
 		$this->db->select('*');
-		$this->db->Where('id', $id);
-		$this->db->where('status', 0);
-		$query = $this->db->get('project_tbl');
+		$this->db->Where('property_id', $id);
+		$this->db->where('property_system_status', 1);
+		$query = $this->db->get('property_tbl');
 		return $query->row();
 	}
 	public function update_article($image, $id)

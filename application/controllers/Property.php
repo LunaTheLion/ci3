@@ -45,20 +45,22 @@ class Property extends CI_CONTROLLER
 		 $int = 0;
 
 		//FACADE
-		if(isset($_FILES['files']))
+		if(isset($_FILES['model']))
 		{
 
-			$file_array = reArrayFiles($_FILES['files']);
-			
+			$file_array = reArrayFiles($_FILES['model']);
+
 			for($i=0; $i<count($file_array); $i++)
 			{
 				
 				$dir = "uploads/".$title."/facade/";
 				$facade = $file_array[$i]['name'];
+				
 				if(!is_dir($dir))
 				{
 					mkdir($dir,0755,true);
 					move_uploaded_file($file_array[$i]['tmp_name'],$dir.$file_array[$i]['name']);
+					// echo " <br> Amenities Upload Successfully";
 					$int += 1;
 				}
 				elseif(is_dir($dir))
@@ -66,9 +68,9 @@ class Property extends CI_CONTROLLER
 					move_uploaded_file($file_array[$i]['tmp_name'],$dir.$file_array[$i]['name']);
 					// echo " <br> Amenities Upload Successfully";
 					$int += 1;
-				}
-						
+				}			
 			}
+			
 
 		//Image Amenities
 				if(isset($_FILES['imageAmenities']))
@@ -96,17 +98,17 @@ class Property extends CI_CONTROLLER
 								
 							}
 							
-						}//image amenities
+				}//image amenities
 				
-	echo "Check";			
+			
 
 
 			$this->pm->add_property($facade);
-			// echo "<script>alert('Successfully Created a New Project')</script>";
+			echo "<script>alert('Successfully Created a New Property')</script>";
 			
-			// sleep(3);
+			sleep(3);
 
-			// redirect('admin/mng_projects');
+			redirect('admin/mng_listing');
 
 		}//FACADE
 		

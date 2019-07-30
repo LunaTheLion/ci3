@@ -3,7 +3,15 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-       Manage Listings
+       <?php if(!empty($this->session->flashdata('title')))
+        {
+          echo "View ".$this->session->flashdata('title');
+        }
+        else
+        {
+          echo "Create Property Listing";
+        }
+        ?>
         <small>advanced tables</small>
       </h1>
       <ol class="breadcrumb">
@@ -22,15 +30,15 @@
           <div class="box box-info">
             <div class="box-header with-border">
               <h3 class="box-title">
-              <!--   <?php if(!empty($this->session->flashdata('title')))
+               <?php if(!empty($this->session->flashdata('title')))
                 {
-                  echo "Edit ".$this->session->flashdata('title');
+                  echo "View ".$this->session->flashdata('title');
                 }
                 else
                 {
                   echo "Add Property";
                 }
-                ?> -->
+                ?> 
               </h3>
               <!-- <a href="<?php echo base_url('upload_multiple/sample') ?>" class="btn btn-info">Sample</a> -->
              
@@ -38,7 +46,7 @@
             <!-- /.box-header -->
             <div class="box-body">
               <div class="row">
-                <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+                <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12"> 
                 
                   <!--    <?php
                       if(!empty($this->session->flashdata('title')))
@@ -51,38 +59,50 @@
                       }
 
                      ?> -->
-                    
-                     <label for="turnover">Property Type</label>
-                     
+                     <label for="turnover">Property Type</label><br>
+                    <?php 
+                        $type = $this->session->flashdata('property_type');
+                        echo $type;
+                        $retype = 2;
+                     ?>
                      <div class="row">
                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                       <input type="radio" name="propertyType" id="propertyType" value="Condo"> Condo<br> 
+                       <input type="radio" name="propertyType" id="propertyType" value="Condo" checked="<?php if($retype === 1){echo "checked";} ?>"> Condo<br> 
                        </div>
                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                       <input type="radio" name="propertyType" id="propertyType" value="House and Lot"> House and Lot<br>
+                       <input type="radio" name="propertyType" id="propertyType" value="House and Lot" checked="<?php if($retype === 2){echo "checked";} ?>">House and Lot<br>
                        </div>
+                       
                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                       <input type="radio" name="propertyType" id="propertyType" value="Lot"> Lot<br>
+                       <input type="radio" name="propertyType" id="propertyType" value="Lot" checked="<?php if($retype ===3){echo "checked";} ?>"> Lot<br>
                        </div>
+
                      </div>
                      <br>
+
                      <div class="form-group">
                      <label for="Twin Suite">Property Status</label><br>
-                  
+                      <?php echo $this->session->flashdata('property_status') ?>
 
                        <div class="row">
                          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                         <input type="radio" name="propertyStatus" id="propertyStatus" value="1"> Rent Only<br> 
-                       
-                      
+                         <input type="radio" name="propertyStatus" id="propertyStatus" value="Rent Only" checked="
+                         <?php 
+                                if($this->session->flashdata('property status') === 'Rent Only')
+                                  { echo "checked";} 
+                                else{ echo "";} 
+                          ?>"> Rent Only<br> 
                          </div>
                          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                         <input type="radio" name="propertyStatus" id="propertyStatus" value="2"> Sale Only <br>
-                        
-                       
+                         <input type="radio" name="propertyStatus" id="propertyStatus" value="Sale Only" checked="
+                         <?php 
+                                if($this->session->flashdata('property status') === 'Sale Only')
+                                { echo "checked";} 
+                                else{ echo "";} 
+                          ?>"> Sale Only <br>
                          </div>
                          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                         <input type="radio" name="propertyStatus" id="propertyStatus" value="3"> Rent and Sale <br>   
+                         <input type="radio" name="propertyStatus" id="propertyStatus" value="Rent and Sale" checked="<?php if($this->session->flashdata('property status') === 'Rent and Sale'){ echo "checked";} else{ echo "";} ?>"> Rent and Sale <br>   
                          
                          </div>
                       
@@ -104,11 +124,30 @@
                     </div>
                     <div class="form-group">
                     <label for="projectLocation">Property Location</label>
-                     <input type="text" class="form-control" name="projectLocation" id="projectLocation" required placeholder="Property Location">
+                     <input type="text" class="form-control" name="projectLocation" id="projectLocation" required placeholder="Property Location" value=" <?php   
+                        if(!empty($this->session->flashdata('address')))
+                        {
+                          echo $this->session->flashdata('location');
+                        }
+                        else
+                        {
+                          echo "";
+                        }
+
+                      ?>" >
                     </div>
                     <div class="form-group" id="propertyBuilding">
                     <label for="projectBuilding">Property Building</label>
-                    <input type="text" class="form-control" name="projectBuilding" id="projectBuilding" required placeholder="Property Building" >
+                    <input type="text" class="form-control" name="projectBuilding" id="projectBuilding" required placeholder="Property Building"  value="<?php 
+                      if(!empty($this->session->flashdata('building')))
+                      {
+                        echo $this->session->flashdata('building');
+                      }
+                      else
+                      {
+                        echo "";
+                      }
+                     ?>">
                    
                     </div>
                     <div class="form-group">
@@ -141,9 +180,9 @@
                     <div class="form-group">
                       <label for="propertyLotArea">Lot Area (Sqm)</label>
                       <input type="number" class="form-control" id="propertyLotArea" name="propertyLotArea" placeholder="Lot Area"  value="<?php 
-                      if(!empty($this->session->flashdata('price')))
+                      if(!empty($this->session->flashdata('lot_area')))
                       {
-                        echo $this->session->flashdata('price');
+                        echo $this->session->flashdata('lot_area');
                       }
                       else
                       {
@@ -154,9 +193,9 @@
                     <div class="form-group">
                       <label for="propertyFloorArea">Floor Area (Sqm)</label>
                       <input type="number" class="form-control" id="propertyFloorArea" name="propertyFloorArea" placeholder="Floor Area" value="<?php 
-                      if(!empty($this->session->flashdata('price')))
+                      if(!empty($this->session->flashdata('floor_area')))
                       {
-                        echo $this->session->flashdata('price');
+                        echo $this->session->flashdata('floor_area');
                       }
                       else
                       {
@@ -170,23 +209,66 @@
                 <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12">
                 <div class="form-group">
                   <label for="propertyBed">Bedroom</label>
-                  <input type="number" class="form-control" name="propertyBed" id="propertyBed" required placeholder="Bedroom Count" value="0">
+                  <input type="number" class="form-control" name="propertyBed" id="propertyBed" required placeholder="Bedroom Count" value="<?php 
+                     if(!empty($this->session->flashdata('bed')))
+                     {
+                       echo $this->session->flashdata('bed');
+                     }
+                     else
+                     {
+                       echo "0";
+                     }
+                    ?>"
+                   
                 </div>
                 <div class="form-group">
                   <label for="propertyBath">Bathroom</label>
-                  <input type="number" class="form-control" name="propertyBath" id="propertyBath" required placeholder="Bathroom Count" value="0">
+                  <input type="number" class="form-control" name="propertyBath" id="propertyBath" required placeholder="Bathroom Count" value="<?php 
+                  if(!empty($this->session->flashdata('bath')))
+                  {
+                    echo $this->session->flashdata('bath');
+                  }
+                  else
+                  {
+                    echo "0";
+                  }
+                   ?>">
                 </div>
                 <div class="form-group">
                   <label for="propertyParking">Parking</label>
-                  <input type="number" class="form-control" name="propertyParking" id="propertyParking" required placeholder="Parking Count" value="0">
+                  <input type="number" class="form-control" name="propertyParking" id="propertyParking" required placeholder="Parking Count" value="<?php 
+                  if(!empty($this->session->flashdata('parking')))
+                  {
+                    echo $this->session->flashdata('parking');
+                  }
+                  else
+                  {
+                    echo "0";
+                  }
+                   ?>">
                 </div>
                 <label>Others</label>
                <div class="row">
                  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">  
-                 <input type="checkbox" name="propertyPet" id="propertyPet" value="1">Pet Friendly<br> 
+                 <input type="checkbox" name="propertyPet" id="propertyPet" value="1" checked="<?php 
+                 if(!empty($this->session->flashdata('title')))
+                 {
+                  if($this->session->flashdata('pet') == 1)
+                  {
+                    echo "checked";
+                  }
+                  
+                 }
+                  ?>">Pet Friendly<br> 
                  </div>
                  <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                 <input type="checkbox" name="propertyGarden" id="propertyGarden" value="1">With Garden <br>            
+                 <input type="checkbox" name="propertyGarden" id="propertyGarden" value="1" checked="<?php 
+                 if($this->session->flashdata('garden') == 1)
+                 {
+                   echo "checked";
+                 }
+                 
+                  ?>">With Garden <br>            
                  </div>
                </div>
                <br>
@@ -196,36 +278,113 @@
                   </div>           
                   <hr> -->
                   <label for="files">Upload Property Facade</label>
-                  <input type='file' id="myfacade" name="files[]" required>
-                  <div id="previews"></div>
+                  <input type='file' id="model" name="model[]" required>
+                  <div id="modelPreview"></div>
+                  <?php 
+                    if(!empty($this->session->flashdata('title')))
+                    {
+                      ?>
+                       <img src="<?php echo base_url('uploads/'.$this->session->flashdata('title_slug')."/facade/".$this->session->flashdata('facade'))?>" class="imageThumb"/> 
+
+                      <?php
+                    }
+                   ?>
                       <p>&nbsp;</p> 
                   <hr>  
                   <div class="form-group">
                     <label for="imageUnit">Upload Amenities</label>
-                    <input type="file" id="imageAmenities" name="imageAmenities[]" multiple required />
+                    <input type="file" id="amenities" name="imageAmenities[]" multiple required />
+                    <div id="amenitiesPreview"></div>
+                    <?php 
+                      if(!empty($this->session->flashdata('title')))
+                      {
+                          // $dir= base_url("uploads/".$this->session->flashdata('title_slug')."/amenities/");
+
+                          //  $amenities = glob($dir."*.*");
+
+
+
+                            $dirname = "uploads/".$this->session->flashdata('title_slug')."/amenities";
+                            $files = glob($dirname."*.*");
+                            $dir_path =  "uploads/".$this->session->flashdata('title_slug')."/amenities";
+                            $extensions_array = array('jpg','png','jpeg');
+
+                            if(is_dir($dir_path))
+                            {
+                              $files = scandir($dir_path);
+                                              
+                              for($i = 0; $i < count($files); $i++)
+                              {
+                                if($files[$i] !='.' && $files[$i] !='..')
+                                {                     
+                                  $file = pathinfo($files[$i]);
+                                ?>
+                                <!-- <li data-target="#floorplan" data-slide-to="<?php echo $files[$i] ?>"></li> -->
+                                <img src="<?php echo $files[$i] ?>" class="imageThumb">
+                            <?php
+                            }
+                            }
+                            }
+
+
+
+
+
+
+
+
+
+
+
+                            // for ($i = 0; $i < count($amenities); $i++) {
+                            //     $image = $amenities[$i];
+                            //     echo $image;
+                            //      // show only image name if you want to show full path then use this code // echo $image."<br />";
+                            //     echo '<img src="'.$amenities[$i].'" class="imageThumb" />';
+
+                            // }
+
+
+                          // foreach( $amenities as $amenity){
+                          //   echo '<img src="'.$amenity.'" class="imageThumb">';
+                          //   }
+                            
+                      }
+                     ?>
+                        <p>&nbsp;</p>
                   </div>
                 </div>                   
               </div>
-            <!--   <form runat="server">
-                <input type='file' id="imgInp" />
-                <img id="blah" src="#" alt="your image" />
-              </form> -->
-        <!--       <script
-                  src="https://code.jquery.com/jquery-3.2.1.min.js"
-                  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-                  crossorigin="anonymous"></script>
-               -->
-              
+            </div>
+               <form>
+                <textarea class="textarea" name="propertyDescription" placeholder="Place some text here"
+                          style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?php 
+                          if(!empty($this->session->flashdata('details')))
+                          {
+                            echo $this->session->flashdata('details');
+                          }
+                          else
+                          {
+                            echo "";
+                          }
+                           ?></textarea>
+              </form>
                     
 
-              <form>
-                <textarea class="textarea" name="propertyDescription" placeholder="Place some text here"
-                          style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-              </form>
+              
             </div>
             <div class="box-footer">
                 
-             <input type="submit" name="button" value="Upload" class="btn btn-info pull-right" />
+             <input type="submit" name="button" value="
+             <?php if(!empty($this->session->flashdata('title')))
+              {
+                echo "Update";
+              }
+              else
+              {
+                echo "Upload";
+              }
+              ?>" class="btn btn-info pull-right" />
 
              </form>
             </div>
@@ -251,49 +410,6 @@
 
 
  <script type="text/javascript">
- $(document).ready(function() {
-  // function readURL(input) {
-  //   if (input.files && input.files[0]) 
-  //   {
-  //     var reader = new FileReader();
-      
-  //     reader.onload = function(e) 
-  //     {
-  //       $('#blah').attr('src', e.target.result);
-  //     }
-      
-  //     reader.readAsDataURL(input.files[0]);
-  //   }
-  // }
-
-  // $("#imgInp").change(function() {
-  //   readURL(this);
-  // });
-  // $(function() {
-  //     // Multiple images preview in browser
-  //     var imagesPreview = function(input, placeToInsertImagePreview) {
-
-  //         if (input.files) {
-  //             var filesAmount = input.files.length;
-
-  //             for (i = 0; i < filesAmount; i++) {
-  //                 var reader = new FileReader();
-
-  //                 reader.onload = function(event) {
-  //                     $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
-  //                 }
-
-  //                 reader.readAsDataURL(input.files[i]);
-  //             }
-  //         }
-
-  //     };
-
-  //     $('#gallery-photo-add').on('change', function() {
-  //         imagesPreview(this, 'div.gallery');
-  //     });
-  // });
-
   $('document').ready(function() {
           var images = function(input, imgPreview) {
       
@@ -312,73 +428,26 @@
       
           };
       
-          $('#myfacade').on('change', function() {
-              images(this, '#previews');
+          $('#model').on('change', function() {
+              images(this, '#modelPreview');
+          });
+          $('#amenities').on('change', function() {
+              images(this, '#amenitiesPreview');
           });
               
               //clear the file list when image is clicked
-          $('body').on('click','img',function(){
-              $('#myfacade').val("");
-              $('#previews').html("");
+          $('body').on('click','#amenitiesPreview',function(){
+              $('#amenities').val("");
+              $('#amenitiesPreview').html("");
       
+          });
+          $('body').on('click','#modelPreview',function(){
+              $('#model').val("");
+              $('#modelPreview').html("");
+          
           });
       });
 
-    
-  // if(window.File && window.FileList && window.FileReader) 
-  // {//sizes for the image show is in the style on the header
-  //   //this code is to show the images selected 
-  //   $("#files").on("change",function(e) 
-  //   {
-  //     var files = e.target.files ,
-  //      filesLength = files.length ;
-  //         for (var i = 1; i < filesLength ; i++) 
-  //         {
-  //           var f = files[i]
-  //           var fileReader = new FileReader();
-  //           fileReader.onload = (function(e) 
-  //           {
-  //           var file = e.target;
-  //             $("<img></img>",{
-  //               class : "imageThumb",
-  //               src : e.target.result,
-  //               title : file.name
-  //               }).insertAfter("#files");
-  //           });
-  //           fileReader.readAsDataURL(f);
-  //           }
-  //     });
-  //   $('body').on('click','img',function(){
-  //       $('img').val("");
-    
-  //   });
 
-  //   $("#imageAmenities").on("change",function(e) 
-  //   {
-  //     var files = e.target.files ,
-  //      filesLength = files.length ;
-  //         for (var i = 1; i < filesLength ; i++) 
-  //         {
-  //           var f = files[i]
-  //           var fileReader = new FileReader();
-  //           fileReader.onload = (function(e) 
-  //           {
-  //           var file = e.target;
-  //             $("<img></img>",{
-  //               class : "imageThumb",
-  //               src : e.target.result,
-  //               title : file.name
-  //               }).insertAfter("#imageAmenities");
-  //           });
-  //           fileReader.readAsDataURL(f);
-  //           }
-  //     });
-  //   } 
-  //   else 
-  //   { 
-  //     alert("Your browser doesn't support to File API");
-  //   }
-    
-    });
     
  </script>
