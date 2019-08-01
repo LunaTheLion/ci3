@@ -4,12 +4,12 @@
     <section class="content-header">
       <h1>
        Manage Listings
-        <small>advanced tables</small>
+      
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo base_url('admin/dashboard/'.$this->session->userdata('admin_username')) ?>"><i class="fa fa-dashboard"></i>Dashboard</a></li>
        
-        <li class="active">Manage Listings</li>
+        <li class="active"><a href="<?php echo base_url('admin/mng_listing') ?>"><i class="fa fa-th"></i> Manage Listings</li></a>
       </ol>
       <br>
       <a href="<?php echo base_url('admin/create_listing') ?>" class="btn btn-success">Create Listing</a>
@@ -464,8 +464,8 @@
                       "<td>"+
                      
                        "<center>"+
-                    "<a href='javascript;:' class='btn btn-danger btn-xs item-hide' data="+data[i].property_id+"><i class='fa fa-eye-slash'></i> Hide</a>"+
-                    "<a href='' class='btn btn-primary btn-xs item-unhide' data="+data[i].property_id+"><i class='fa fa-eye'></i> Unhide</a>"+
+                    "<a href='javascript;:' class='btn btn-danger btn-xs item-hide' data="+data[i].property_id+"><i class='fa fa-eye-slash'></i> Hide</a>&nbsp;"+
+                    "<a href='' class='btn btn-primary btn-xs item-unhide' data="+data[i].property_id+"><i class='fa fa-eye'></i> Unhide</a>&nbsp;"+
                     "<a href='<?php echo base_url('Admin/edit_property/') ?>"+data[i].property_id+"/"+data[i].property_title_slug+"' class='btn btn-success btn-xs item-view'><i class='fa fa-folder-open'></i>View</a>"+
                     "</center>"+
 

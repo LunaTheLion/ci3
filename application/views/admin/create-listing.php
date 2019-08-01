@@ -17,8 +17,8 @@
       <ol class="breadcrumb">
         <li><a href="<?php echo base_url('admin/dashboard/'.$this->session->userdata('admin_username')) ?>"><i class="fa fa-dashboard"></i>Dashboard</a></li>
        
-        <li class="active"><i class="fa fa-th"></i> Manage Listings</li>
-        <li class="active">Create Listings</li>
+        <li ><i class="fa fa-th"></i> Manage Listings</li>
+        <li class="active"> Create Listings</li>
       </ol>
     </section>
 
@@ -62,19 +62,17 @@
                      <label for="turnover">Property Type</label><br>
                     <?php 
                         $type = $this->session->flashdata('property_type');
-                        echo $type;
-                        $retype = 2;
                      ?>
                      <div class="row">
                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                       <input type="radio" name="propertyType" id="propertyType" value="Condo" checked="<?php if($retype === 1){echo "checked";} ?>"> Condo<br> 
+                       <input type="radio" name="propertyType" id="propertyType" value="Condo" <?php if($type === "Condo"){echo "checked";} ?>> Condo<br> 
                        </div>
                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                       <input type="radio" name="propertyType" id="propertyType" value="House and Lot" checked="<?php if($retype === 2){echo "checked";} ?>">House and Lot<br>
+                       <input type="radio" name="propertyType" id="propertyType" value="House and Lot" <?php if($type === "House and Lot"){echo "checked";} ?>>House and Lot<br>
                        </div>
                        
                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                       <input type="radio" name="propertyType" id="propertyType" value="Lot" checked="<?php if($retype ===3){echo "checked";} ?>"> Lot<br>
+                       <input type="radio" name="propertyType" id="propertyType" value="Lot" <?php if($type === "Lot"){echo "checked";} ?>> Lot<br>
                        </div>
 
                      </div>
@@ -82,27 +80,17 @@
 
                      <div class="form-group">
                      <label for="Twin Suite">Property Status</label><br>
-                      <?php echo $this->session->flashdata('property_status') ?>
+                      <?php $status =  $this->session->flashdata('property_status') ?>
 
                        <div class="row">
                          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                         <input type="radio" name="propertyStatus" id="propertyStatus" value="Rent Only" checked="
-                         <?php 
-                                if($this->session->flashdata('property status') === 'Rent Only')
-                                  { echo "checked";} 
-                                else{ echo "";} 
-                          ?>"> Rent Only<br> 
+                         <input type="radio" name="propertyStatus" id="propertyStatus" value="Rent Only" <?php if($status === "Rend Only") {echo "checked";} ?> > Rent Only<br> 
                          </div>
                          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                         <input type="radio" name="propertyStatus" id="propertyStatus" value="Sale Only" checked="
-                         <?php 
-                                if($this->session->flashdata('property status') === 'Sale Only')
-                                { echo "checked";} 
-                                else{ echo "";} 
-                          ?>"> Sale Only <br>
+                         <input type="radio" name="propertyStatus" id="propertyStatus" value="Sale Only" <?php if($status === "Sale Only"){echo "checked";} ?>> Sale Only <br>
                          </div>
                          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                         <input type="radio" name="propertyStatus" id="propertyStatus" value="Rent and Sale" checked="<?php if($this->session->flashdata('property status') === 'Rent and Sale'){ echo "checked";} else{ echo "";} ?>"> Rent and Sale <br>   
+                         <input type="radio" name="propertyStatus" id="propertyStatus" value="Rent and Sale" <?php if($status === "Rent and Sale"){echo "checked";} ?>> Rent and Sale <br>   
                          
                          </div>
                       
@@ -298,12 +286,7 @@
                     <?php 
                       if(!empty($this->session->flashdata('title')))
                       {
-                          // $dir= base_url("uploads/".$this->session->flashdata('title_slug')."/amenities/");
-
-                          //  $amenities = glob($dir."*.*");
-
-
-
+                         
                             $dirname = "uploads/".$this->session->flashdata('title_slug')."/amenities";
                             $files = glob($dirname."*.*");
                             $dir_path =  "uploads/".$this->session->flashdata('title_slug')."/amenities";
@@ -318,36 +301,17 @@
                                 if($files[$i] !='.' && $files[$i] !='..')
                                 {                     
                                   $file = pathinfo($files[$i]);
+                                  //getting images from the root folder.  
                                 ?>
-                                <!-- <li data-target="#floorplan" data-slide-to="<?php echo $files[$i] ?>"></li> -->
-                                <img src="<?php echo $files[$i] ?>" class="imageThumb">
+
+                                <img src="<?php echo base_url('uploads/'.$this->session->flashdata('title_slug')."/amenities/".$files[$i])?>" class="imageThumb">
+
                             <?php
                             }
                             }
                             }
 
-
-
-
-
-
-
-
-
-
-
-                            // for ($i = 0; $i < count($amenities); $i++) {
-                            //     $image = $amenities[$i];
-                            //     echo $image;
-                            //      // show only image name if you want to show full path then use this code // echo $image."<br />";
-                            //     echo '<img src="'.$amenities[$i].'" class="imageThumb" />';
-
-                            // }
-
-
-                          // foreach( $amenities as $amenity){
-                          //   echo '<img src="'.$amenity.'" class="imageThumb">';
-                          //   }
+ 
                             
                       }
                      ?>

@@ -35,10 +35,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			if ($admin_check->num_rows()!=1)
 			{
 				$admin_data = array(
-					'admin_email' =>'saleandrentals@gmail.com',
+					'admin_email' =>'rentsandsale@gmail.com',
 					'admin_password' =>'f6fdffe48c908deb0f4c3bd36c032e72',
 					'admin_type'=>'super_admin',
-					'admin_username' => 'saleandrentals',
+					'admin_username' => 'rentsandsale',
 					'admin_verified' => 'verified',
 				);
 				$this->db->insert('admin_tbl',$admin_data);
