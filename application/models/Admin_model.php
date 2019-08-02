@@ -199,9 +199,35 @@ class Admin_model extends CI_Model{
 	{
 		$this->db->select('*');
 		$this->db->order_by('property_date_posted', 'DESC');
-		$this->db->where('property_system_status', 1);
+		$this->db->where("(property_system_status='1' OR property_system_status='2')");
 		$query = $this->db->get('property_tbl');
 		return $query->result();
+	}
+	public function all_properties()
+	{
+		$this->db->select('*');
+		$this->db->order_by('property_date_posted', 'DESC');
+		$this->db->where("(property_system_status='1' OR property_system_status='2')");
+		$query = $this->db->get('property_tbl');
+		return $query;
+	}
+	public function all_sales()
+	{
+		$this->db->select('*');
+		$this->db->order_by('property_date_posted', 'DESC');
+		$this->db->where("(property_system_status='1' OR property_system_status='2')");
+		$this->db->where('property_status', 'Sale Only');
+		$query = $this->db->get('property_tbl');
+		return $query;
+	}
+	public function all_rents()
+	{
+		$this->db->select('*');
+		$this->db->order_by('property_date_posted', 'DESC');
+		$this->db->where("(property_system_status='1' OR property_system_status='2')");
+		$this->db->where('property_status', 'Rent Only');
+		$query = $this->db->get('property_tbl');
+		return $query;
 	}
 	public function articles()
 	{
@@ -261,7 +287,7 @@ class Admin_model extends CI_Model{
 		
 		$this->db->select('*');
 		$this->db->Where('property_id', $id);
-		$this->db->where('property_system_status', 1);
+		$this->db->where("(property_system_status='1' OR property_system_status='2')");
 		$query = $this->db->get('property_tbl');
 		return $query->row();
 	}
@@ -369,17 +395,54 @@ class Admin_model extends CI_Model{
 			return false;
 		}
 	}
-	public function delete_proj()
+	public function hide_prop()
 	{
 		$id= $this->input->get('id');
 		//echo $id;
 		
 		$stat = array(
-			'status' => 1,
-			'date_deleted' =>date(' Y-m-d g:i'),
+			'property_system_status' => 2,
 		);
-		$this->db->where('id', $id);
-		$this->db->update('project_tbl',$stat);
+		$this->db->where('property_id', $id);
+		$this->db->update('property_tbl',$stat);
+		if($this->db->affected_rows() > 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	public function unhide_prop()
+	{
+		$id= $this->input->get('id');
+		//echo $id;
+		
+		$stat = array(
+			'property_system_status' => 1,
+		);
+		$this->db->where('property_id', $id);
+		$this->db->update('property_tbl',$stat);
+		if($this->db->affected_rows() > 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	public function del_prop()
+	{
+		$id= $this->input->get('id');
+		//echo $id;
+		
+		$stat = array(
+			'property_system_status' => 3,
+		);
+		$this->db->where('property_id', $id);
+		$this->db->update('property_tbl',$stat);
 		if($this->db->affected_rows() > 0)
 		{
 			return true;

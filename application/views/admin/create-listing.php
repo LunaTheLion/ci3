@@ -5,7 +5,7 @@
       <h1>
        <?php if(!empty($this->session->flashdata('title')))
         {
-          echo "View ".$this->session->flashdata('title');
+          echo "Edit ".$this->session->flashdata('title');
         }
         else
         {
@@ -14,11 +14,20 @@
         ?>
         <small>advanced tables</small>
       </h1>
+
       <ol class="breadcrumb">
         <li><a href="<?php echo base_url('admin/dashboard/'.$this->session->userdata('admin_username')) ?>"><i class="fa fa-dashboard"></i>Dashboard</a></li>
        
-        <li ><i class="fa fa-th"></i> Manage Listings</li>
-        <li class="active"> Create Listings</li>
+        <li ><a href="<?php echo base_url('admin/mng_listing')?>"><i class="fa fa-th"></i> Manage Listings</li></a>
+        <li class="active"><?php if(!empty($this->session->flashdata('title')))
+                {
+                  echo "Edit ".$this->session->flashdata('title');
+                }
+                else
+                {
+                  echo "Create Listing";
+                }
+                ?> </li>
       </ol>
     </section>
 
@@ -32,16 +41,17 @@
               <h3 class="box-title">
                <?php if(!empty($this->session->flashdata('title')))
                 {
-                  echo "View ".$this->session->flashdata('title');
+                  echo "Edit ".$this->session->flashdata('title');
                 }
                 else
                 {
                   echo "Add Property";
                 }
                 ?> 
+
               </h3>
               <!-- <a href="<?php echo base_url('upload_multiple/sample') ?>" class="btn btn-info">Sample</a> -->
-             
+             <a href="javascript:;" id="delprop" class="btn btn-danger pull-right"><i class="fa fa-trash"></i> Delete Property</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -375,6 +385,10 @@
 
  <script type="text/javascript">
   $('document').ready(function() {
+
+    $('#delprop').click(function(){
+        alert('Delete Property');
+    });
           var images = function(input, imgPreview) {
       
               if (input.files) {
@@ -410,6 +424,7 @@
               $('#modelPreview').html("");
           
           });
+          
       });
 
 

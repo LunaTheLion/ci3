@@ -106,6 +106,22 @@
               <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
 
             </div>
+            <script>
+              $('document').ready(function(){
+                  $(function () {
+                    $('#example1').DataTable()
+                    $('#example2').DataTable({
+                      'paging'      : true,
+                      'lengthChange': false,
+                      'searching'   : false,
+                      'ordering'    : true,
+                      'info'        : true,
+                      'autoWidth'   : false
+                    })
+                  });
+              });
+              
+            </script>
           </div>
      
 

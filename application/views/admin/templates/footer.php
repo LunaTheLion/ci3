@@ -15,8 +15,8 @@
 <script src="<?php echo base_url('assets/bower_components/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
 <!-- Morris.js charts -->
 
-<script src="<?php echo base_url('assets/bower_components/raphael/raphael.min.js') ?>"></script>
-<script src="<?php echo base_url('assets/bower_components/morris.js/morris.min.js') ?>"></script>
+<!-- <script src="<?php echo base_url('assets/bower_components/raphael/raphael.min.js') ?>"></script> -->
+<!-- <script src="<?php echo base_url('assets/bower_components/morris.js/morris.min.js') ?>"></script> -->
 <!-- Sparkline -->
 <script src="<?php echo base_url('assets/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js') ?>"></script>
 <!-- jvectormap -->
@@ -45,16 +45,4 @@
 </body>
 </html>
 <!-- data table -->
-<script>
-  $(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
-</script>
+

@@ -333,10 +333,11 @@ class Admin extends CI_CONTROLLER
 		'admin_status' =>$get->admin_status, 
 		);
 		$this->session->set_userdata($admin);
+		$data['fetch_data'] = $this->mm->all_sales();
 		$this->load->view('admin/templates/header', $admin);
 		$this->load->view('admin/main-header');
 		$this->load->view('admin/main-sidebar');
-		$this->load->view('admin/manage_home/manage-sales');
+		$this->load->view('admin/manage_home/manage-sales',$data);
 		// $this->load->view('admin/admin-footer');
 		$this->load->view('admin/templates/footer');
 	}
@@ -353,10 +354,11 @@ class Admin extends CI_CONTROLLER
 		'admin_status' =>$get->admin_status, 
 		);
 		$this->session->set_userdata($admin);
+		$data['fetch_data'] = $this->mm->all_rents();
 		$this->load->view('admin/templates/header', $admin);
 		$this->load->view('admin/main-header');
 		$this->load->view('admin/main-sidebar');
-		$this->load->view('admin/manage_home/manage-rent');
+		$this->load->view('admin/manage_home/manage-rent', $data);
 		// $this->load->view('admin/admin-footer');
 		$this->load->view('admin/templates/footer');
 	}
@@ -372,11 +374,12 @@ class Admin extends CI_CONTROLLER
 		'admin_email' => $get->admin_email,
 		'admin_status' =>$get->admin_status, 
 		);
+		$data['fetch_data'] = $this->mm->all_properties();
 		$this->session->set_userdata($admin);
 		$this->load->view('admin/templates/header', $admin);
 		$this->load->view('admin/main-header');
 		$this->load->view('admin/main-sidebar');
-		$this->load->view('admin/manage-listings');
+		$this->load->view('admin/manage-listings', $data);
 		// $this->load->view('admin/admin-footer');
 		$this->load->view('admin/templates/footer');
 	}
@@ -536,6 +539,12 @@ class Admin extends CI_CONTROLLER
 		$properties = $this->mm->properties();
 		echo json_encode($properties);
 	}
+	public function all_properties()
+	{
+		
+
+
+	}
 	public function add_project()
 	{
 		$this->load->view('admin/template/header');
@@ -580,10 +589,21 @@ class Admin extends CI_CONTROLLER
 		}
 		echo json_encode($msg);
 	}
-	public function delete_project()
+	public function hide_property()
 	{
 		//echo "Delete Article";
-		$result = $this->mm->delete_proj();
+		$result = $this->mm->hide_prop();
+		$msg['success'] = false;
+		if($result)
+		{
+			$msg['success'] = true;
+		}
+		echo json_encode($msg);
+	}
+	public function unhide_property()
+	{
+		//echo "Delete Article";
+		$result = $this->mm->hide_prop();
 		$msg['success'] = false;
 		if($result)
 		{
