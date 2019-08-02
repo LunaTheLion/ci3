@@ -603,7 +603,7 @@ class Admin extends CI_CONTROLLER
 	public function unhide_property()
 	{
 		//echo "Delete Article";
-		$result = $this->mm->hide_prop();
+		$result = $this->mm->unhide_prop();
 		$msg['success'] = false;
 		if($result)
 		{
@@ -665,57 +665,22 @@ class Admin extends CI_CONTROLLER
 		$this->load->view('admin/templates/footer');
 	}
 	
-	public function mng_featured_photos()
+	public function upload_featured_pictures()
 	{
-		$this->load->view('admin/template/header');
-		$this->load->view('admin/admin-header');
-		$this->load->view('admin/admin-main-sidebar');
-		$this->load->view('admin/home-featured-photos');
-		$this->load->view('admin/admin-footer');
-		$this->load->view('admin/template/footer');	
+		$directory = "uploads/featured-pictures/";
+		$foto = $directory. basename($_FILES['file']['name']);
+
+		// move_uploaded_file($_FILES['file']['name'], $directory);
+		if(move_uploaded_file($_FILES['file']['tmp_name'],$foto))
+		{
+			echo "<script>Alert('File is Valid and Successfully Uploaded')</script>";
+		}
+		else
+		{
+			echo "<script>Alert('File is not Uploaded')</script>";
+		}
 	}
-	
-	public function validate_add_art()
-	{
 
-		$config['upload_path']          = './uploads/articles';
-        $config['allowed_types']        = 'gif|jpg|png|jpeg';
-        $config['max_size']             = 10000;
-        $config['max_width']            = 100024;
-        $config['max_height']           = 70068;
-
-        $this->load->library('upload', $config);
-        if ( !$this->upload->do_upload())
-          	{
-                $error = array('error' => $this->upload->display_errors());
-
-                //$this->load->view('pages/upload_form', $error);
-                $this->load->view('admin/template/header');
-                $this->load->view('admin/admin-header');
-                $this->load->view('admin/admin-main-sidebar');
-                $this->load->view('admin/add-article', $error);
-                $this->load->view('admin/admin-footer');
-                $this->load->view('admin/template/footer');	
-            }
-        else
-        {
-           $file_data = $this->upload->data();
-           $data['img'] = $file_data['file_name'];
-           $image =  $file_data['file_name'];
-          // $this->mm->add_article($image);
-           if($this->mm->add_article($image))
-           {
-            	echo "<script>alert('Your Article is saved!')</script>";
-            	redirect(base_url('admin/mng_articles'));
-           }
-           else
-           {
-                echo "<script>alert('Sorry Article could not be saved!')</script>";
-                redirect(base_url('admin/mng_articles'));
-            }
-          // $data = array('upload_data' => $this->upload->data());
-        }
-	}
 	public function landmark()
 	{
 		echo $this->input->post('projectTitle');

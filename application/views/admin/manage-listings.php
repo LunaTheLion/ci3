@@ -18,7 +18,7 @@
           <div class="box"> 
             <div class="box-header">
               <h3 class="box-title">Listing Table</h3>
-              <a href="<?php echo base_url('admin/create_listing') ?>" class="btn btn-success pull-right">Create Listing</a>
+              <a href="<?php echo base_url('admin/create_listing') ?>" class="btn btn-success pull-right" title="Create a New Property">Create Listing</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -55,19 +55,17 @@
                                 if($row->property_system_status == '1')
                                 {//active to the website
                                   ?>
-                                    <a href='javascript:;' class='btn btn-danger btn-xs item-hide' id='hide' data="<?php echo $row->property_id;?>"><i class='fa fa-eye-slash'></i> Hide </a>&nbsp;
+                                    <a href='javascript:;' class='btn btn-danger btn-xs item-hide' id='hide' data="<?php echo $row->property_id;?>" title="Hide your property from the website"><i class='fa fa-eye-slash'></i> Hide </a>&nbsp;
                                   <?php
                                 }
                                 elseif($row->property_system_status == '2')
                                   {//hidden to the website
                                   ?>
-                                  <a href='javascript:;' class='btn btn-primary btn-xs item-unhide ' id='unhide'  data="<?php echo $row->property_id;?>" ><i class='fa fa-eye'></i> Unhide </a>&nbsp;
+                                  <a href='javascript:;' class='btn btn-primary btn-xs item-unhide ' id='unhide'  data="<?php echo $row->property_id;?>" title="Let your property be seen in the website" ><i class='fa fa-eye'></i> Unhide </a>&nbsp;
                                   <?php
                                 }
                              ?>
-                              
-                              
-                              <a href='<?php echo base_url('Admin/edit_property/'.$row->property_id.'/'.$row->property_title_slug) ?>' class='btn btn-success btn-xs item-view'><i class='fa fa-folder-open'></i>View</a>
+                              <a href='<?php echo base_url('Admin/edit_property/'.$row->property_id.'/'.$row->property_title_slug) ?>' class='btn btn-success btn-xs item-view' title="See full details of the property"><i class='fa fa-folder-open'></i>View</a>
                           </center></td>
                         </tr>
 
@@ -117,6 +115,7 @@
           </div>
           <div class="modal-body">
             <p>One fine body&hellip;</p>
+            <input type="text" name="id">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
@@ -166,6 +165,7 @@
                  if(response.success)
                  {
                   $('#modal-default').modal('show');
+                  
                    alert('success');  
                    window.location.reload();
                  }

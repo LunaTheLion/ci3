@@ -51,7 +51,12 @@
 
               </h3>
               <!-- <a href="<?php echo base_url('upload_multiple/sample') ?>" class="btn btn-info">Sample</a> -->
-             <a href="javascript:;" id="delprop" class="btn btn-danger pull-right"><i class="fa fa-trash"></i> Delete Property</a>
+              <?php
+                if(!empty($this->session->flashdata('title')))
+                {
+                  echo '<a href="javascript:;" id="delprop" class="btn btn-danger pull-right" ><i class="fa fa-trash"></i> Delete Property</a>';
+                }
+              ?>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
