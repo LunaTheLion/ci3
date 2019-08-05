@@ -109,9 +109,13 @@
        <li>
          <a href="<?php echo base_url('admin/mng_contact_us') ?>">
            <i class="fa fa-edit"></i> <span>Contact Us</span>
-           <!-- <span class="pull-right-container">
-             <small class="label pull-right bg-green">4</small>
-           </span> -->
+           
+         </a>
+       </li>
+       <li>
+         <a href="<?php echo base_url('admin/logout') ?>">
+           <i class="fa fa-sign-out"></i> <span>Log Out</span>
+           
          </a>
        </li>
       

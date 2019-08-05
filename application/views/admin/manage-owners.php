@@ -9,7 +9,7 @@
       <ol class="breadcrumb">
         <li><a href="<?php echo base_url('admin/dashboard/'.$this->session->userdata('admin_username')) ?>"><i class="fa fa-dashboard"></i>Dashboard</a></li>
        
-        <li class="active">Manage Owners</li>
+        <li class="active"><i class="fa fa-pie-chart"></i> Manage Owners</li>
       </ol>
     </section>
 
@@ -22,463 +22,67 @@
           <div class="box"> 
             <div class="box-header">
               <h3 class="box-title">Owner Table</h3>
+              <a href="javascript:;" class="btn btn-success pull-right" id="createOwner">Create Owner</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
+             
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Email</th>
-                  <th>Name</th>
-                  <th>Property</th>
-                  <th>Status</th>
-                  <th>Activity</th>
+                  <th><center>Name</center></th>
+                  <th><center>Property</center></th>
+                  <th><center>Email</center></th>
+                  <th><center>Contact</center></th>
+                  <th><center>Activity</center></th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0
-                  </td>
-                  <td>Win 95+</td>
-                  <td> 4</td>
-                  <td>
-                    <center>
-                      <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-eye-slash"></i> Hide</button>
-                      <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Unhide</button>
-                      <button type="button" class="btn btn-success btn-xs"><i class="fa fa-share"></i> Replace</button>
-                    </center>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 5.0
-                  </td>
-                  <td>Win 95+</td>
-                  <td>5</td>
-                  <td>C</td>
-                </tr>
-                <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 5.5
-                  </td>
-                  <td>Win 95+</td>
-                  <td>5.5</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>SampleEmail@gmail.com</td>
-                  <td>
-                    Alecson Diaz
-                  </td>
-                  <td>Corinthian Gardens</td>
-                  <td>Sale</td>
-                  <td><center>
-                    <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-eye-slash"></i> Hide</button>
-                    <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Unhide</button>
-                    <button type="button" class="btn btn-success btn-xs"><i class="fa fa-folder-open"></i>View</button>
-                    </center></td>
-                </tr>
-                <tr>
-                  <td>SampleEmail@gmail.com</td>
-                  <td>
-                    Alecson Diaz
-                  </td>
-                  <td>Essensa Condominium</td>
-                  <td>Sale</td>
-                  <td><center>
-                    <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-eye-slash"></i> Hide</button>
-                    <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Unhide</button>
-                    <button type="button" class="btn btn-success btn-xs"><i class="fa fa-folder-open"></i>View</button>
-                    </center></td>
-                </tr>
-                <tr>
-                  <td>SampleEmail@gmail.com</td>
-                  <td>
-                    Alecson Diaz
-                  </td>
-                  <td>Arya Residences</td>
-                  <td>Sale</td>
-                  <td><center>
-                    <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-eye-slash"></i> Hide</button>
-                    <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Unhide</button>
-                    <button type="button" class="btn btn-success btn-xs"><i class="fa fa-folder-open"></i>View</button>
-                    </center></td>
-                </tr>
-               <tr>
-                  <td>SampleEmail@gmail.com</td>
-                  <td>
-                    Alecson Diaz
-                  </td>
-                  <td>Dasmarinas Village</td>
-                  <td>Sale</td>
-                  <td><center>
-                    <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-eye-slash"></i> Hide</button>
-                    <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-eye"></i> Unhide</button>
-                    <button type="button" class="btn btn-success btn-xs"><i class="fa fa-folder-open"></i>View</button>
-                    </center></td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Firefox 1.5</td>
-                  <td>Win 98+ / OSX.2+</td>
-                  <td>1.8</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Firefox 2.0</td>
-                  <td>Win 98+ / OSX.2+</td>
-                  <td>1.8</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Firefox 3.0</td>
-                  <td>Win 2k+ / OSX.3+</td>
-                  <td>1.9</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Camino 1.0</td>
-                  <td>OSX.2+</td>
-                  <td>1.8</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Camino 1.5</td>
-                  <td>OSX.3+</td>
-                  <td>1.8</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Netscape 7.2</td>
-                  <td>Win 95+ / Mac OS 8.6-9.2</td>
-                  <td>1.7</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Netscape Browser 8</td>
-                  <td>Win 98SE+</td>
-                  <td>1.7</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Netscape Navigator 9</td>
-                  <td>Win 98+ / OSX.2+</td>
-                  <td>1.8</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Mozilla 1.0</td>
-                  <td>Win 95+ / OSX.1+</td>
-                  <td>1</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Mozilla 1.1</td>
-                  <td>Win 95+ / OSX.1+</td>
-                  <td>1.1</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Mozilla 1.2</td>
-                  <td>Win 95+ / OSX.1+</td>
-                  <td>1.2</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Mozilla 1.3</td>
-                  <td>Win 95+ / OSX.1+</td>
-                  <td>1.3</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Mozilla 1.4</td>
-                  <td>Win 95+ / OSX.1+</td>
-                  <td>1.4</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Mozilla 1.5</td>
-                  <td>Win 95+ / OSX.1+</td>
-                  <td>1.5</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Mozilla 1.6</td>
-                  <td>Win 95+ / OSX.1+</td>
-                  <td>1.6</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Mozilla 1.7</td>
-                  <td>Win 98+ / OSX.1+</td>
-                  <td>1.7</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Mozilla 1.8</td>
-                  <td>Win 98+ / OSX.1+</td>
-                  <td>1.8</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Seamonkey 1.1</td>
-                  <td>Win 98+ / OSX.2+</td>
-                  <td>1.8</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Gecko</td>
-                  <td>Epiphany 2.20</td>
-                  <td>Gnome</td>
-                  <td>1.8</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Webkit</td>
-                  <td>Safari 1.2</td>
-                  <td>OSX.3</td>
-                  <td>125.5</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Webkit</td>
-                  <td>Safari 1.3</td>
-                  <td>OSX.3</td>
-                  <td>312.8</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Webkit</td>
-                  <td>Safari 2.0</td>
-                  <td>OSX.4+</td>
-                  <td>419.3</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Webkit</td>
-                  <td>Safari 3.0</td>
-                  <td>OSX.4+</td>
-                  <td>522.1</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Webkit</td>
-                  <td>OmniWeb 5.5</td>
-                  <td>OSX.4+</td>
-                  <td>420</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Webkit</td>
-                  <td>iPod Touch / iPhone</td>
-                  <td>iPod</td>
-                  <td>420.1</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Webkit</td>
-                  <td>S60</td>
-                  <td>S60</td>
-                  <td>413</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera 7.0</td>
-                  <td>Win 95+ / OSX.1+</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera 7.5</td>
-                  <td>Win 95+ / OSX.2+</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera 8.0</td>
-                  <td>Win 95+ / OSX.2+</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera 8.5</td>
-                  <td>Win 95+ / OSX.2+</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera 9.0</td>
-                  <td>Win 95+ / OSX.3+</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera 9.2</td>
-                  <td>Win 88+ / OSX.3+</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera 9.5</td>
-                  <td>Win 88+ / OSX.3+</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera for Wii</td>
-                  <td>Wii</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Nokia N800</td>
-                  <td>N800</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Presto</td>
-                  <td>Nintendo DS browser</td>
-                  <td>Nintendo DS</td>
-                  <td>8.5</td>
-                  <td>C/A<sup>1</sup></td>
-                </tr>
-                <tr>
-                  <td>KHTML</td>
-                  <td>Konqureror 3.1</td>
-                  <td>KDE 3.1</td>
-                  <td>3.1</td>
-                  <td>C</td>
-                </tr>
-                <tr>
-                  <td>KHTML</td>
-                  <td>Konqureror 3.3</td>
-                  <td>KDE 3.3</td>
-                  <td>3.3</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>KHTML</td>
-                  <td>Konqureror 3.5</td>
-                  <td>KDE 3.5</td>
-                  <td>3.5</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Tasman</td>
-                  <td>Internet Explorer 4.5</td>
-                  <td>Mac OS 8-9</td>
-                  <td>-</td>
-                  <td>X</td>
-                </tr>
-                <tr>
-                  <td>Tasman</td>
-                  <td>Internet Explorer 5.1</td>
-                  <td>Mac OS 7.6-9</td>
-                  <td>1</td>
-                  <td>C</td>
-                </tr>
-                <tr>
-                  <td>Tasman</td>
-                  <td>Internet Explorer 5.2</td>
-                  <td>Mac OS 8-X</td>
-                  <td>1</td>
-                  <td>C</td>
-                </tr>
-                <tr>
-                  <td>Misc</td>
-                  <td>NetFront 3.1</td>
-                  <td>Embedded devices</td>
-                  <td>-</td>
-                  <td>C</td>
-                </tr>
-                <tr>
-                  <td>Misc</td>
-                  <td>NetFront 3.4</td>
-                  <td>Embedded devices</td>
-                  <td>-</td>
-                  <td>A</td>
-                </tr>
-                <tr>
-                  <td>Misc</td>
-                  <td>Dillo 0.8</td>
-                  <td>Embedded devices</td>
-                  <td>-</td>
-                  <td>X</td>
-                </tr>
-                <tr>
-                  <td>Misc</td>
-                  <td>Links</td>
-                  <td>Text only</td>
-                  <td>-</td>
-                  <td>X</td>
-                </tr>
-                <tr>
-                  <td>Misc</td>
-                  <td>Lynx</td>
-                  <td>Text only</td>
-                  <td>-</td>
-                  <td>X</td>
-                </tr>
-                <tr>
-                  <td>Misc</td>
-                  <td>IE Mobile</td>
-                  <td>Windows Mobile 6</td>
-                  <td>-</td>
-                  <td>C</td>
-                </tr>
-                <tr>
-                  <td>Misc</td>
-                  <td>PSP browser</td>
-                  <td>PSP</td>
-                  <td>-</td>
-                  <td>C</td>
-                </tr>
-                <tr>
-                  <td>Other browsers</td>
-                  <td>All others</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>U</td>
-                </tr>
+                <tbody id="owners">
+                  <?php 
+                  if($fetch_data->num_rows() > 0)
+                  {
+                    // echo "<pre>";
+                    // print_r($fetch_data);
+                    // echo "</pre>";
+                    foreach($fetch_data->result() as $row)
+                    {
+                      ?>
+                        <tr>
+                          <td><?php echo $row->owner_name; ?></td>
+                          <td><?php echo $row->owner_property ?></td>
+                          <td><?php echo $row->owner_email ?></td>
+                          <td><?php echo $row->owner_contact_no; ?></td>
+                          <td><center>
+                            <a href='javascript:;' class='btn btn-success btn-xs' id="view" data="<?php echo $row->owner_id?>" title="See full details of the owner"><i class='fa fa-folder-open'></i> View</a>
+
+                            <a href='javascript:;' class='btn btn-danger btn-xs item-hide' id="delete" data="<?php echo $row->owner_id;?>" title="Delete from table"><i class='fa fa-eye-slash'></i> Delete </a>&nbsp;
+                            
+                          </center></td>
+                        </tr>
+
+                      <?php
+                    }
+
+
+                  }
+                    else
+                    {
+                      ?>
+                        <tr>
+                          <td colspan="5"><center>No Results Found</center></td>
+                        </tr>
+                      <?php
+                    }
+
+                   ?>
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th>Rendering engine</th>
-                  <th>Browser</th>
-                  <th>Platform(s)</th>
-                  <th>Engine version</th>
-                  <th>CSS grade</th>
+                  <th><center>Email</center></th>
+                  <th><center>Name</center></th>
+                  <th><center>Property</center></th>
+                  <th><center>Status</center></th>
+                  <th><center>Activity</center></th>
                 </tr>
                 </tfoot>
               </table>
@@ -502,198 +106,174 @@
     reserved.
   </footer>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark" style="display: none;">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-      <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">Recent Activity</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-                <p>Will be 23 on April 24th</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-user bg-yellow"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
-
-                <p>New phone +1(800)555-1234</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
-
-                <p>nora@example.com</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-file-code-o bg-green"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
-
-                <p>Execution time 5 seconds</p>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-        <h3 class="control-sidebar-heading">Tasks Progress</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Custom Template Design
-                <span class="label label-danger pull-right">70%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Update Resume
-                <span class="label label-success pull-right">95%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-success" style="width: 95%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Laravel Integration
-                <span class="label label-warning pull-right">50%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Back End Framework
-                <span class="label label-primary pull-right">68%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-      </div>
-      <!-- /.tab-pane -->
-      <!-- Stats tab content -->
-      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-      <!-- /.tab-pane -->
-      <!-- Settings tab content -->
-      <div class="tab-pane" id="control-sidebar-settings-tab">
-        <form method="post">
-          <h3 class="control-sidebar-heading">General Settings</h3>
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Report panel usage
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Some information about this general settings option
-            </p>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Allow mail redirect
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Other sets of options are available
-            </p>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Expose author name in posts
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-
-            <p>
-              Allow the user to show his name in blog posts
-            </p>
-          </div>
-          <!-- /.form-group -->
-
-          <h3 class="control-sidebar-heading">Chat Settings</h3>
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Show me as online
-              <input type="checkbox" class="pull-right" checked>
-            </label>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Turn off notifications
-              <input type="checkbox" class="pull-right">
-            </label>
-          </div>
-          <!-- /.form-group -->
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Delete chat history
-              <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
-            </label>
-          </div>
-          <!-- /.form-group -->
-        </form>
-      </div>
-      <!-- /.tab-pane -->
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
+ <div class="modal fade" id="modal-default">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span></button>
+         <h4 class="modal-title">Create Owner</h4>
+       </div>
+       <div class="modal-body">
+         <form method="post" action="<?php echo base_url('admin/create_owner') ?>" id="myForm">
+            <div class="form-group">
+              <label for="name">Input Owners' Name</label>
+              <input type="text" class="form-control" name="name" placeholder="Input Owners Name">
+            </div>
+            <input type="hidden" name="ownerID">
+            <div class="form-group">
+              <label for="email">Input Owners' Email</label>
+              <input type="email" class="form-control" name="email" placeholder="Input Owners Email">
+            </div>
+            <div class="form-group">
+              <label for="contact">Input Owners' Contact</label>
+              <input type="number" class="form-control" name="contact" placeholder="Input Owners Contact">
+            </div>
+            <div class="form-group">
+              <label for="property">Input Owners' Property</label>
+              <input type="text" class="form-control" name="property" placeholder="Input Owners Property" required>
+            </div>
+     <!--        <div class="form-group">
+              <label for="propertyType">Input Owners' Property Type</label>
+              <select name="propertyType" class="form-control">
+                <option value="Condo">Condo</option>
+                <option value="House and Lot">House and Lot</option>
+                <option value="Lot">Lot</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="propertyStatus">Input Owners' Property Status</label>
+              <select name="propertyStatus" class="form-control">
+                <option value="Rent Only">Rent Only</option>
+                <option value="Sale Only">Sale Only</option>
+                <option value="Rent and Sale">Rent and Sale</option>
+              </select>
+            </div> -->
+            <div class="form-group">
+              <label for="message">Input Owners' Message</label>
+              <textarea class="form-control" name="message"></textarea>
+            </div>
+         
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+         <button type="submit" id="btnyes" class="btn btn-success">Yes</button>
+         </form>
+       </div>
+     </div>
+     <!-- /.modal-content -->
+   </div>
+   <!-- /.modal-dialog -->
+ </div>
+ <div class="modal modal-danger fade" id="modal-danger">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span></button>
+         <h4 class="modal-title">Delete Owner</h4>
+       </div>
+       <div class="modal-body">
+         <p>Are you sure you want to delete this owner? <b id="ownername"></b> </p> 
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+         <button type="button" id="btnDelete" class="btn btn-outline">Delete</button>
+       </div>
+     </div>
+     <!-- /.modal-content -->
+   </div>
+   <!-- /.modal-dialog -->
+ </div>
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+  $('document').ready(function(){
+
+//owners table view owner
+$('#owners').on('click' , '#view', function(){
+    var id = $(this).attr('data');
+    $('#modal-default').modal('show');
+    $('#modal-default').find('.modal-title').text('View Owner');
+    $('#myForm').attr('action', '<?php echo base_url('admin/update_owner')?>');
+    $.ajax({
+      type:'ajax',
+      method: 'get',
+      url: '<?php echo base_url('admin/view_owner')?>',
+      data:{id,id},
+      async: false,
+      dataType: 'json',
+      success: function(data)
+      {
+        $('input[name=name]').val(data.owner_name);
+        $('input[name=email]').val(data.owner_email);
+        $('input[name=contact]').val(data.owner_contact_no);
+        $('textarea[name=message]').val(data.owner_message);
+        $('input[name=property]').val(data.owner_property);
+        $('input[name=ownerID]').val(data.owner_id);
+        $('#modal-default').find('.btn-success').text('Update');
+      },
+      error: function() 
+      {
+        alert('Could not Update');
+      }
+    });
+});
+//owners table view owner
+$('#owners').on('click', '#delete', function(){
+           var id = $(this).attr('data');
+           $('#modal-danger').modal('show');
+           $('#btnDelete').click(function(){
+
+              $.ajax({
+                type:'ajax',
+                method: 'get',
+                url: '<?php echo base_url('admin/delete_owner')?>',
+                data:{id,id},
+                async: false,
+                dataType: 'json',
+                success: function(response)
+                {
+                  if(response.success)
+                  {
+                  $('#modal-danger').modal('hide');
+                     alert('success');  
+                    window.location.reload();
+                  }
+                  else
+                  {
+                     $('#modal-danger').modal('hide');
+                     alert('Pwede na kaso may kulang');
+                     window.location.reload();
+                  }
+
+                },
+                error: function() 
+                {
+                  alert('Could not Delete');
+                  $('#modal-danger').modal('hide');
+                }
+           });
+      });
+});    
+
+
+
+    $('#createOwner').click(function(){
+      $('#modal-default').modal('show');
+    });
+ 
+});
+</script>

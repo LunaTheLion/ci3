@@ -97,6 +97,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						property_date_edited DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 						property_status TINYINT(1) NOT NULL DEFAULT 1 ,
 						property_system_status TINYINT(1) NOT NULL DEFAULT 1
+						property_date_deleted DATETIME NOT NULL DEFAUL CURRENT_TIMESTAMP,
 					);
 				");
 				return True;
@@ -112,13 +113,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				$this->db->query("
 					CREATE TABLE IF NOT EXISTS owner_tbl (
 						owner_id INT(11) AUTO_INCREMENT PRIMARY KEY,
-						owner_contact_no VARCHAR(15) NOT NULL,
-						owner_email VARCHAR(30) NOT NULL,
-						owner_name VARCHAR(30) NOT NULL,
-						owner_project VARCHAR(30) NOT NULL,
-						owner_message VARCHAR(8000) NOT NULL,
+						owner_contact_no VARCHAR(15),
+						owner_email VARCHAR(30),
+						owner_name VARCHAR(30),
+						owner_property VARCHAR(200) NOT NULL,
+						owner_property_type VARCHAR(15),
+						owner_property_status VARCHAR(13),
+						owner_message VARCHAR(8000) ,
 						owner_date_received DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-						owner_status TINYINT(1) NOT NULL DEFAULT 1
+						owner_system_status TINYINT(1) NOT NULL DEFAULT 1
 					);
 				");
 				return True;

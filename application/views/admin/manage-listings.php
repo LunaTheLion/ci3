@@ -47,7 +47,9 @@
                       ?>
                         <tr>
                           <td><?php echo $row->property_title; ?></td>
-                          <td><img  src="<?php echo base_url('uploads/'.$row->property_title_slug.'/facade/'.$row->property_facade)?>" style='height: 110px; width: 150px;'></td>
+                          <td><center>
+                            <img  src="<?php echo base_url('uploads/'.$row->property_title_slug.'/facade/'.$row->property_facade)?>" style='height: 110px; width: 150px;'>
+                          </center></td>
                           <td><?php echo $row->property_price; ?></td>
                           <td><?php echo $row->property_status; ?></td>
                           <td><center>
@@ -95,6 +97,7 @@
                 </tr>
                 </tfoot>
               </table>
+             
             </div>
             <!-- /.box-body -->
           </div>
@@ -142,6 +145,19 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
 <script type="text/javascript">
   $('document').ready(function(){
    

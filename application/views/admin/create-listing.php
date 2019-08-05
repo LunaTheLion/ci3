@@ -54,7 +54,7 @@
               <?php
                 if(!empty($this->session->flashdata('title')))
                 {
-                  echo '<a href="javascript:;" id="delprop" class="btn btn-danger pull-right" ><i class="fa fa-trash"></i> Delete Property</a>';
+                  echo '<a href="javascript:;" id="delprop" class="btn btn-danger pull-right" data="'.$this->session->flashdata('id').'" ><i class="fa fa-trash"></i> Delete Property</a>';
                 }
               ?>
             </div>
@@ -99,7 +99,7 @@
 
                        <div class="row">
                          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                         <input type="radio" name="propertyStatus" id="propertyStatus" value="Rent Only" <?php if($status === "Rend Only") {echo "checked";} ?> > Rent Only<br> 
+                         <input type="radio" name="propertyStatus" id="propertyStatus" value="Rent Only" <?php if($status === "Rent Only") {echo "checked";} ?> > Rent Only<br> 
                          </div>
                          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                          <input type="radio" name="propertyStatus" id="propertyStatus" value="Sale Only" <?php if($status === "Sale Only"){echo "checked";} ?>> Sale Only <br>
@@ -373,6 +373,26 @@
         
     </section>
     <!-- /.content -->
+    <div class="modal modal-danger fade" id="modal-danger">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Danger Modal</h4>
+          </div>
+          <div class="modal-body">
+            <p>One fine body&hellip;</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+            <button type="button" name="deleteYes" id="deleteYes"  class="btn btn-outline">Yes</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
@@ -392,7 +412,42 @@
   $('document').ready(function() {
 
     $('#delprop').click(function(){
-        alert('Delete Property');
+        var id = $(this).attr('data');
+        //show delete modal 
+        $('#modal-danger').modal('show');
+        $('#modal-danger').find('.modal-title').text('Delete Property');
+        $('#modal-danger').find('.modal-body').text('Are you sure you want to delete this property?');
+        $('#deleteYes').click(function(){
+          
+            $.ajax({
+              type:'ajax',
+              method: 'get',
+              async: false,
+              url: '<?php echo base_url()?>Admin/delete_property',
+              data:{id,id},
+              dataType:'json',
+              success: function(response)
+              {
+                console.log(id);
+                if(response.success)
+                {
+                 $('#modal-danger').modal('show');
+                 
+                  alert('success');  
+                  window.location.reload();
+                }
+                else
+                {
+                   alert('Could not Hide the Property');
+                   $('#modal-danger').modal('hide');
+                }
+              },
+              error: function()
+              {
+                Alert('Cannot Delete this Property');
+              }
+            })
+        });
     });
           var images = function(input, imgPreview) {
       

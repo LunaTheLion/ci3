@@ -22,31 +22,40 @@
     <section class="content">
       <!-- Small boxes (Stat box) -->
       <div class="row">
-        <div class="col-lg-6 col-xs-6 col-md-6">
-          <div class="box box-widget">
-             <div class="box-body">
-                  <img class="img-responsive pad" src="<?php echo base_url('assets/dist/img/photo2.png') ?>" alt="Photo">
-                  <center>
-                    <button type="button" class="btn btn-danger btn-xs item-hide"><i class="fa fa-eye-slash"></i> Hide</button>
-                    <button type="button" class="btn btn-primary btn-xs item-unhide"><i class="fa fa-eye"></i> Unhide</button>
-                    <button type="button" class="btn btn-success btn-xs item-replace"><i class="fa fa-share"></i> Replace</button>
-                  </center>
-               </div>
-            </div>
-        </div>
-       <div class="col-lg-6 col-xs-6 col-md-6">
-         <div class="box box-widget">
-            <div class="box-body">
-                 <img class="img-responsive pad" src="<?php echo base_url('assets/dist/img/photo2.png') ?>" alt="Photo">
-                 <center>
-                   
-                   <button id="Hello" class="btn btn-danger btn-xs"><i class="fa fa-eye-slash"></i> Hide</button>
-                   <a href="javascript:;" class="btn btn-primary btn-xs" id="unhide"><i class="fa fa-eye"></i> Unhide</a>
-                   <a href="javascript:;" class="btn btn-success btn-xs" id="view"><i class="fa fa-share"></i> Replace</a>
-                 </center>
-              </div>
-           </div>
-       </div>
+       <?php 
+         
+               $dirname = "uploads/featured-pictures";
+               $files = glob($dirname."*.*");
+               $dir_path =  "uploads/featured-pictures";
+               $extensions_array = array('jpg','png','jpeg');
+
+               if(is_dir($dir_path))
+               {
+                 $files = scandir($dir_path);
+                                 
+                 for($i = 0; $i < count($files); $i++)
+                 {
+                   if($files[$i] !='.' && $files[$i] !='..')
+                   {                     
+                     $file = pathinfo($files[$i]);
+                     //getting images from the root folder.  
+                   ?>
+                   <div class="col-lg-6 col-xs-6 col-md-6">
+                     <div class="box box-widget">
+                        <div class="box-body">
+                             <img class="img-responsive pad" src="<?php echo base_url('uploads/featured-pictures/'.$files[$i]) ?>" alt="Photo">
+                             <input type="hidden" name="fotoname" value="<?php echo $files[$i]?>">
+                             <center>
+                               <a href="javascript:;" class="btn btn-success btn-xs" id="view"><i class="fa fa-share"></i> Replace</a>
+                             </center>
+                          </div>
+                       </div>
+                   </div>
+               <?php
+               }
+               }
+               }
+        ?>
       </div>
 
     </section>
@@ -62,7 +71,7 @@
          <form enctype="multipart/form-data" method="POST" action="<?php echo base_url('admin/upload_featured_pictures') ?>">
            <input type="file" name="file" id="foto" required>
            <div id="fotoPreview"></div>
-         
+          <input type="hidden" name="replace">
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
@@ -70,13 +79,13 @@
             </form>
           </div>
         </div>
-        <!-- /.modal-content -->
+        
       </div>
-      <!-- /.modal-dialog -->
+      
     </div>
-    <!-- /.content -->
+    
   </div>
-  <!-- /.content-wrapper -->
+  
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.0
@@ -90,17 +99,12 @@
 <script type="text/javascript">
 $('document').ready(function(){
   console.log('hello');
-  $('#Hello').on('click', function(){
-    alert('Hide');
-  })
-  $('#unhide').on('click', function(){
-    alert('Unhide');
-  })
+
   $('#view').on('click', function(){
-    
+    var picname = $('input[name=fotoname]').val();
     $('#modal-default').modal('show');
     $('#modal-default').find('.modal-title').text('Upload New Photo');
-
+    $('#modal-default').find('input[name=replace]').val(picname);
   });
   var images = function(input, imgPreview) {
   
@@ -116,9 +120,7 @@ $('document').ready(function(){
               reader.readAsDataURL(input.files[i]);
           }
       }
-  
   };
-  
   $('#foto').on('change', function() {
       images(this, '#fotoPreview');
   });

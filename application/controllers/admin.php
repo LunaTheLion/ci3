@@ -396,10 +396,11 @@ class Admin extends CI_CONTROLLER
 		'admin_status' =>$get->admin_status, 
 		);
 		$this->session->set_userdata($admin);
+		$data['fetch_data'] = $this->mm->all_owners();
 		$this->load->view('admin/templates/header', $admin);
 		$this->load->view('admin/main-header');
 		$this->load->view('admin/main-sidebar');
-		$this->load->view('admin/manage-owners');
+		$this->load->view('admin/manage-owners' , $data);
 		$this->load->view('admin/templates/footer');
 	}
 	public function mng_inquiries()
@@ -497,17 +498,82 @@ class Admin extends CI_CONTROLLER
 		$this->load->view('admin/create-listing');
 		$this->load->view('admin/templates/footer');	
 	}
+	public function create_owner()
+	{
+		$owner_details = array(
+			'owner_contact_no' => $this->input->post('contact'),
+			'owner_email' => $this->input->post('email'),
+			'owner_name'=> $this->input->post('name'),
+			'owner_property' => $this->input->post('property'),
+			'owner_message' => $this->input->post('message'),
+		);
+		if($this->mm->add_owner($owner_details))
+		{
+			redirect(base_url('admin/mng_owners'));
+		}
+		else
+		{
+			echo "Cannot Create Owners";
+			redirect(base_url('admin/mng_owners'));
+		}
+	}
+	public function view_owner()
+	{
+		$result = $this->mm->see_owner();
+		echo json_encode($result);
+	}
+	public function update_owner()
+	{
+		 $id = $this->input->post('ownerID');
+		 $data = array(
+		 		
+				'owner_name' => $this->input->post('name'),
+				'owner_email' => $this->input->post('email'),
+				'owner_contact_no' => $this->input->post('contact'),
+				'owner_property' => $this->input->post('property'),
+				'owner_message' => $this->input->post('message'),
+				'owner_email' =>$this->input->post('email'),
+			);	
+		$result = $this->mm->update_owner($id,$data);
+
+		if(json_encode($result))
+		{
+			redirect(base_url('admin/mng_owners'));
+		}
+		else 
+		{
+			redirect(base_url('admin/mng_owners'));
+		}
+	}
+	public function delete_owner()
+	{
+		$result = $this->mm->del_owner();
+		//$id = $this->input->get('id');
+		$msg['success'] = false;
+		if($result)
+		{
+			$msg['success'] = true;
+		}
+		echo json_encode($result);
+		// echo json_encode($id);
+		// redirect(base_url('admin/mng_owners'));
+	}
 
 	public function get_inquiries()
 	{
 		$inquiries = $this->mm->inquiries();
 		echo json_encode($inquiries);
 	}
-	public function get_sav()
+	public function delete_property()
 	{
-		$inquiries = $this->mm->sav_inquiries();
-		
-		echo json_encode($inquiries);
+		$result = $this->mm->del_prop();
+		$msg['success'] = false;
+		if($result)
+		{
+			$msg['success'] = true;
+		}
+		echo json_encode($msg);
+		redirect(base_url('admin/mng_listing'));
 	}
 	public function get_bel()
 	{
@@ -667,38 +733,28 @@ class Admin extends CI_CONTROLLER
 	
 	public function upload_featured_pictures()
 	{
-		$directory = "uploads/featured-pictures/";
-		$foto = $directory. basename($_FILES['file']['name']);
-
-		// move_uploaded_file($_FILES['file']['name'], $directory);
-		if(move_uploaded_file($_FILES['file']['tmp_name'],$foto))
+		$replace = $this->input->post('replace');//delete this file first before you continue
+		if(unlink("uploads/featured-pictures/".$replace))
 		{
-			echo "<script>Alert('File is Valid and Successfully Uploaded')</script>";
+			$directory = "uploads/featured-pictures/";
+			$foto = $directory. basename($_FILES['file']['name']);
+
+			if(move_uploaded_file($_FILES['file']['tmp_name'],$foto))
+			{
+				redirect(base_url('admin/mng_photos'));
+			}
+			else
+			{
+				
+				redirect(base_url('admin/mng_photos'));
+			}
 		}
 		else
 		{
-			echo "<script>Alert('File is not Uploaded')</script>";
+			redirect(base_url('admin/mng_photos'));
 		}
+		
 	}
-
-	public function landmark()
-	{
-		echo $this->input->post('projectTitle');
-		echo $this->input->post('projectPrice');
-		echo $this->input->post('projectAbout');
-	}
-
-	public function sample_upload()
-	{
-		$this->load->view('admin/template/header');
-		$this->load->view('admin/admin-header');
-		$this->load->view('admin/admin-main-sidebar');
-		$this->load->view('admin/add-article');
-		$this->load->view('admin/admin-footer');
-		$this->load->view('admin/template/footer');	
-
-	}
-
 	public function validate_update($id)
 	{	
 		
@@ -765,77 +821,8 @@ class Admin extends CI_CONTROLLER
 		$this->load->view('admin/admin-footer');
 		$this->load->view('admin/template/footer');	
 	}
-	public function val_add_logo()
-	{
-		$phpFileUploadErrors = array(
-			0=>'There is no error, the file uploaded with success',
-			1=>'The uploaded file exceeds the upload_max_filesize directive in php.ini',
-			2=>'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form',
-			3=>'The uploaded file was only partially uploaded',
-			4=>'No file was uploaded',
-			5=>'Missing temporary folder',
-			6=>'Failed to write file to disk.',
-			7=>'A PHP extension stopped the file upload',
-		);
-
-		function reArrayFiles( $file_post)
-		{
-			$file_ary = array();
-			$file_count = count($file_post['name']);
-			$file_keys = array_keys($file_post);
-
-			for($i=0; $i<$file_count; $i++)
-			{
-				foreach($file_keys as $key)
-				{
-					$file_ary[$i][$key] = $file_post[$key][$i];
-				}
-			}
-			return $file_ary;
-		}
-
-
-
-		if(isset($_FILES['userfile']))
-		{
-			$file_array = reArrayFiles($_FILES['userfile']);
-			
-			for($i=0; $i<count($file_array); $i++)
-			{
-				
-				$dir = "uploads/featured_logo/";
-				$facade = $file_array[$i]['name'];
-				if(!is_dir($dir))
-				{
-					mkdir($dir,0755,true);
-					move_uploaded_file($file_array[$i]['tmp_name'],$dir.$file_array[$i]['name']);
-					
-					$image = $file_array[$i]['name'];
-					$this->mm->save_logo($image);
-					echo "<script>alert('".$image." is saved')</script>";
-				}
-				elseif(is_dir($dir))
-				{
-					move_uploaded_file($file_array[$i]['tmp_name'],$dir.$file_array[$i]['name']);
-					
-					$image = $file_array[$i]['name'];
-					
-					$this->mm->save_logo($image);
-					echo "<script>alert('Image ".$image." is saved')</script>";
-					// echo " <br> Amenities Upload Successfully";
-					
-				}
-						
-			}
-		}
-		redirect('admin/logo');
-	}
-	public function get_logos()
-	{
-		$logo =	$this->mm->get_logo();
-		echo json_encode($logo);
-
-	}
+	
+	
 	public function logout()
 	{
 		$admin = array(

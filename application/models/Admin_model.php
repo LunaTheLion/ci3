@@ -154,47 +154,7 @@ class Admin_model extends CI_Model{
 		return $query->result();
 	}
 
-	public function sav_inquiries()
-	{
-		
-		$this->db->select('*');
-		$this->db->like('project', 'Savoy','both');
-		$query = $this->db->get('inquiries_tbl');
-		return $query->num_rows();
-	}
-	public function bel_inquiries()
-	{
-		
-		$this->db->select('*');
-		$this->db->like('project', 'Belmont','both');
-		$query = $this->db->get('inquiries_tbl');
-		return $query->num_rows();
-	}
-	public function cha_inquiries()
-	{
-		
-		$this->db->select('*');
-		$this->db->like('project', 'Chancellor','both');
-		$query = $this->db->get('inquiries_tbl');
-		return $query->num_rows();
-	}
-	public function kin_inquiries()
-	{
-		
-		$this->db->select('*');
-		$this->db->like('project', 'King','both');
-		$query = $this->db->get('inquiries_tbl');
-		return $query->num_rows();
-	}
-	public function gra_inquiries()
-	{
-		
-		$this->db->select('*');
-		$this->db->like('project', 'Grand','both');
-		$query = $this->db->get('inquiries_tbl');
-		return $query->num_rows();
-	}
-
+	
 	public function properties()
 	{
 		$this->db->select('*');
@@ -229,6 +189,54 @@ class Admin_model extends CI_Model{
 		$query = $this->db->get('property_tbl');
 		return $query;
 	}
+	public function all_owners()
+	{
+		$this->db->select('*');
+		$this->db->order_by('owner_date_received', 'DESC');
+		$this->db->where('owner_status', 1 );
+		$query = $this->db->get('owner_tbl');
+		return $query;
+	}
+	public function add_owner($owner_details)
+	{
+		$this->db->insert('owner_tbl', $owner_details);
+		if($this->db->affected_rows() == 1 )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	public function see_owner()
+	{
+		$id = $this->input->get('id');
+		$this->db->where('owner_id', $id);
+		$query = $this->db->get('owner_tbl');
+		if($query->num_rows() > 0)
+		{
+			 return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+	public function update_owner( $id, $data)
+	{
+		$this->db->where('owner_id',$id);
+		$this->db->update('owner_tbl',$data);
+		if($this->db->affected_rows() > 0)
+		{
+			return true;
+		} 
+		else
+		{
+			return false;
+		}
+	}
+
 	public function articles()
 	{
 		$this->db->select('id,img,title,title_slug,date_uploaded');
@@ -264,11 +272,7 @@ class Admin_model extends CI_Model{
 			return false;
 		}
 	}
-	public function multiple_images($image = array()){
 
-	     return $this->db->insert_batch('profile_images',$image);
-	             }
-//Figure if it works
 
 	public function insertUser($data)
 	{
@@ -440,6 +444,7 @@ class Admin_model extends CI_Model{
 		
 		$stat = array(
 			'property_system_status' => 3,
+			'property_date_deleted' => date('Y-m-d g:i'),
 		);
 		$this->db->where('property_id', $id);
 		$this->db->update('property_tbl',$stat);
@@ -449,6 +454,23 @@ class Admin_model extends CI_Model{
 		}
 		else
 		{
+			return false;
+		}
+	}
+	public function del_owner()
+	{
+		$id = $this->input->get('id');
+		 $data = array(
+				'owner_status'=> 2,
+			);	
+		$this->db->where('owner_id', $id );
+		$this->db->update('owner_tbl',$data);
+		if($this->db->affected_rows() > 0)
+		{
+			return true;
+		} 
+		else
+		{                                                                                             
 			return false;
 		}
 	}
