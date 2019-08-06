@@ -7,7 +7,7 @@ class Admin_model extends CI_Model{
 		parent::__construct();	
 	}
 	
-	public function register($info)
+	public function register_account($info)
 	{
 		$this->db->insert('admin_tbl',$info);
 		return true;
@@ -195,6 +195,23 @@ class Admin_model extends CI_Model{
 		$this->db->order_by('owner_date_received', 'DESC');
 		$this->db->where('owner_status', 1 );
 		$query = $this->db->get('owner_tbl');
+		return $query;
+	}
+	public function all_accounts()
+	{
+		$this->db->select('*');
+		$this->db->order_by('admin_date_joined', 'DESC');
+		$this->db->where('admin_type', 'admin' );
+		$this->db->where('admin_status', 1 );
+		$query = $this->db->get('admin_tbl');
+		return $query;
+	}
+	public function all_inquiries()
+	{
+		$this->db->select('*');
+		$this->db->order_by('inquiry_date_received', 'DESC');
+		$this->db->where('inquiry_status', 1 );
+		$query = $this->db->get('inquiry_tbl');
 		return $query;
 	}
 	public function add_owner($owner_details)
@@ -474,6 +491,25 @@ class Admin_model extends CI_Model{
 			return false;
 		}
 	}
+	public function del_account()
+	{
+		$id = $this->input->get('id');
+		$data = array(
+			'admin_status' => 2,
+		);
+		$this->db->where('admin_id', $id);
+		$this->db->update('admin_tbl', $data);
+		if($this->db->affected_rows() > 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+
+
+	}
 	public function save_logo($image)
 	{
 		$array = array(
@@ -497,15 +533,15 @@ class Admin_model extends CI_Model{
 
 	public function update_acc($email, $pass)
 	{
-		$ver = array(
-			'verified'=> 'verified',
-			'date_verified' => date('Y-m-d g:i'),
+		$verified = array(
+			'admin_verified'=> 'verified',
+			'admin_date_joined' => date('Y-m-d g:i'),
+
 		);
 		$this->db->select('*');
-		$this->db->where('email', $email);
-		$this->db->where('code', $pass);
-		$this->db->where('verified', '');
-		$this->db->update('admin_tbl', $ver);
+		$this->db->where('admin_email', $email);
+		$this->db->where('admin_code', $pass);
+		$this->db->update('admin_tbl', $verified);
 		
 		if($this->db->affected_rows() > 0)
 		{

@@ -282,54 +282,56 @@
                   <hr> -->
                   <label for="files">Upload Property Facade</label>
                   <input type='file' id="model" name="model[]" required>
-                  <div id="modelPreview"></div>
-                  <?php 
-                    if(!empty($this->session->flashdata('title')))
-                    {
-                      ?>
-                       <img src="<?php echo base_url('uploads/'.$this->session->flashdata('title_slug')."/facade/".$this->session->flashdata('facade'))?>" class="imageThumb"/> 
+                  <div id="modelPreview">
+                    <?php 
+                      if(!empty($this->session->flashdata('title')))
+                      {
+                        ?>
+                         <img src="<?php echo base_url('uploads/'.$this->session->flashdata('title_slug')."/facade/".$this->session->flashdata('facade'))?>" class="imageThumb"/> 
 
-                      <?php
-                    }
-                   ?>
+                        <?php
+                      }
+                     ?>
+                  </div>
+                  
                       <p>&nbsp;</p> 
                   <hr>  
                   <div class="form-group">
                     <label for="imageUnit">Upload Amenities</label>
                     <input type="file" id="amenities" name="imageAmenities[]" multiple required />
-                    <div id="amenitiesPreview"></div>
-                    <?php 
-                      if(!empty($this->session->flashdata('title')))
-                      {
-                         
-                            $dirname = "uploads/".$this->session->flashdata('title_slug')."/amenities";
-                            $files = glob($dirname."*.*");
-                            $dir_path =  "uploads/".$this->session->flashdata('title_slug')."/amenities";
-                            $extensions_array = array('jpg','png','jpeg');
+                    <div id="amenitiesPreview">
+                      <?php 
+                        if(!empty($this->session->flashdata('title')))
+                        {
+                           
+                              $dirname = "uploads/".$this->session->flashdata('title_slug')."/amenities";
+                              $files = glob($dirname."*.*");
+                              $dir_path =  "uploads/".$this->session->flashdata('title_slug')."/amenities";
+                              $extensions_array = array('jpg','png','jpeg');
 
-                            if(is_dir($dir_path))
-                            {
-                              $files = scandir($dir_path);
-                                              
-                              for($i = 0; $i < count($files); $i++)
+                              if(is_dir($dir_path))
                               {
-                                if($files[$i] !='.' && $files[$i] !='..')
-                                {                     
-                                  $file = pathinfo($files[$i]);
-                                  //getting images from the root folder.  
-                                ?>
+                                $files = scandir($dir_path);
+                                                
+                                for($i = 0; $i < count($files); $i++)
+                                {
+                                  if($files[$i] !='.' && $files[$i] !='..')
+                                  {                     
+                                    $file = pathinfo($files[$i]);
+                                    //getting images from the root folder.  
+                                  ?>
 
-                                <img src="<?php echo base_url('uploads/'.$this->session->flashdata('title_slug')."/amenities/".$files[$i])?>" class="imageThumb">
+                                  <img src="<?php echo base_url('uploads/'.$this->session->flashdata('title_slug')."/amenities/".$files[$i])?>" class="imageThumb">
 
-                            <?php
-                            }
-                            }
-                            }
-
- 
-                            
-                      }
-                     ?>
+                              <?php
+                              }
+                              }
+                              }
+                      
+                        }
+                       ?>
+                    </div>
+                   
                         <p>&nbsp;</p>
                   </div>
                 </div>                   

@@ -81,9 +81,7 @@ class Inquiry extends CI_Controller{
 		    }  
 		     else{
 		        show_error($this->email->print_debugger());
-		    }
-		
-		
+		    }		
 	}
 	
 		function confirmation_email()
@@ -92,10 +90,6 @@ class Inquiry extends CI_Controller{
 			    $this->load->view('pages/email-sent');
 			    $this->load->view('templates/footer');
 		}
-
-
-
-
 	}
 
 

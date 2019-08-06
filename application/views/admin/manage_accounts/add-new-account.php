@@ -4,7 +4,7 @@
     <section class="content-header">
       <h1>
        Add New Account
-        <small>Control Panel</small>
+        
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo base_url('admin/dashboard/'.$this->session->userdata('admin_username')) ?>"><i class="fa fa-dashboard"></i>Dashboard</a></li>

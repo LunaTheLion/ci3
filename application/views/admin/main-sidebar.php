@@ -83,19 +83,13 @@
             </span>
           </a>
         </li>
-        <li class="treeview">
-          <a href="#">
+        <li >
+          <a href="<?php echo base_url('admin/mng_view_accounts') ?>">
             <i class="fa fa-user"></i>
             <span>Manage Accounts</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+            
           </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php echo base_url('admin/mng_view_accounts') ?>"><i class="fa fa-circle-o"></i>View Accounts</a></li>
-            <li><a href="<?php echo base_url('admin/add_new_account') ?>"><i class="fa fa-circle-o"></i>Add New Account</a></li>
-
-          </ul>
+          
         </li>
         
          <li>

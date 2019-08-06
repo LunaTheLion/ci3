@@ -80,7 +80,7 @@
                     {
                       ?>
                         <tr>
-                          <td colspan="3">No Results Found</td>
+                          <td colspan="5"><center>No Results Found</center></td>
                         </tr>
                       <?php
                     }

@@ -51,15 +51,8 @@ class Admin extends CI_CONTROLLER
 
 		if($this->form_validation->run() == False)
 		{	
-			// $data['title'] = "Register Admin";
-			// $this->load->view('admin/template/header', $data);
-			// $this->load->view('admin/admin-register');
-			// $this->load->view('admin/template/footer');	
-
 			
-
 			$data['error'] = validation_errors();
-
 			$data['title'] = "Add New Account";
 			$namepart = $this->session->userdata('useremail');
 			$get = $this->mm->acc($namepart);
@@ -79,8 +72,8 @@ class Admin extends CI_CONTROLLER
 			$this->load->view('admin/templates/footer');
 		}
 		else
-		{	
-
+		 {
+		 		
 			$this->load->library('encryption');
 			$encryptedPass = $this->encryption->encrypt($this->input->post('password'));
 			$encryptedPass = md5($this->input->post('password'));
@@ -91,8 +84,8 @@ class Admin extends CI_CONTROLLER
 						'protocol' => 'smtp',
 						'smtp_host' => 'ssl://smtp.googlemail.com',
 						'smtp_port' => '465',
-						'smtp_user' => 'megaworldcondotel',//@gmail.com
-						'smtp_pass' => 'megaworld101',
+						'smtp_user' => 'iassistumak',//@gmail.com
+						'smtp_pass' => 'iassistumakdeveloper',
 						'mailtype' => 'html',
 						'charset' => 'iso-8859-1',
 						'wordwrap' => TRUE
@@ -112,26 +105,30 @@ class Admin extends CI_CONTROLLER
 					} 
 
 					$this->load->library('email', $config);
-					$this->email->from('megaworldcondotel@gmail.com');
+					$this->email->from('iassistumak@gmail.com');
 					$this->email->to($email);
 					$this->email->subject('Signed as Sale and Rentals Admin!');
 					
-					$msg = 'Thank you for signing up ! <a href="'.base_url().'admin/new_admin/'.$email.'/'.$pass.'">Click me to register to Sale and Rentals as Admin</a>';
+					$msg = 'Thank you for signing up ! <a href="'.base_url().'admin/verify_admin/'.$email.'/'.$pass.'">Click me to Verify this email to Sale and Rentals as Admin</a>';
 
 					$this->email->message($msg);
 					$this->email->set_newline("\r\n");
 
-
-					$info = array(	
-						'email' => $this->input->post('email'),
-						'username' => $this->input->post('username'),
-						'password' => $encryptedPass,
-						'code' => $pass,
-					);
 					if($this->email->send())
 					{
-						$this->mm->register($info);
-						redirect('admin/thankyou');
+						$info = array(	
+							'admin_email' => $this->input->post('email'),
+							'admin_username' => $this->input->post('username'),
+							'admin_password' => $encryptedPass,
+							'admin_type' =>'admin',
+							'admin_date_joined' => date('Y-m-d'),
+							'admin_code' =>$pass,
+						);
+						// echo "<pre>";
+						// print_r($info);
+						// echo "</pre><br>";
+						$this->mm->register_account($info);
+						redirect('admin/mng_view_accounts');
 					    //$this->session->sess_destroy();
 					  }  
 					   else{
@@ -140,12 +137,9 @@ class Admin extends CI_CONTROLLER
 			
 		}
 	}
-	public function thankyou()
-	{
-		$this->load->view('admin/template/header');
-		$this->load->view('admin/check-your-email');
-		$this->load->view('admin/template/footer');	
-	}
+
+
+
 	public function vinfo()
 	{
 		$this->load->helper(array('form','url'));
@@ -176,21 +170,29 @@ class Admin extends CI_CONTROLLER
 			$this->load->view('admin/template/footer');		
 		}
 	}
-	public function admin_info($email, $pass)
-	{
-		$get = $this->mm->get_acc($email);
-		$admin = array(
-			'admin_id' => $get->admin_id,
-			'admin_username'=>$get->admin_username,
-			'admin_type'=>$get->admin_type,
-			'admin_email' => $get->admin_email,
-			'admin_status' =>$get->admin_status, 
-		);
-		$this->session->set_userdata($admin);
-		$this->load->view('admin/template/header');
-		$this->load->view('admin/admin-info');
-		$this->load->view('admin/template/footer');	
-	}
+	// public function admin_info($email, $pass)
+	// {
+	// 	// echo "register more admin information";
+	// 	//register birthday
+	// 	//register password
+	// 	//upload picture
+	// 	// $data['title'] = "Admin Info";
+	// 	// $namepart = $this->session->userdata('useremail');
+	// 	// $get = $this->mm->acc($namepart);
+	// 	// $admin = array(
+	// 	// 'admin_id' => $get->admin_id,
+	// 	// 'admin_username'=>$get->admin_username,
+	// 	// 'admin_type'=>$get->admin_type,
+	// 	// 'admin_email' => $get->admin_email,
+	// 	// 'admin_status' =>$get->admin_status, 
+	// 	// );
+	// 	// $this->session->set_userdata($admin);
+	// 	// $this->load->view('admin/templates/header', $admin);
+	// 	// $this->load->view('admin/main-header');
+	// 	// $this->load->view('admin/main-sidebar');
+	// 	// $this->load->view('admin/manage_accounts/add-new-account');
+	// 	// $this->load->view('admin/templates/footer');
+	// }
 	public function new_admin($email,$pass)
 	{	
 		if($this->mm->update_acc($email, $pass))
@@ -202,12 +204,21 @@ class Admin extends CI_CONTROLLER
 			echo "Looks like you already verified your previous account.";
 		}
 	}
+	public function verify_admin($email, $pass)
+	{
+		if($this->mm->update_acc($email, $pass))
+		{
+			echo 'Your email is now verified you can proceed to this link to register as an Admin: <br> <a href="'.base_url().'login">Click me to register to Sale and Rentals as Admin</a>';
+		}
+		else
+		{
+			echo "Looks like you already verified your previous account.";
+		}
+	}
 	public function register()
 	{
-		$title = "Megaworld | Condotel | Register";
-		$this->load->view('admin/template/header');
-		$this->load->view('admin/admin-register');
-		$this->load->view('admin/template/footer');
+		$this->load->view('login');
+		
 	}
 	public function login()
 	{
@@ -416,10 +427,11 @@ class Admin extends CI_CONTROLLER
 		'admin_status' =>$get->admin_status, 
 		);
 		$this->session->set_userdata($admin);
+		 $data['fetch_data'] = $this->mm->all_inquiries();
 		$this->load->view('admin/templates/header', $admin);
 		$this->load->view('admin/main-header');
 		$this->load->view('admin/main-sidebar');
-		$this->load->view('admin/manage-inquiries');
+		$this->load->view('admin/manage-inquiries', $data);
 		$this->load->view('admin/templates/footer');
 	}
 	public function mng_contact_us()
@@ -454,15 +466,16 @@ class Admin extends CI_CONTROLLER
 		'admin_status' =>$get->admin_status, 
 		);
 		$this->session->set_userdata($admin);
+		$data['fetch_data'] = $this->mm->all_accounts();
 		$this->load->view('admin/templates/header', $admin);
 		$this->load->view('admin/main-header');
 		$this->load->view('admin/main-sidebar');
-		$this->load->view('admin/manage_accounts/view-accounts');
+		$this->load->view('admin/manage_accounts/view-accounts', $data);
 		$this->load->view('admin/templates/footer');
 	}
 	public function add_new_account()
 	{
-		$data['title'] = "View Accounts";
+		$data['title'] = "Add New Accounts";
 		$namepart = $this->session->userdata('useremail');
 		$get = $this->mm->acc($namepart);
 		$admin = array(
@@ -548,15 +561,24 @@ class Admin extends CI_CONTROLLER
 	public function delete_owner()
 	{
 		$result = $this->mm->del_owner();
-		//$id = $this->input->get('id');
 		$msg['success'] = false;
 		if($result)
 		{
 			$msg['success'] = true;
 		}
 		echo json_encode($result);
-		// echo json_encode($id);
-		// redirect(base_url('admin/mng_owners'));
+		
+	}
+	public function delete_account()
+	{
+		$result = $this->mm->del_account();
+		$msg['success'] = false;
+		if($result)
+		{
+			$msg['success'] = true;
+		}
+		echo json_encode($msg);
+		
 	}
 
 	public function get_inquiries()
