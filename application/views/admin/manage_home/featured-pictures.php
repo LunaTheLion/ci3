@@ -98,7 +98,9 @@
 <!-- ./wrapper -->
 <script type="text/javascript">
 $('document').ready(function(){
-  console.log('hello');
+  //$('#mnghome').siblings().removeClass('active');
+  $('#mnghome').css('display','block');
+  $('#featured').addClass('active');
 
   $('#view').on('click', function(){
     var picname = $('input[name=fotoname]').val();

@@ -214,6 +214,10 @@ class Admin_model extends CI_Model{
 		$query = $this->db->get('inquiry_tbl');
 		return $query;
 	}
+	public function all_inquiries_sent_items()
+	{
+		
+	}
 	public function add_owner($owner_details)
 	{
 		$this->db->insert('owner_tbl', $owner_details);

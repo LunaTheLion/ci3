@@ -22,6 +22,7 @@ class Admin extends CI_CONTROLLER
 			$this->db_model->create_inquiries_table();
 			$this->db_model->create_property_table();
 			$this->db_model->insert_default_admin();
+
 						//print success page
 			$this->load->view('admin/templates/header');
 			$this->load->view('admin/success_setup');
@@ -193,6 +194,7 @@ class Admin extends CI_CONTROLLER
 	// 	// $this->load->view('admin/manage_accounts/add-new-account');
 	// 	// $this->load->view('admin/templates/footer');
 	// }
+
 	public function new_admin($email,$pass)
 	{	
 		if($this->mm->update_acc($email, $pass))
@@ -309,7 +311,9 @@ class Admin extends CI_CONTROLLER
 
 	public function send_message()
 	{
-		echo $this->input->post('name');
+		// echo $this->input->post('to');
+		redirect(base_url('admin/mng_inquiries'));
+
 	}
 	public function mng_photos()
 	{
@@ -431,7 +435,71 @@ class Admin extends CI_CONTROLLER
 		$this->load->view('admin/templates/header', $admin);
 		$this->load->view('admin/main-header');
 		$this->load->view('admin/main-sidebar');
+		$this->load->view('admin/manage-inquiries-sidebar');
 		$this->load->view('admin/manage-inquiries', $data);
+		$this->load->view('admin/templates/footer');
+	}
+	public function mng_inquiries_sent_items()
+	{
+		$data['title'] = "Manage Inquiries";
+		$namepart = $this->session->userdata('useremail');
+		$get = $this->mm->acc($namepart);
+		$admin = array(
+		'admin_id' => $get->admin_id,
+		'admin_username'=>$get->admin_username,
+		'admin_type'=>$get->admin_type,
+		'admin_email' => $get->admin_email,
+		'admin_status' =>$get->admin_status, 
+		);
+		$this->session->set_userdata($admin);
+		 //$data['fetch_data'] = $this->mm->all_inquiries_sent_items();
+		$this->load->view('admin/templates/header', $admin);
+		$this->load->view('admin/main-header');
+		$this->load->view('admin/main-sidebar');
+		$this->load->view('admin/manage-inquiries-sidebar');
+		$this->load->view('admin/manage-inquiries-sent-items');
+		$this->load->view('admin/templates/footer');
+	}
+	public function mng_inquiries_draft()
+	{
+		$data['title'] = "Manage Inquiries";
+		$namepart = $this->session->userdata('useremail');
+		$get = $this->mm->acc($namepart);
+		$admin = array(
+		'admin_id' => $get->admin_id,
+		'admin_username'=>$get->admin_username,
+		'admin_type'=>$get->admin_type,
+		'admin_email' => $get->admin_email,
+		'admin_status' =>$get->admin_status, 
+		);
+		$this->session->set_userdata($admin);
+		 //$data['fetch_data'] = $this->mm->all_inquiries_sent_items();
+		$this->load->view('admin/templates/header', $admin);
+		$this->load->view('admin/main-header');
+		$this->load->view('admin/main-sidebar');
+		$this->load->view('admin/manage-inquiries-sidebar');
+		$this->load->view('admin/manage-inquiries-drafts');
+		$this->load->view('admin/templates/footer');
+	}
+	public function mng_inquiries_trash()
+	{
+		$data['title'] = "Manage Inquiries";
+		$namepart = $this->session->userdata('useremail');
+		$get = $this->mm->acc($namepart);
+		$admin = array(
+		'admin_id' => $get->admin_id,
+		'admin_username'=>$get->admin_username,
+		'admin_type'=>$get->admin_type,
+		'admin_email' => $get->admin_email,
+		'admin_status' =>$get->admin_status, 
+		);
+		$this->session->set_userdata($admin);
+		 //$data['fetch_data'] = $this->mm->all_inquiries_sent_items();
+		$this->load->view('admin/templates/header', $admin);
+		$this->load->view('admin/main-header');
+		$this->load->view('admin/main-sidebar');
+		$this->load->view('admin/manage-inquiries-sidebar');
+		$this->load->view('admin/manage-inquiries-trash');
 		$this->load->view('admin/templates/footer');
 	}
 	public function mng_contact_us()
@@ -728,8 +796,8 @@ class Admin extends CI_CONTROLLER
 			"title_slug"=>$get->property_title_slug,
 			"facade" => $get->property_facade,
 			"price" =>$get->property_price,
+			"sample_view" => $get->property_sample_view,
 			"address" =>$get->property_address,
-			"location" =>$get->property_location,
 			'building' =>$get->property_building,
 			"details" =>$get->property_additional_details,
 			"facade" => $get->property_facade,

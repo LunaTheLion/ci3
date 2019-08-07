@@ -52,7 +52,7 @@
             </span> -->
           </a>
         </li>
-        <li class="treeview">
+        <li class="treeview" >
           <a href="#">
             <i class="fa fa-files-o"></i>
             <span>Manage Home</span>
@@ -60,10 +60,11 @@
               <span class="label label-primary pull-right">4</span>
             </span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php echo base_url('admin/mng_photos') ?>"><i class="fa fa-circle-o"></i>Featured Pictures</a></li>
-            <li><a href="<?php echo base_url('admin/mng_sales') ?>"><i class="fa fa-circle-o"></i>Manage Sales</a></li>
-            <li><a href="<?php echo base_url('admin/mng_rent') ?>"><i class="fa fa-circle-o"></i>Manage Rents</a></li>
+          <ul class="treeview-menu" id="mnghome">
+            <li id="featured"><a href="<?php echo base_url('admin/mng_photos') ?>"><i class="fa fa-circle-o"></i>Featured Pictures</a></li>
+            <li id="mngrents"><a href="<?php echo base_url('admin/mng_rent') ?>"><i class="fa fa-circle-o"></i>Manage Rents</a></li>
+            <li id="mngsales"><a href="<?php echo base_url('admin/mng_sales') ?>"><i class="fa fa-circle-o"></i>Manage Sales</a></li>
+            
             
           </ul>
         </li>

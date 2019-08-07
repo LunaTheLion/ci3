@@ -78,6 +78,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						property_id INT(11) AUTO_INCREMENT PRIMARY KEY,
 						property_type VARCHAR(10) NOT NULL,
 						property_facade VARCHAR(100) NOT NULL,
+						property_sample_view VARCHAR(400),
 						property_title VARCHAR(40) NOT NULL,
 						property_title_slug VARCHAR(40) NOT NULL,
 						property_address VARCHAR(150) NOT NULL,
@@ -104,6 +105,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			}
 
 		}
+		
 		public function create_owner_table()
 		{
 			$check_owner_tbl = $this->db->query("SHOW TABLES LIKE 'owner_tbl';");
@@ -133,6 +135,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$fields = $this->db->field_data($table_name);
 			return $fields;
 		}
+
 		
 
 	}

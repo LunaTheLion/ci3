@@ -33,7 +33,7 @@
 
     <!-- Main content -->
     <section class="content">
-      <?php echo form_open_multipart('property/create_project') ?>
+     <!--  <?php echo form_open_multipart('property/create_project') ?> -->
       <div class="row">
         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
           <div class="box box-info">
@@ -63,7 +63,7 @@
               <div class="row">
                 <div class="col-lg-6 col-md-6 col-xs-12 col-sm-12"> 
                 
-                  <!--    <?php
+                    <?php
                       if(!empty($this->session->flashdata('title')))
                       {
                          echo form_open_multipart('property/update_project/'.$this->session->flashdata('id').'');
@@ -73,7 +73,7 @@
                          echo form_open_multipart('property/create_project');
                       }
 
-                     ?> -->
+                     ?>
                      <label for="turnover">Property Type</label><br>
                     <?php 
                         $type = $this->session->flashdata('property_type');
@@ -125,23 +125,10 @@
                       }
                      ?>">
                     </div>
-                    <div class="form-group">
-                    <label for="projectLocation">Property Location</label>
-                     <input type="text" class="form-control" name="projectLocation" id="projectLocation" required placeholder="Property Location" value=" <?php   
-                        if(!empty($this->session->flashdata('address')))
-                        {
-                          echo $this->session->flashdata('location');
-                        }
-                        else
-                        {
-                          echo "";
-                        }
-
-                      ?>" >
-                    </div>
+                    
                     <div class="form-group" id="propertyBuilding">
                     <label for="projectBuilding">Property Building</label>
-                    <input type="text" class="form-control" name="projectBuilding" id="projectBuilding" required placeholder="Property Building"  value="<?php 
+                    <input type="text" class="form-control" name="projectBuilding" id="projectBuilding" placeholder="Property Building"  value="<?php 
                       if(!empty($this->session->flashdata('building')))
                       {
                         echo $this->session->flashdata('building');

@@ -27,7 +27,6 @@ class Property_Model extends CI_Model
 			'property_title_slug' =>urlencode($this->input->post('projectTitle')),
 			'property_title_slug'=>urlencode($this->input->post('projectTitle')),
 			'property_address'=>$this->input->post('projectAddress'),
-			'property_location'=> $this->input->post('projectLocation'),
 			'property_bath' => $this->input->post('propertyBath'),
 			'property_building'=>$this->input->post('projectBuilding'),
 			'property_price' => $this->input->post('projectPrice'),

@@ -9,7 +9,7 @@
       <h1>
         Dashboard
         <small>Control panel</small>
-        <a href="<?php echo base_url('SendsmsController/index') ?>">Click me for Message</a>
+        
       </h1>
                <p><?php 
        // echo "<pre>";
@@ -88,7 +88,24 @@
         <!-- ./col -->
       </div>
       <!-- /.row -->
-      <!-- Main row -->
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="nav-tabs-custom">
+            <!-- Tabs within a box -->
+            <ul class="nav nav-tabs pull-right">
+             <!--  <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li> -->
+              
+              <li class="pull-left header"><i class="fa fa-inbox"></i> Inquiries</li>
+            </ul>
+            <div class="tab-content no-padding">
+            
+
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <!-- Inquiry Graph-->
       <div class="row">
         <!-- Left col -->
         <section class="col-lg-7 connectedSortable">

@@ -39,9 +39,7 @@
                   <?php 
                   if($fetch_data->num_rows() > 0)
                   {
-                    // echo "<pre>";
-                    // print_r($fetch_data);
-                    // echo "</pre>";
+                    
                     foreach($fetch_data->result() as $row)
                     {
                       ?>

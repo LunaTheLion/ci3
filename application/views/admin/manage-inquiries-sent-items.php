@@ -2,7 +2,7 @@
         <div class="col-md-9">
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Inbox</h3>
+              <h3 class="box-title">Sent Items</h3>
 
               <div class="box-tools pull-right">
                 <div class="has-feedback">
@@ -152,7 +152,33 @@
                     <td class="mailbox-attachment"></td>
                     <td class="mailbox-date">12 days ago</td>
                   </tr>
-                 
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
+                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
+                    </td>
+                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
+                    <td class="mailbox-date">12 days ago</td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
+                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
+                    </td>
+                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
+                    <td class="mailbox-date">14 days ago</td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
+                    <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                    <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
+                    </td>
+                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
+                    <td class="mailbox-date">15 days ago</td>
+                  </tr>
                   </tbody>
                 </table>
                 <!-- /.table -->
@@ -170,7 +196,43 @@
     </section>
     <!-- /.content -->
   </div>
-  
+  <div class="modal fade " id="modal-default">
+    <div class="modal-dialog modal-lg ">
+      <div class="modal-content ">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Compose Message</h4>
+        </div>
+        <div class="modal-body">
+          <form action="<?php echo base_url('admin/send_message') ?>" method="POST" id="messageForm">
+            <div class="form-group">
+              <input type="text" name="to" placeholder="To:" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <input type="text" name="subject" placeholder="Subject:" class="form-control">
+            </div>
+            <div class="form-group">
+                <textarea class="textarea" name="propertyDescription" placeholder="Place some text here"
+                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" required></textarea>
+            
+                    
+            </div>
+          
+        </div>
+        <div class="modal-footer">
+          
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal"> <i class="fa fa-close"></i>  Discard</button>
+          
+          <a href="javascript:;"  class="btn btn-info"> <i class="fa fa-pencil"></i> Draft</a>
+          <button type="submit" id="btnsend" class="btn btn-primary"> <i class="fa fa-envelope"></i> Send</button>
+        </form>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
@@ -191,6 +253,6 @@
   $('document').ready(function(){
       
       $('#inquirysidebar').siblings().removeClass('active');
-      $('#inbox').addClass('active');
+      $('#sent').addClass('active');
   });
 </script>
