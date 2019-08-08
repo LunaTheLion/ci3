@@ -61,7 +61,7 @@
             </span>
           </a>
           <ul class="treeview-menu" id="mnghome">
-            <li id="featured"><a href="<?php echo base_url('admin/mng_photos') ?>"><i class="fa fa-circle-o"></i>Featured Pictures</a></li>
+           <!--  <li id="featured"><a href="<?php echo base_url('admin/mng_photos') ?>"><i class="fa fa-circle-o"></i>Featured Pictures</a></li> -->
             <li id="mngrents"><a href="<?php echo base_url('admin/mng_rent') ?>"><i class="fa fa-circle-o"></i>Manage Rents</a></li>
             <li id="mngsales"><a href="<?php echo base_url('admin/mng_sales') ?>"><i class="fa fa-circle-o"></i>Manage Sales</a></li>
             

@@ -35,13 +35,10 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-
                   <th><center>Property Image</center></th>
                   <th><center>Property Details</center></th>
-                  
                   <th><center>Status</center></th>
                   <th><center>Activity</center></th>
-
                 </tr>
                 </thead>
                 <tbody id="properties">
@@ -52,7 +49,7 @@
                     {
                       ?>
                         <tr>
-                          <td><center><img  src="<?php echo base_url('uploads/'.$row->property_title_slug.'/facade/'.$row->property_facade)?>" style='height: 110px; width: 150px;'></center></td>
+                          <td style="width: 20%;"><center><img  src="<?php echo base_url('uploads/'.$row->property_title_slug.'/facade/'.$row->property_facade)?>" style='height: 110px; width: 150px;'></center></td>
                           <td><center><b>Rent: <?php echo $row->property_price; ?> /mo</b>
                             <?php 
                               if(empty($row->property_sample_view))
@@ -62,13 +59,16 @@
                                 <?php
                               }
                               else
-                              {
-                                echo $row->property_sample_view;
+                              { 
+
+                                echo "</center>".$row->property_sample_view;
+                                ?>
+                                <?php
                               }
                            ?>
                           </center></td>
                           <td><center><?php echo $row->property_status; ?></center></td>
-                          <td><center><br>
+                          <td style="width: 10%;"><center><br>
                             <?php 
                                 if($row->property_system_status == '1')
                                 {//active to the website
@@ -84,12 +84,18 @@
                                   <a href='javascript:;' class='btn btn-primary btn-xs item-unhide ' id='unhide'  data="<?php echo $row->property_id;?>" ><i class='fa fa-eye'></i> Unhide </a>&nbsp;
                                   <?php
                                 }
-
-
                              ?>
-                              
-                              
-                              <a href='<?php echo base_url('Admin/edit_property/'.$row->property_id.'/'.$row->property_title_slug) ?>' class='btn btn-success btn-xs item-view'><i class='fa fa-folder-open'></i>View</a>
+                              <a href='<?php echo base_url('Admin/edit_property/'.$row->property_id.'/'.$row->property_title_slug) ?>' class='btn btn-success btn-xs item-view'><i class='fa fa-folder-open'></i>View</a><Br>&nbsp;<br>
+                              <?php
+                                if(!empty($row->property_sample_view))
+                                {
+                                   ?>
+                                
+                                  <a href='javascript:;' class='btn btn-warning btn-xs item-editview' id='editview' data="<?php echo $row->property_id;?>"><i class='fa fa-eye-slash'></i> Edit Preview Details </a><center>
+
+                                    <?php
+                                 }    
+                                     ?>
                           </center></td>
                         </tr>
 
@@ -115,7 +121,6 @@
                   <th><center>Property Details</center></th>
                   <th><center>Status</center></th>
                   <th><center>Activity</center></th>
-                  
                 </tr>
                 </tfoot>
               </table>
@@ -139,14 +144,16 @@
           <h4 class="modal-title">Compose Property Details</h4>
         </div>
         <div class="modal-body">
-          <form action="<?php echo base_url('admin/send_message') ?>" method="POST" id="messageForm">
+          <form action="<?php echo base_url('property/create_sample_view') ?>" method="POST" id="viewForm">
            <div class="form-group">
-               <textarea class="textarea" name="propertyDescription" placeholder="Place Details here"
+              <input type="text" name="data" id="data">
+               <textarea class="textarea" name="sampledescription" id="sampledescription" placeholder="Place Details here"
                 style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" required></textarea>
+                <!-- <textarea  name="sample"></textarea> -->
              </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" id="btnsubmit" class="btn btn-primary"> <i class="fa fa-envelope"></i>Submit</button>
+          <button type="submit" id="btnsubmit" class="btn btn-primary"> <i class="fa fa-envelope"></i> Submit</button>
         </form>
         </div>
       </div>
@@ -234,31 +241,38 @@
        });
        $('#properties').on('click', '.item-createview', function(){
         var id = $(this).attr('data');
-        // alert(id+' Create View?');
         $('#modal-default').modal('show');
-        // $.ajax({
-        //   type:'ajax',
-        //   method: 'get',
-        //   async : false,
-        //   url: '<?php echo base_url()?>admin/unhide_property',
-        //   data: {id,id},
-        //   dataType: 'json',
-        //   success: function()
-        //   {
-        //       console.log(id);
-        //       if(response.success)
-        //       {
-        //         alert('success');
-        //         window.location.reload();
-        //       }
-        //   },
-        //   error: function()
-        //   {
-        //     alert('Could not Hide the Property');
-        //   }
-        // });
-       });
-    }
-  });
- 
+        $('input[name=data]').val(id);
+        });
+    $('#properties').on('click', '#editview', function(){
+        var id = $(this).attr('data');
+        $('#modal-default').modal('show');
+        $('#modal-default').find('.modal-title').text('Edit Property Details');
+        $('#viewForm').attr('action','<?php echo base_url('property/update_sample_view') ?>');
+        $.ajax({
+          type:'ajax',
+          method: 'get',
+          url: '<?php echo base_url('property/view_sample')?>',
+          data:{id,id},
+          async: false,
+          dataType: 'json',
+          success: function(data)
+          {
+            console.log(data);
+            $('input[name=data]').val(data.property_id);
+            // $('#sampledescription').text(data.property_sample_view);
+            // $('textarea[name=sampledescription]').text(data.property_sample_view);
+            //$('textarea[name=sampledescription]').html(data.property_sample_view);
+             $('textarea[name=sample]').val(data.property_sample_view);
+            $('#modal-default').find('.btn-primary').text('Update');
+          },
+          error: function() 
+          {
+            alert('Could not Update');
+          }
+        });
+    });
+
+ };
+});
 </script>

@@ -211,7 +211,7 @@ class Admin_model extends CI_Model{
 		$this->db->select('*');
 		$this->db->order_by('inquiry_date_received', 'DESC');
 		$this->db->where('inquiry_status', 1 );
-		$query = $this->db->get('inquiry_tbl');
+		$query = $this->db->get('inquiries_tbl');
 		return $query;
 	}
 	public function all_inquiries_sent_items()

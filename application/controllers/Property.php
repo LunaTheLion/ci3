@@ -9,6 +9,41 @@ class Property extends CI_CONTROLLER
 		$this->load->model('Property_Model','pm');
 		$this->load->helper(array('form','url'));
 	}
+	public function view_sample()
+	{
+		$result = $this->pm->view_sample_view();
+		echo json_encode($result);
+	}
+	public function create_sample_view()
+	{
+		$desc = $this->input->post('sampledescription');
+		$id = $this->input->post('data');
+		if($this->pm->add_sample_view($desc,$id))
+		{
+			redirect(base_url('admin/mng_rent'));
+		}
+		else
+		{
+			redirect(base_url('admin/mng_rent'));
+		}
+	}
+	public function update_sample_view()
+	{
+		echo $this->input->post('sampledescription');
+		echo  $this->input->post('data');
+
+		// $desc = $this->input->post('sampledescription');
+		// $id = $this->input->post('data');
+		// if($this->pm->edit_sample_view($desc,$id))
+		// {
+		// 	redirect(base_url('admin/mng_rent'));
+		// }
+		// else
+		// {
+		// 	redirect(base_url('admin/mng_rent'));
+		// }
+	}
+
 
 	public function create_project()
 	{

@@ -3,19 +3,19 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-       Manage Inquiries
+       Inquiries
         <small>13 new messages</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Manage Inquiries</li>
+        <li class="active">Inquiries</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
       <div class="row">
-        <div class="col-md-3">
+       <!--  <div class="col-md-3">
           <a href="javascript:;" id="compose"  class="btn btn-primary btn-block margin-bottom">Compose</a>
 
           <div class="box box-solid">
@@ -36,12 +36,8 @@
                 <li id="trash"><a href="<?php echo base_url('admin/mng_inquiries_trash') ?>"><i class="fa fa-trash-o"></i> Trash</a></li>
               </ul>
             </div>
-            <!-- /.box-body -->
           </div>
-          <!-- /. box -->
-      
-          <!-- /.box -->
-        </div>
+        </div> -->
         <!-- /.col -->
         <div class="modal fade " id="modal-default">
           <div class="modal-dialog modal-lg ">
@@ -62,10 +58,7 @@
                   <div class="form-group">
                       <textarea class="textarea" name="propertyDescription" placeholder="Place some text here"
                                 style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" required></textarea>
-                  
-                          
                   </div>
-                
               </div>
               <div class="modal-footer">
                 

@@ -246,18 +246,17 @@ $('#owners').on('click', '#delete', function(){
                 dataType: 'json',
                 success: function(response)
                 {
-                  if(response.success)
-                  {
+                  // if(response.success)
+                  // {
                   $('#modal-danger').modal('hide');
                      alert('success');  
                     window.location.reload();
-                  }
-                  else
-                  {
-                     $('#modal-danger').modal('hide');
-                     alert('Pwede na kaso may kulang');
-                     window.location.reload();
-                  }
+                  // }
+                  // else
+                  // {
+                  //    $('#modal-danger').modal('hide');
+                  //    window.location.reload();
+                  // }
 
                 },
                 error: function() 

@@ -25,14 +25,11 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-
                   <th><center>Email</center></th>
-
                   <th><center>Username</center></th>
                   <th><center>Admin Type</center></th>
                   <th><center>Password</center></th>
                   <th><center>Activity</center></th>
-
                 </tr>
                 </thead>
                 <tbody id="properties">
@@ -82,11 +79,11 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th>Property Title</th>
-                  <th>Image</th>
-                  <th>Price</th>
-                  <th>Status</th>
-                  <th>Activity</th>
+                  <th><center>Email</center></th>
+                  <th><center>Username</center></th>
+                  <th><center>Admin Type</center></th>
+                  <th><center>Password</center></th>
+                  <th><center>Activity</center></th>
                 </tr>
                 </tfoot>
               </table>

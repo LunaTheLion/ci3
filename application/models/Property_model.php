@@ -6,6 +6,54 @@ class Property_Model extends CI_Model
 	public function __construct(){
 		parent::__construct();	
 	}
+
+	public function add_sample_view($desc,$id)
+	{
+		$view = array(
+			'property_sample_view' => $desc,
+		);
+		$this->db->where('property_id', $id);
+		$this->db->update('property_tbl', $view);
+		if($this->db->affected_rows() == 1 )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	public function view_sample_view()
+	{	
+		$id = $this->input->get('id');
+		$this->db->select('property_id,property_sample_view');
+		$this->db->where('property_id', $id);
+		$query = $this->db->get('property_tbl');
+		if($query->num_rows() > 0)
+		{
+			 return $query->row();
+		}
+		else
+		{
+			return false;
+		}
+	}
+	public function edit_sample_view($desc,$id)
+	{
+		$view = array(
+			'property_sample_view' => $desc,
+		);
+		$this->db->where('property_id', $id);
+		$this->db->update('property_tbl', $view);
+		if($this->db->affected_rows() == 1 )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 	public function add_property($facade)
 	{
 		$chars = "abcdefghijkmnopqrstuvwxyz023456789"; 
