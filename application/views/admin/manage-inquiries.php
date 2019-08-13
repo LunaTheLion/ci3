@@ -42,7 +42,7 @@
                         {
                         ?>
                           <tr>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" id="inqaction" name="inqaction" value='<?php echo $row->inquiry_id;?>'></td>
                             
                             <td class="mailbox-name"><a href="javascript:;" id='reademail' data='<?php echo $row->inquiry_id ?>'><?php echo $row->inquiry_email; ?></a></td>
                             <td class="mailbox-subject"><b><?php echo $row->inquiry_name ?> </b> <?php echo substr($row->inquiry_message, 0,20) ?>...
@@ -94,14 +94,11 @@
           <form action="<?php echo base_url('admin/send_message') ?>" method="POST" id="messageForm">
             <p>To: <b id='sender'></b></p>
             <p>Subject: <b id='subject'></b></p>
-            <div id=""></div>
-            <!-- <div class="form-group">
-                <textarea class="textarea" name="propertyDescription" placeholder="Place some text here"
-                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" required></textarea>
-            </div> -->
+            <div id="inquirymessage"></div>
+         
         </div>
         <div class="modal-footer">
-          <button type="submit" id="btnsend" class="btn btn-primary"> <i class="fa fa-envelope"></i> Close</button>
+          <button type="submit" id="btnsend" class="btn btn-primary">Close</button>
         </form>
         </div>
       </div>
@@ -118,19 +115,12 @@
     reserved.
   </footer>
 
-  <!-- Control Sidebar -->
-  
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 </div>
 <script type="text/javascript">
   $('document').ready(function(){
-      
       $('#inquirysidebar').siblings().removeClass('active');
       $('#inbox').addClass('active');
-
       $('#reload').click(function() {
           location.reload();
       });
@@ -141,15 +131,39 @@
           else
           {
             $('input[type=checkbox]').attr('checked',false);
-          }
-          
+          }        
       });
       $('#deletselected').click(function(){
-        alert('Delete selected messages?');
+        var favorite = [];
+        $.each($("input[name='inqaction']:checked"), function(){
+          favorite.push($(this).val());
+        });
+        alert('May selected are:'+favorite.join(", "));
       });
       $('#inquiries').on('click', '#reademail', function(){
           var id = $(this).attr('data');
           $('#readmodal').modal('show');
+          $('#messageForm').attr('action', '<?php echo base_url('admin/update_inquiry') ?>');
+          $.ajax({
+            type:'ajax',
+            method: 'get',
+            url: '<?php echo base_url('admin/view_inquiry')?>',
+            data:{id,id},
+            async: false,
+            dataType: 'json',
+            success: function(data)
+            {
+              console.log(data);
+              $('#sender').append(data.inquiry_name);
+              $('#subject').append(data.inquiry_project);
+              $('#inquirymessage').append(data.inquiry_message);
+              // $('#readmodal').find('.btn-primary').text('Update');
+            },
+            error: function() 
+            {
+              alert('Could not Update');
+            }
+          });
       });
   });
 </script>

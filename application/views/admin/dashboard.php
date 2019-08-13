@@ -30,14 +30,14 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>150</h3>
+              <h3 id="countallinquiry"></h3>
 
               <p>New Inquiries</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo base_url('admin/mng_inquiries') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -87,69 +87,145 @@
         </div>
         <!-- ./col -->
       </div>
-      <!-- /.row -->
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="nav-tabs-custom">
-            <!-- Tabs within a box -->
-            <ul class="nav nav-tabs pull-right">
-             <!--  <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li> -->
-              
-              <li class="pull-left header"><i class="fa fa-inbox"></i> Inquiries</li>
-            </ul>
-            <div class="tab-content no-padding">
-            
-
+      <div class="row" id="main">
+        <div class="col-xs-12">
+          <div class="box"> 
+            <div class="box-header">
+              <h3 class="box-title">Listing Table</h3>
+              <a href="<?php echo base_url('admin/create_listing') ?>" class="btn btn-success pull-right" title="Create a New Property">Create Listing</a>
             </div>
-            
+            <!-- /.box-header -->
+            <div class="box-body">
+             <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th><center>Property Image</center></th>
+                  <th><center>Property Details</center></th>
+                  <th><center>Status</center></th>
+                  <th><center>Activity</center></th>
+                </tr>
+                </thead>
+                <tbody id="properties">
+                  <?php 
+                  if($fetch_data->num_rows() > 0)
+                  {
+                    foreach($fetch_data->result() as $row)
+                    {
+                      ?>
+                        <tr>
+                          <td style="width: 20%;"><center><img  src="<?php echo base_url('uploads/'.$row->property_title_slug.'/facade/'.$row->property_facade)?>" style='height: 110px; width: 150px;'></center></td>
+                          <td><center><b>Price: <?php echo $row->property_price; ?> /mo</b>
+                            <?php 
+                              if(empty($row->property_sample_view))
+                              {
+                                ?><br><br>
+                                  <a href='javascript:;' class='btn btn-warning btn-xs item-createview' id='createview' data="<?php echo $row->property_id;?>"><i class='fa fa-eye-slash'></i> Create Preview Details </a>&nbsp;
+                                <?php
+                              }
+                              else
+                              { 
+
+                                echo "</center>".$row->property_sample_view;
+                                ?>
+                                <?php
+                              }
+                           ?>
+                          </center></td>
+                          <td><center><?php echo $row->property_status; ?></center></td>
+                          <td style="width: 10%;"><center><br>
+                            <?php 
+                                if($row->property_system_status == '1')
+                                {//active to the website
+                                  ?>
+                                  
+                                    <a href='javascript:;' class='btn btn-danger btn-xs item-hide' id='hide' data="<?php echo $row->property_id;?>"><i class='fa fa-eye-slash'></i> Hide </a>&nbsp;
+                                  <?php
+                                }
+                                elseif($row->property_system_status == '2')
+                                  {//hidden to the website
+                                  ?>
+
+                                  <a href='javascript:;' class='btn btn-primary btn-xs item-unhide ' id='unhide'  data="<?php echo $row->property_id;?>" ><i class='fa fa-eye'></i> Unhide </a>&nbsp;
+                                  <?php
+                                }
+                             ?>
+                              <a href='<?php echo base_url('Admin/edit_property/'.$row->property_id.'/'.$row->property_title_slug) ?>' class='btn btn-success btn-xs item-view'><i class='fa fa-folder-open'></i>View</a><Br>&nbsp;<br>
+                              <?php
+                                if(!empty($row->property_sample_view))
+                                {
+                                   ?>
+                                
+                                  <a href='javascript:;' class='btn btn-warning btn-xs item-editview' id='editview' data="<?php echo $row->property_id;?>"><i class='fa fa-eye-slash'></i> Edit Preview Details </a><center>
+
+                                    <?php
+                                 }    
+                                     ?>
+                          </center></td>
+                        </tr>
+
+                      <?php
+                    }
+
+
+                  }
+                    else
+                    {
+                      ?>
+                        <tr>
+                          <td colspan="5"><center>No Results Found</center></td>
+                        </tr>
+                      <?php
+                    }
+
+                   ?>
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th><center>Property Image</center></th>
+                  <th><center>Property Details</center></th>
+                  <th><center>Status</center></th>
+                  <th><center>Activity</center></th>
+                </tr>
+                </tfoot>
+              </table>
+             
+            </div>
+            <!-- /.box-body -->
           </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+    </section>
+   <div class="modal fade " id="modal-dashboard">
+    <div class="modal-dialog modal-lg ">
+      <div class="modal-content ">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Compose Property Details</h4>
+        </div>
+        <div class="modal-body">
+          <form action="<?php echo base_url('property/create_sample_view') ?>" method="POST" id="viewForm">
+           <div class="form-group">
+              <input type="hidden" name="data" id="data">
+               
+                <div id='readdescription'>
+                  <textarea class="textarea" name="sampledescription" id="sampledescription" placeholder="Place Details here"
+                style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" required></textarea>
+                </div>  
+                <!-- <textarea  name="sample"></textarea> -->
+             </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" id="btnsubmit" class="btn btn-primary"> <i class="fa fa-envelope"></i> Submit</button>
+        </form>
         </div>
       </div>
-      <!-- Inquiry Graph-->
-      <div class="row">
-        <!-- Left col -->
-        <section class="col-lg-7 connectedSortable">
-          <!-- Custom tabs (Charts with tabs)-->
-          <div class="nav-tabs-custom">
-            <!-- Tabs within a box -->
-            <ul class="nav nav-tabs pull-right">
-             <!--  <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li> -->
-              
-              <li class="pull-left header"><i class="fa fa-inbox"></i> Inquiries</li>
-            </ul>
-            <div class="tab-content no-padding">
-              <!-- Morris chart - Sales -->
-              <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
-              <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
-
-            </div>
-            <script>
-              $('document').ready(function(){
-                  $(function () {
-                    $('#example1').DataTable()
-                    $('#example2').DataTable({
-                      'paging'      : true,
-                      'lengthChange': false,
-                      'searching'   : false,
-                      'ordering'    : true,
-                      'info'        : true,
-                      'autoWidth'   : false
-                    })
-                  });
-              });
-              
-            </script>
-          </div>
-     
-
-        </section>
-
-     
-      </div>
-    
-
-    </section>
-
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -162,129 +238,129 @@
   </footer>
 
   <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark" style="display: none;">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-      <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">Recent Activity</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
-
-                <p>Will be 23 on April 24th</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-user bg-yellow"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
-
-                <p>New phone +1(800)555-1234</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
-
-                <p>nora@example.com</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-file-code-o bg-green"></i>
-
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
-
-                <p>Execution time 5 seconds</p>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-        <h3 class="control-sidebar-heading">Tasks Progress</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Custom Template Design
-                <span class="label label-danger pull-right">70%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Update Resume
-                <span class="label label-success pull-right">95%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-success" style="width: 95%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Laravel Integration
-                <span class="label label-warning pull-right">50%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Back End Framework
-                <span class="label label-primary pull-right">68%</span>
-              </h4>
-
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
-
-      </div>
-      <!-- /.tab-pane -->
-      <!-- Stats tab content -->
-      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-      <!-- /.tab-pane -->
-      <!-- Settings tab content -->
-     s
-      <!-- /.tab-pane -->
-    </div>
-  </aside>
+  
 
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
+<script type="text/javascript">
+  $('document').ready(function(){
+    count_inq();
+    function count_inq()
+    {
+      $.ajax({
+        type: 'ajax',
+        url: '<?php echo base_url()?>admin/count_inquiry',
+        async: false,
+        dataType: 'json',
+        success: function(data)
+        {
+          console.log(data);
+          if(data == 0 )
+          {
+            $('#countallinquiry').html("0");
+          }
+          else
+          {
+            $('#countallinquiry').html(data);
+          }
+          
+        },
+        error: function()
+        {
+          // alert('Could not count new Inquiries');
+        }
+      });
+    }
+    
+       $('#properties').on('click', '.item-hide', function(){
+        var id = $(this).attr('data');
+        alert(id+' is now Hidden');
+        // $('#hide').hide();
+        $.ajax({
+          type:'ajax',
+          method: 'get',
+          async : false,
+          url: '<?php echo base_url()?>admin/hide_property',
+          data: {id,id},
+          dataType: 'json',
+          success: function(response)
+          {
+              console.log(id);
+              if(response.success)
+              {
+                alert('success');
+                window.location.reload();
+              }
+          },
+          error: function()
+          {
+            alert('Could not Hide the Property');
+          }
+        })
+       });
+
+       $('#properties').on('click', '.item-unhide', function(){
+        var id = $(this).attr('data');
+        alert(id+' is now Active');
+        $.ajax({
+          type:'ajax',
+          method: 'get',
+          async : false,
+          url: '<?php echo base_url()?>admin/unhide_property',
+          data: {id,id},
+          dataType: 'json',
+          success: function()
+          {
+              console.log(id);
+             
+                alert('success');
+                window.location.reload();
+              
+          },
+          error: function()
+          {
+            alert('Could not Hide the Property');
+          }
+        })
+       });
+       $('#properties').on('click', '.item-createview', function(){
+        var id = $(this).attr('data');
+        $('#modal-dashboard').modal('show');
+        $('input[name=data]').val(id);
+        });
+    $('#properties').on('click', '.item-editview', function(){
+        var id = $(this).attr('data');
+        $('#modal-dashboard').modal('show');
+        $('#modal-dashboard').find('.modal-title').text('Edit Property Details');
+        $('#viewForm').attr('action','<?php echo base_url('property/update_sample_view') ?>');
+        $.ajax({
+          type:'ajax',
+          method: 'get',
+          url: '<?php echo base_url('property/view_sample')?>',
+          data:{id,id},
+          async: false,
+          dataType: 'json',
+          success: function(data)
+          {
+            console.log(data);
+            $('input[name=data]').val(data.property_id);
+            // $('#sampledescription').text(data.property_sample_view);
+            // $('textarea[name=sampledescription]').text(data.property_sample_view);
+            //$('textarea[name=sampledescription]').html(data.property_sample_view);
+             //$('textarea[name=sampledescription]').find('.textarea').text(data.property_sample_view);
+             $('#sampledescription').append(data.property_sample_view);
+             //$('textarea[name=sampledescription]').append(data.property_sample_view);
+             //$('#readdescription').append(data.property_sample_view);
+            $('#modal-dashboard').find('.btn-primary').text('Update');
+          },
+          error: function() 
+          {
+            alert('Could not Update');
+          }
+        });
+    });
+
+ 
+});
+</script>

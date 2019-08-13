@@ -78,7 +78,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						property_id INT(11) AUTO_INCREMENT PRIMARY KEY,
 						property_type VARCHAR(10) NOT NULL,
 						property_facade VARCHAR(100) NOT NULL,
-						property_sample_view VARCHAR(400),
+						property_sample_view VARCHAR(400) NULL,
 						property_title VARCHAR(40) NOT NULL,
 						property_title_slug VARCHAR(40) NOT NULL,
 						property_address VARCHAR(150) NOT NULL,
@@ -97,12 +97,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						property_date_posted DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 						property_date_edited DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 						property_status TINYINT(1) NOT NULL DEFAULT 1 ,
-						property_system_status TINYINT(1) NOT NULL DEFAULT 1
-						property_date_deleted DATETIME NOT NULL DEFAUL CURRENT_TIMESTAMP,
+						property_system_status TINYINT(1) NOT NULL DEFAULT 1,
+						property_date_deleted DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 					);
 				");
 				return True;
 			}
+
 
 		}
 		

@@ -210,9 +210,79 @@ class Admin_model extends CI_Model{
 	{
 		$this->db->select('*');
 		$this->db->order_by('inquiry_date_received', 'DESC');
-		$this->db->where('inquiry_status', 1 );
+		$this->db->where('inquiry_status !=', 3 );
 		$query = $this->db->get('inquiries_tbl');
 		return $query;
+	}
+	public function count_new_inquiry()
+	{
+		$this->db->select('*');
+		$this->db->order_by('inquiry_date_received', 'DESC');
+		$this->db->where('inquiry_status', 1 );
+		$query = $this->db->get('inquiries_tbl');
+		return $query->num_rows();
+	}
+	public function count_inq()
+	{
+		$this->db->select('*');
+		$this->db->order_by('inquiry_date_received', 'DESC');
+		$this->db->where('inquiry_status !=', 3 );
+		$query = $this->db->get('inquiries_tbl');
+		return $query->num_rows();
+	}
+	public function count_new_owner()
+	{
+		$this->db->select('*');
+		$this->db->order_by('owner_date_received', 'DESC');
+		$this->db->where('owner_status', 1 );
+		$query = $this->db->get('owner_tbl');
+		return $query->num_rows();
+	}
+	public function check_inquiry()
+	{
+		//check the inquiry if it is new or not
+		$id = $this->input->get('id');
+
+		$this->db->where('inquiry_id', $id);
+		$this->db->where('inquiry_status', 1);
+		$query = $this->db->get('inquiries_tbl');
+		return $query->row();
+	}
+	public function update_inquiry()
+	{
+		$id = $this->input->get('id');
+			$data = array(
+				'inquiry_status' => 2,
+			);
+			$this->db->where('inquiry_id',$id);
+			$this->db->update('inquiries_tbl',$data);
+			if($this->db->affected_rows() > 0)
+			{
+				return true;
+			} 
+			else
+			{
+				return false;
+			}
+	}
+	public function read_inquiry()//if new inquiry
+	{
+		//check if status 2
+		$id = $this->input->get('id');
+
+		$this->db->where('inquiry_id', $id);
+		$this->db->where('inquiry_status !=', 3);
+		$query = $this->db->get('inquiries_tbl');
+		return $query->row();
+		// if($query->num_rows() > 0)
+		// {
+		
+			
+		// }
+		// else
+		// {
+		// 	return false;
+		// }
 	}
 	public function all_inquiries_sent_items()
 	{
@@ -295,10 +365,7 @@ class Admin_model extends CI_Model{
 	}
 
 
-	public function insertUser($data)
-	{
-		print_r($data);
-	}
+
 	public function edit_article($id)
 	{
 		$this->db->select('id,img,url,title,content,title_slug,date_uploaded');

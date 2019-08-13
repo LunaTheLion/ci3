@@ -18,7 +18,6 @@
       <ol class="breadcrumb">
         <li><a href="<?php echo base_url('admin/dashboard/'.$this->session->userdata('admin_username')) ?>"><i class="fa fa-dashboard"></i>Dashboard</a></li>
        
-        <li ><a href="<?php echo base_url('admin/mng_listing')?>"><i class="fa fa-th"></i> Manage Listings</li></a>
         <li class="active"><?php if(!empty($this->session->flashdata('title')))
                 {
                   echo "Edit ".$this->session->flashdata('title');

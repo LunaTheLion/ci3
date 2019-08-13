@@ -13,14 +13,14 @@ class Admin extends CI_CONTROLLER
 	public function setup_db()
 	{
 		$this->load->dbutil();
-		if($this->dbutil->database_exists('salesandrentals_db'))
+		if($this->dbutil->database_exists('rentandsales_db'))
 		{
 						
 			$this->load->model('db_model');
+			$this->db_model->create_property_table();
 			$this->db_model->create_admin_table();
 			$this->db_model->create_owner_table();
 			$this->db_model->create_inquiries_table();
-			$this->db_model->create_property_table();
 			$this->db_model->insert_default_admin();
 
 						//print success page
@@ -194,7 +194,38 @@ class Admin extends CI_CONTROLLER
 	// 	// $this->load->view('admin/manage_accounts/add-new-account');
 	// 	// $this->load->view('admin/templates/footer');
 	// }
+	public function view_inquiry()
+	{
+		if($this->mm->check_inquiry())//check if the inquiry is new
+		{
+			if($this->mm->update_inquiry())//new inquiry
+			{
+				$result = $this->mm->read_inquiry();//update inquiry to not new
+				echo json_encode($result);
+			}
+		}
+		else
+		{	//not new inquiry
+			$result = $this->mm->read_inquiry();
+			echo json_encode($result);
+		}
 
+	}
+	public function count_unread_inquiry()
+	{
+		$result = $this->mm->count_new_inquiry();
+		echo json_encode($result);
+	}
+	public function count_inquiry()
+	{
+		$result = $this->mm->count_inq();
+		echo json_encode($result);
+	}
+	public function count_unread_owner()
+	{
+		$result = $this->mm->count_new_owner();
+		echo json_encode($result);
+	}
 	public function new_admin($email,$pass)
 	{	
 		if($this->mm->update_acc($email, $pass))
@@ -298,13 +329,14 @@ class Admin extends CI_CONTROLLER
 			'admin_email' => $get->admin_email,
 			'admin_status' =>$get->admin_status, 
 		);
+		$data['fetch_data'] = $this->mm->all_properties();
 		$this->session->set_userdata('useremail', $namepart);
 		$this->session->set_userdata($admin);
 		$this->session->set_userdata('namepart', $namepart);
 		$this->load->view('admin/templates/header', $data);
 		$this->load->view('admin/main-header');
 		$this->load->view('admin/main-sidebar');
-		$this->load->view('admin/dashboard');
+		$this->load->view('admin/dashboard', $data);
 		// $this->load->view('admin/admin-footer');
 		$this->load->view('admin/templates/footer');
 	}
@@ -335,69 +367,7 @@ class Admin extends CI_CONTROLLER
 		// $this->load->view('admin/admin-footer');
 		$this->load->view('admin/templates/footer');
 	}
-	public function mng_sales()
-	{
-		$data['title'] = "Manage Sates";
-		$namepart = $this->session->userdata('useremail');
-		$get = $this->mm->acc($namepart);
-		$admin = array(
-		'admin_id' => $get->admin_id,
-		'admin_username'=>$get->admin_username,
-		'admin_type'=>$get->admin_type,
-		'admin_email' => $get->admin_email,
-		'admin_status' =>$get->admin_status, 
-		);
-		$this->session->set_userdata($admin);
-		$data['fetch_data'] = $this->mm->all_sales();
-		$this->load->view('admin/templates/header', $admin);
-		$this->load->view('admin/main-header');
-		$this->load->view('admin/main-sidebar');
-		$this->load->view('admin/manage_home/manage-sales',$data);
-		// $this->load->view('admin/admin-footer');
-		$this->load->view('admin/templates/footer');
-	}
-	public function mng_rent()
-	{
-		$data['title'] = "Manage Rent";
-		$namepart = $this->session->userdata('useremail');
-		$get = $this->mm->acc($namepart);
-		$admin = array(
-		'admin_id' => $get->admin_id,
-		'admin_username'=>$get->admin_username,
-		'admin_type'=>$get->admin_type,
-		'admin_email' => $get->admin_email,
-		'admin_status' =>$get->admin_status, 
-		);
-		$this->session->set_userdata($admin);
-		$data['fetch_data'] = $this->mm->all_rents();
-		$this->load->view('admin/templates/header', $admin);
-		$this->load->view('admin/main-header');
-		$this->load->view('admin/main-sidebar');
-		$this->load->view('admin/manage_home/manage-rent', $data);
-		// $this->load->view('admin/admin-footer');
-		$this->load->view('admin/templates/footer');
-	}
-	public function mng_listing()
-	{
-		$data['title'] = "Manage Listing";
-		$namepart = $this->session->userdata('useremail');
-		$get = $this->mm->acc($namepart);
-		$admin = array(
-		'admin_id' => $get->admin_id,
-		'admin_username'=>$get->admin_username,
-		'admin_type'=>$get->admin_type,
-		'admin_email' => $get->admin_email,
-		'admin_status' =>$get->admin_status, 
-		);
-		$data['fetch_data'] = $this->mm->all_properties();
-		$this->session->set_userdata($admin);
-		$this->load->view('admin/templates/header', $admin);
-		$this->load->view('admin/main-header');
-		$this->load->view('admin/main-sidebar');
-		$this->load->view('admin/manage-listings', $data);
-		// $this->load->view('admin/admin-footer');
-		$this->load->view('admin/templates/footer');
-	}
+
 	public function mng_owners()
 	{
 		$data['title'] = "Manage Owners";

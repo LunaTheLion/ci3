@@ -142,7 +142,7 @@ class Property extends CI_CONTROLLER
 			
 			sleep(3);
 
-			redirect('admin/mng_listing');
+			redirect('admin/dashboard');
 
 		}//FACADE
 		
@@ -246,7 +246,7 @@ class Property extends CI_CONTROLLER
 			
 			sleep(3);
 
-			redirect('admin/mng_listing');
+			redirect('admin/dashboard');
 
 		}//FACADE
 		

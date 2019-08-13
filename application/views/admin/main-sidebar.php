@@ -52,35 +52,20 @@
             </span> -->
           </a>
         </li>
-        <li class="treeview" >
-          <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Manage Home</span>
-            <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
-            </span>
-          </a>
-          <ul class="treeview-menu" id="mnghome">
-           <!--  <li id="featured"><a href="<?php echo base_url('admin/mng_photos') ?>"><i class="fa fa-circle-o"></i>Featured Pictures</a></li> -->
-            <li id="mngrents"><a href="<?php echo base_url('admin/mng_rent') ?>"><i class="fa fa-circle-o"></i>Manage Rents</a></li>
-            <li id="mngsales"><a href="<?php echo base_url('admin/mng_sales') ?>"><i class="fa fa-circle-o"></i>Manage Sales</a></li>
-            
-            
-          </ul>
-        </li>
-        <li>
+  
+    <!--     <li>
           <a href="<?php echo base_url('admin/mng_listing') ?>">
             <i class="fa fa-th"></i> <span>Manage Listings</span>
             <span class="pull-right-container">
               <small class="label pull-right bg-green">4</small>
             </span>
           </a>
-        </li>
+        </li> -->
         <li>
           <a href="<?php echo base_url('admin/mng_owners') ?>">
             <i class="fa fa-pie-chart"></i> <span>Manage Owners</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-green">4</small>
+              <small class="label pull-right bg-green" id="own"></small>
             </span>
           </a>
         </li>
@@ -97,16 +82,16 @@
            <a href="<?php echo base_url('admin/mng_inquiries') ?>">
              <i class="fa fa-laptop"></i> <span>Inquiries</span>
              <span class="pull-right-container">
-               <small class="label pull-right bg-green">4</small>
+               <small class="label pull-right bg-green" id="inqside"></small>
              </span>
            </a>
          </li>
-       <li>
+       <!-- <li>
          <a href="<?php echo base_url('admin/mng_contact_us') ?>">
            <i class="fa fa-edit"></i> <span>Contact Us</span>
            
          </a>
-       </li>
+       </li> -->
        <li>
          <a href="<?php echo base_url('admin/logout') ?>">
            <i class="fa fa-sign-out"></i> <span>Log Out</span>
@@ -119,3 +104,62 @@
     </section>
     <!-- /.sidebar -->
   </aside>
+  <script type="text/javascript">
+    $('document').ready(function(){
+      inquiry_notif();
+      owner_notif();
+      function inquiry_notif()
+      {
+        $.ajax({
+          type: 'ajax',
+          url: '<?php echo base_url()?>admin/count_unread_inquiry',
+          async: false,
+          dataType: 'json',
+          success: function(data)
+          {
+            console.log(data);
+            if(data == 0 )
+            {
+              $('#inqside').html("");
+            }
+            else
+            {
+              $('#inqside').html(data);
+            }
+            
+          },
+          error: function()
+          {
+            // alert('Could not count new Inquiries');
+          }
+        });
+      };
+      function owner_notif()
+      {
+        $.ajax({
+          type: 'ajax',
+          url: '<?php echo base_url()?>admin/count_unread_owner',
+          async: false,
+          dataType: 'json',
+          success: function(data)
+          {
+            console.log(data);
+            if(data == 0 )
+            {
+              $('#own').html("0");
+            }
+            else
+            {
+              $('#own').html(data);
+            }
+            
+          },
+          error: function()
+          {
+            // alert('Could not co owner');
+          }
+        });
+      };
+
+    });
+  </script>
