@@ -37,7 +37,8 @@
                   <th><center>Activity</center></th>
                 </tr>
                 </thead>
-                <tbody id="owners">
+
+              <tbody id="owners">
                   <?php 
                   if($fetch_data->num_rows() > 0)
                   {

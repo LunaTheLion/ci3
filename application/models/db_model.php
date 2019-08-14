@@ -103,8 +103,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				");
 				return True;
 			}
-
-
 		}
 		
 		public function create_owner_table()
@@ -125,6 +123,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						owner_message VARCHAR(8000) ,
 						owner_date_received DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 						owner_system_status TINYINT(1) NOT NULL DEFAULT 1
+					);
+				");
+				return True;
+			}
+
+		}
+		public function create_article_table()
+		{
+			$check_owner_tbl = $this->db->query("SHOW TABLES LIKE 'article_tbl';");
+			if ($check_owner_tbl->num_rows()==0)
+			{
+				// create table if not exist
+				$this->db->query("
+					CREATE TABLE IF NOT EXISTS article_tbl (
+						article_id INT(11) AUTO_INCREMENT PRIMARY KEY,
+						article_title VARCHAR(200),
+						article_title_slug VARCHAR(200),
+						article_link VARCHAR(400),
+						article_body VARCHAR(8000) NOT NULL,
+						article_status TINYINT(1) DEFAULT 0,
+						article_system_status TINYINT(1) DEFAULT 0,
+						article_date_uploaded DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+						article_date_deleted DATETIME NOT NULL DEFAULT
 					);
 				");
 				return True;

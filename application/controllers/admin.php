@@ -22,7 +22,7 @@ class Admin extends CI_CONTROLLER
 			$this->db_model->create_owner_table();
 			$this->db_model->create_inquiries_table();
 			$this->db_model->insert_default_admin();
-
+			$this->db_model->create_article_table();
 						//print success page
 			$this->load->view('admin/templates/header');
 			$this->load->view('admin/success_setup');
@@ -140,60 +140,6 @@ class Admin extends CI_CONTROLLER
 	}
 
 
-
-	public function vinfo()
-	{
-		$this->load->helper(array('form','url'));
-		$this->load->library('form_validation');
-		$this->form_validation->set_error_delimiters('<label class="text-danger">','</label>');
-		$this->form_validation->set_rules('fname', 'required');
-		$this->form_validation->set_rules('sname', 'required');
-		$this->form_validation->set_rules('birthdate', 'required');
-		if($this->form_validation->run() == FALSE)
-		{
-			
-			if($this->mm->register_info())
-			{
-				redirect('admin/dashboard/'.$this->session->userdata('username'));
-			}
-			else
-			{
-				echo "<script>alert('Cannot Process your data, please try again after a few minutes')</script>";
-				$this->load->view('admin/template/header');
-				$this->load->view('admin/admin-info');
-				$this->load->view('admin/template/footer');		
-			}
-		}
-		else
-		{
-			$this->load->view('admin/template/header');
-			$this->load->view('admin/admin-info');
-			$this->load->view('admin/template/footer');		
-		}
-	}
-	// public function admin_info($email, $pass)
-	// {
-	// 	// echo "register more admin information";
-	// 	//register birthday
-	// 	//register password
-	// 	//upload picture
-	// 	// $data['title'] = "Admin Info";
-	// 	// $namepart = $this->session->userdata('useremail');
-	// 	// $get = $this->mm->acc($namepart);
-	// 	// $admin = array(
-	// 	// 'admin_id' => $get->admin_id,
-	// 	// 'admin_username'=>$get->admin_username,
-	// 	// 'admin_type'=>$get->admin_type,
-	// 	// 'admin_email' => $get->admin_email,
-	// 	// 'admin_status' =>$get->admin_status, 
-	// 	// );
-	// 	// $this->session->set_userdata($admin);
-	// 	// $this->load->view('admin/templates/header', $admin);
-	// 	// $this->load->view('admin/main-header');
-	// 	// $this->load->view('admin/main-sidebar');
-	// 	// $this->load->view('admin/manage_accounts/add-new-account');
-	// 	// $this->load->view('admin/templates/footer');
-	// }
 	public function view_inquiry()
 	{
 		if($this->mm->check_inquiry())//check if the inquiry is new
@@ -219,6 +165,21 @@ class Admin extends CI_CONTROLLER
 	public function count_inquiry()
 	{
 		$result = $this->mm->count_inq();
+		echo json_encode($result);
+	}
+	public function count_owner()
+	{
+		$result = $this->mm->count_own();
+		echo json_encode($result);
+	}
+	public function count_article()
+	{
+		$result = $this->mm->count_art();
+		echo json_encode($result);
+	}
+	public function count_property()
+	{
+		$result = $this->mm->count_prop();
 		echo json_encode($result);
 	}
 	public function count_unread_owner()
@@ -385,7 +346,7 @@ class Admin extends CI_CONTROLLER
 		$this->load->view('admin/templates/header', $admin);
 		$this->load->view('admin/main-header');
 		$this->load->view('admin/main-sidebar');
-		$this->load->view('admin/manage-owners' , $data);
+		$this->load->view('admin/manage-owners', $data);
 		$this->load->view('admin/templates/footer');
 	}
 	public function mng_inquiries()
@@ -407,6 +368,29 @@ class Admin extends CI_CONTROLLER
 		$this->load->view('admin/main-sidebar');
 		$this->load->view('admin/manage-inquiries-sidebar');
 		$this->load->view('admin/manage-inquiries', $data);
+		$this->load->view('admin/templates/footer');
+	}
+	public function mng_articles()
+	{
+		$data['title'] = "Manage articles";
+		$namepart = $this->session->userdata('useremail');
+		$get = $this->mm->acc($namepart);
+		$admin = array(
+			'admin_id' => $get->admin_id,
+			'admin_username'=>$get->admin_username,
+			'admin_type'=>$get->admin_type,
+			'admin_email' => $get->admin_email,
+			'admin_status' =>$get->admin_status, 
+		);
+		$data['fetch_data'] = $this->mm->all_articles();
+		$this->session->set_userdata('useremail', $namepart);
+		$this->session->set_userdata($admin);
+		$this->session->set_userdata('namepart', $namepart);
+		$this->load->view('admin/templates/header', $data);
+		$this->load->view('admin/main-header');
+		$this->load->view('admin/main-sidebar');
+		$this->load->view('admin/mng-articles', $data);
+		// $this->load->view('admin/admin-footer');
 		$this->load->view('admin/templates/footer');
 	}
 	public function mng_inquiries_sent_items()
@@ -549,6 +533,73 @@ class Admin extends CI_CONTROLLER
 		$this->load->view('admin/create-listing');
 		$this->load->view('admin/templates/footer');	
 	}
+	public function create_article()
+	{
+		$data['title'] = "Create Article";
+		$namepart = $this->session->userdata('useremail');
+		$get = $this->mm->acc($namepart);
+		$admin = array(
+		'admin_id' => $get->admin_id,
+		'admin_username'=>$get->admin_username,
+		'admin_type'=>$get->admin_type,
+		'admin_email' => $get->admin_email,
+		'admin_status' =>$get->admin_status, 
+		);
+		$this->session->set_userdata($admin);
+		$this->load->view('admin/templates/header', $admin);
+		$this->load->view('admin/main-header');
+		$this->load->view('admin/main-sidebar');
+		$this->load->view('admin/create-article');
+		$this->load->view('admin/templates/footer');	
+	}
+	public function upload_article()
+	{
+		
+		$title = urlencode($this->input->post('articletitle'));
+		function reArrayFiles($file_post)
+		{
+			$file_ary = array();
+			$file_count = count($file_post['name']);
+			$file_keys = array_keys($file_post);
+
+			for($i=0; $i<$file_count; $i++)
+			{
+				foreach($file_keys as $key)
+				{
+					$file_ary[$i][$key] = $file_post[$key][$i];
+				}
+			}
+			return $file_ary;
+		}
+		 $int = 0;
+		if(isset($_FILES['imageAmenities']))
+		{
+					// pre_r($_FILES);
+					$file_array = reArrayFiles($_FILES['imageAmenities']);
+					//pre_r($file_array);
+					for($i=0; $i<count($file_array); $i++)
+					{
+						$spes = "uploads/articles/".$title."/";
+						if(!is_dir($spes))
+						{
+							mkdir($spes,0755,true);
+							move_uploaded_file($file_array[$i]['tmp_name'],$spes.$file_array[$i]['name']);
+							// echo " <br> Amenities Upload Successfully";
+							$int += 1;
+						}
+						elseif(is_dir($spes))
+						{
+							move_uploaded_file($file_array[$i]['tmp_name'],$spes.$file_array[$i]['name']);
+							// echo " <br> Amenities Upload Successfully";
+							$int += 1;
+						}
+
+						
+					}
+		$this->mm->add_article();
+		}//image amenities
+	redirect(base_url('admin/mng_articles'));
+	}
 	public function create_owner()
 	{
 		$owner_details = array(
@@ -635,6 +686,17 @@ class Admin extends CI_CONTROLLER
 		echo json_encode($msg);
 		redirect(base_url('admin/mng_listing'));
 	}
+	public function delete_article()
+	{
+		$result = $this->mm->del_art();
+		$msg['success'] = false;
+		if($result)
+		{
+			$msg['success'] = true;
+		}
+		echo json_encode($msg);
+		redirect(base_url('admin/mng_articles'));
+	}
 	public function get_bel()
 	{
 		$inquiries = $this->mm->bel_inquiries();
@@ -704,17 +766,7 @@ class Admin extends CI_CONTROLLER
 		$this->load->view('admin/admin-footer');
 		$this->load->view('admin/template/footer');	
 	}
-	public function delete_article()
-	{
-		//echo "Delete Article";
-		$result = $this->mm->delete_art();
-		$msg['success'] = false;
-		if($result)
-		{
-			$msg['success'] = true;
-		}
-		echo json_encode($msg);
-	}
+
 	public function hide_property()
 	{
 		//echo "Delete Article";
@@ -737,24 +789,46 @@ class Admin extends CI_CONTROLLER
 		}
 		echo json_encode($msg);
 	}
+	public function hide_article()
+	{
+		//echo "Delete Article";
+		$result = $this->mm->hide_art();
+		$msg['success'] = false;
+		if($result)
+		{
+			$msg['success'] = true;
+		}
+		echo json_encode($msg);
+	}
+	public function unhide_article()
+	{
+		//echo "Delete Article";
+		$result = $this->mm->unhide_art();
+		$msg['success'] = false;
+		if($result)
+		{
+			$msg['success'] = true;
+		}
+		echo json_encode($msg);
+	}
 	public function edit_article($id,$slug)
 	{
-		$get = $this->mm->edit_article($id);
-		$article = array(
-			"id" =>$get->id,
-			"title" =>$get->title,
-			"body" =>$get->content,
-			"image" => $get->img,
-			"url" =>$get->url,
-		);
-		$this->session->set_userdata($article);
+		$get = $this->mm->get_article_by_id($id, $slug);
 
-		$this->load->view('admin/template/header');
-		$this->load->view('admin/admin-header');
-		$this->load->view('admin/admin-main-sidebar');
-		$this->load->view('admin/add-article',$article);
-		$this->load->view('admin/admin-footer');
-		$this->load->view('admin/template/footer');	
+		$article_details = array(
+			'id' => $get->article_id,
+			'title' => $get->article_title,
+			'title_link' => $get->article_link,
+			'title_body' => $get->article_body,
+
+		);
+		$this->session->set_flashdata($article_details);
+
+		$this->load->view('admin/templates/header');
+		$this->load->view('admin/main-header');
+		$this->load->view('admin/main-sidebar');
+		$this->load->view('admin/create-article', $article_details);
+		$this->load->view('admin/templates/footer');	
 	}
 	public function edit_property($id,$slug)
 	{

@@ -32,7 +32,7 @@
             <div class="inner">
               <h3 id="countallinquiry"></h3>
 
-              <p>New Inquiries</p>
+              <p>Inquiries</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
@@ -45,9 +45,9 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
+              <h3 id="countowner"></h3>
 
-              <p>Bounce Rate</p>
+              <p>Owners</p>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
@@ -60,9 +60,9 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>44</h3>
+              <h3 id="countarticle"></h3>
 
-              <p>User Registrations</p>
+              <p>Articles</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
@@ -75,9 +75,9 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>65</h3>
+              <h3 id="countproperties"></h3>
 
-              <p>Unique Visitors</p>
+              <p>Properties</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
@@ -246,6 +246,9 @@
 <script type="text/javascript">
   $('document').ready(function(){
     count_inq();
+    count_owner();
+    count_article();
+    count_property();
     function count_inq()
     {
       $.ajax({
@@ -272,6 +275,85 @@
         }
       });
     }
+    function count_owner()
+    {
+      $.ajax({
+        type: 'ajax',
+        url: '<?php echo base_url()?>admin/count_owner',
+        async: false,
+        dataType: 'json',
+        success: function(data)
+        {
+          console.log(data);
+          if(data == 0 )
+          {
+            $('#countowner').html("0");
+          }
+          else
+          {
+            $('#countowner').html(data);
+          }
+          
+        },
+        error: function()
+        {
+          // alert('Could not count new Inquiries');
+        }
+      });
+    }
+    function count_article()
+    {
+      $.ajax({
+        type: 'ajax',
+        url: '<?php echo base_url()?>admin/count_article',
+        async: false,
+        dataType: 'json',
+        success: function(data)
+        {
+          console.log(data);
+          if(data == 0 )
+          {
+            $('#countarticle').html("0");
+          }
+          else
+          {
+            $('#countarticle').html(data);
+          }
+          
+        },
+        error: function()
+        {
+          // alert('Could not count new Inquiries');
+        }
+      });
+    }
+    function count_property()
+    {
+      $.ajax({
+        type: 'ajax',
+        url: '<?php echo base_url()?>admin/count_property',
+        async: false,
+        dataType: 'json',
+        success: function(data)
+        {
+          console.log(data);
+          if(data == 0 )
+          {
+            $('#countproperties').html("0");
+          }
+          else
+          {
+            $('#countproperties').html(data);
+          }
+          
+        },
+        error: function()
+        {
+          // alert('Could not count new Inquiries');
+        }
+      });
+    }
+
     
        $('#properties').on('click', '.item-hide', function(){
         var id = $(this).attr('data');

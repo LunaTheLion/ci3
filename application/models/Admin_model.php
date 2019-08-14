@@ -193,7 +193,7 @@ class Admin_model extends CI_Model{
 	{
 		$this->db->select('*');
 		$this->db->order_by('owner_date_received', 'DESC');
-		$this->db->where('owner_status', 1 );
+		$this->db->where('owner_property_status', 1 );
 		$query = $this->db->get('owner_tbl');
 		return $query;
 	}
@@ -230,11 +230,35 @@ class Admin_model extends CI_Model{
 		$query = $this->db->get('inquiries_tbl');
 		return $query->num_rows();
 	}
+	public function count_own()
+	{
+		$this->db->select('*');
+		$this->db->order_by('owner_date_received', 'DESC');
+		$this->db->where('owner_property_status !=', 3 );
+		$query = $this->db->get('owner_tbl');
+		return $query->num_rows();
+	}
+	public function count_art()
+	{
+		$this->db->select('*');
+		$this->db->order_by('article_date_uploaded', 'DESC');
+		$this->db->where('article_system_status !=', 3 );
+		$query = $this->db->get('article_tbl');
+		return $query->num_rows();
+	}
+	public function count_prop()
+	{
+		$this->db->select('*');
+		$this->db->order_by('property_date_uploaded', 'DESC');
+		$this->db->where('property_system_status !=', 3 );
+		$query = $this->db->get('property_tbl');
+		return $query->num_rows();
+	}
 	public function count_new_owner()
 	{
 		$this->db->select('*');
 		$this->db->order_by('owner_date_received', 'DESC');
-		$this->db->where('owner_status', 1 );
+		$this->db->where('owner_property_status', 1 );
 		$query = $this->db->get('owner_tbl');
 		return $query->num_rows();
 	}
@@ -274,15 +298,6 @@ class Admin_model extends CI_Model{
 		$this->db->where('inquiry_status !=', 3);
 		$query = $this->db->get('inquiries_tbl');
 		return $query->row();
-		// if($query->num_rows() > 0)
-		// {
-		
-			
-		// }
-		// else
-		// {
-		// 	return false;
-		// }
 	}
 	public function all_inquiries_sent_items()
 	{
@@ -327,33 +342,20 @@ class Admin_model extends CI_Model{
 			return false;
 		}
 	}
-
-	public function articles()
+	public function add_article()
 	{
-		$this->db->select('id,img,title,title_slug,date_uploaded');
-		$this->db->order_by('id', 'DESC');
-		$this->db->where('status', 0);
-		$query = $this->db->get('articles_tbl');
-		return $query->result();
-	}
-	public function add_article($image)
-	{
-		$article = array(
-
-			'img' => $image,
-			'title' => $this->input->post('projectTitle'),
-			'title_slug' => urlencode($this->input->post('projectTitle')),
-			'content' =>$this->input->post('articleAbout'),
-			'date_uploaded' => date('Y-m-d g:i'),
-			'status' => 0,
-			'url' => $this->input->post('projectURL'),
-
+		// echo $this->input->post('articletitle');
+		// echo $this->input->post('articlelink');
+		// echo $this->input->post('articlebody');
+		$data = array(
+			'article_title' => $this->input->post('articletitle'),
+			'article_title_slug' => urlencode($this->input->post('articletitle')),
+			'article_link' => $this->input->post('articlelink'),
+			'article_body' => $this->input->post('articlebody'),
+			'artcile_status' => 1,
 		);
-		// echo "<pre>";
-		// print_r($article);
-		// echo "</pre>";
-		return $this->db->insert('articles_tbl',$article);
 
+		$this->db->insert('article_tbl', $data);
 		if($this->db->affected_rows() == 1 )
 		{
 			return true;
@@ -362,6 +364,15 @@ class Admin_model extends CI_Model{
 		{
 			return false;
 		}
+	}
+	public function all_articles()
+	{
+		
+		$this->db->select('*');
+		$this->db->order_by('article_date_uploaded', 'DESC');
+		//$this->db->where('article_system_status !=',3);
+		$query = $this->db->get('article_tbl');
+		return $query;
 	}
 
 
@@ -381,6 +392,15 @@ class Admin_model extends CI_Model{
 		$this->db->Where('property_id', $id);
 		$this->db->where("(property_system_status='1' OR property_system_status='2')");
 		$query = $this->db->get('property_tbl');
+		return $query->row();
+	}
+	public function get_article_by_id($id)
+	{
+		
+		$this->db->select('*');
+		$this->db->Where('article_id', $id);
+		//$this->db->where("(article_system_status='1' OR article_system_status='2')");
+		$query = $this->db->get('article_tbl');
 		return $query->row();
 	}
 	public function update_article($image, $id)
@@ -525,6 +545,44 @@ class Admin_model extends CI_Model{
 			return false;
 		}
 	}
+	public function hide_art()
+	{
+		$id= $this->input->get('id');
+		//echo $id;
+		
+		$stat = array(
+			'article_system_status' => 2,
+		);
+		$this->db->where('article_id', $id);
+		$this->db->update('article_tbl',$stat);
+		if($this->db->affected_rows() > 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	public function unhide_art()
+	{
+		$id= $this->input->get('id');
+		//echo $id;
+		
+		$stat = array(
+			'article_system_status' => 1,
+		);
+		$this->db->where('article_id', $id);
+		$this->db->update('article_tbl',$stat);
+		if($this->db->affected_rows() > 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 	public function del_prop()
 	{
 		$id= $this->input->get('id');
@@ -536,6 +594,26 @@ class Admin_model extends CI_Model{
 		);
 		$this->db->where('property_id', $id);
 		$this->db->update('property_tbl',$stat);
+		if($this->db->affected_rows() > 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	public function del_art()
+	{
+		$id= $this->input->get('id');
+		//echo $id;
+		
+		$stat = array(
+			'article_system_status' => 3,
+			'article_date_deleted' => date('Y-m-d g:i'),
+		);
+		$this->db->where('article_id', $id);
+		$this->db->update('article_tbl',$stat);
 		if($this->db->affected_rows() > 0)
 		{
 			return true;
