@@ -201,111 +201,10 @@
           </div>
         </div>
       </div>
-      <div class="listings-box border-bottom border-dark mb-5">
-        <div class="row">
-          <div class="col-md-4 mb-3"> 
-            <img class="tab-img" src="<?= base_url()?>assets/img/post-4.jpg" alt="Card image cap">
-          </div>
-          <div class="table-data col-md-8 mb-3">
-            <h6 class="price mb-3">Price: Php 25,000/mo.</h6>
-            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
-            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
-            <p><span>• </span></p>
-            <p><span>• </span></p>
-            <p><span>• </span></p>
-            <a href="<?= site_url()?>property-single" class="link-c link-icon mr-3 position-static">
-            <button type="button" class="btn btn-outline-primary">More Photos</button>
-            </a>
-            <a href="<?= site_url()?>property-single/#inquiry-form" class="link-c link-icon">
-            <button type="button" class="btn btn-outline-warning">Inquire</button>
-            </a>
-          </div>
-        </div>
+      <div class="listings-box border-bottom border-dark mb-5" id="showcase">
+      
       </div>
-      <div class="listings-box border-bottom border-dark mb-5">
-        <div class="row">
-          <div class="col-md-4 mb-3"> 
-            <img class="tab-img" src="<?= base_url()?>assets/img/post-4.jpg" alt="Card image cap">
-          </div>
-          <div class="table-data col-md-8 mb-3">
-            <h6 class="price mb-3">Price: Php 25,000/mo.</h6>
-            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
-            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
-            <p><span>• </span></p>
-            <p><span>• </span></p>
-            <p><span>• </span></p>
-            <a href="<?= site_url()?>property-single" class="link-c link-icon mr-3 position-static">
-            <button type="button" class="btn btn-outline-primary">More Photos</button>
-            </a>
-            <a href="<?= site_url()?>property-single/#inquiry-form" class="link-c link-icon">
-            <button type="button" class="btn btn-outline-warning">Inquire</button>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="listings-box border-bottom border-dark mb-5">
-        <div class="row">
-          <div class="col-md-4 mb-3"> 
-            <img class="tab-img" src="<?= base_url()?>assets/img/post-4.jpg" alt="Card image cap">
-          </div>
-          <div class="table-data col-md-8 mb-3">
-            <h6 class="price mb-3">Price: Php 25,000/mo.</h6>
-            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
-            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
-            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
-            <p><span>• </span></p>
-            <p><span>• </span></p>
-            <a href="<?= site_url()?>property-single" class="link-c link-icon mr-3 position-static">
-            <button type="button" class="btn btn-outline-primary">More Photos</button>
-            </a>
-            <a href="<?= site_url()?>property-single/#inquiry-form" class="link-c link-icon">
-            <button type="button" class="btn btn-outline-warning">Inquire</button>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="listings-box border-bottom border-dark mb-5">
-        <div class="row">
-          <div class="col-md-4 mb-3"> 
-            <img class="tab-img" src="<?= base_url()?>assets/img/post-4.jpg" alt="Card image cap">
-          </div>
-          <div class="table-data col-md-8 mb-3">
-            <h6 class="price mb-3">Price: Php 25,000/mo.</h6>
-            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
-            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
-            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
-            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
-            <p><span>• </span></p>
-            <a href="<?= site_url()?>property-single" class="link-c link-icon mr-3 position-static">
-            <button type="button" class="btn btn-outline-primary">More Photos</button>
-            </a>
-            <a href="<?= site_url()?>property-single/#inquiry-form" class="link-c link-icon">
-            <button type="button" class="btn btn-outline-warning">Inquire</button>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="listings-box border-bottom border-dark mb-5">
-        <div class="row">
-          <div class="col-md-4 mb-3"> 
-            <img class="tab-img" src="<?= base_url()?>assets/img/post-4.jpg" alt="Card image cap">
-          </div>
-          <div class="table-data col-md-8 mb-3">
-            <h6 class="price mb-3">Price: Php 25,000/mo.</h6>
-            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
-            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
-            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
-            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
-            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
-            <a href="<?= site_url()?>property-single" class="link-c link-icon mr-3 position-static">
-            <button type="button" class="btn btn-outline-primary">More Photos</button>
-            </a>
-            <a href="<?= site_url()?>property-single/#inquiry-form" class="link-c link-icon">
-            <button type="button" class="btn btn-outline-warning">Inquire</button>
-            </a>
-          </div>
-        </div>
-      </div>
+
     </div>
 </section>
 <!-- <section id="section-property-sale" class="section-t8">
@@ -893,3 +792,58 @@
   <!--/ Testimonials End /-->
 
  
+<script type="text/javascript">
+  $('document').ready(function(){
+    all_properties();
+    function all_properties()
+    {
+      $.ajax({
+        type:'ajax',
+        url: '<?php echo base_url()?>Main/showproperties',
+        async: false,
+        dataType:'json',
+        success: function(data)
+        {
+          console.log(data);
+          var html = '';
+          var i ;
+           for(i=0;i<data.length;i++)
+           {
+            html += '<div class="row">'+
+                    '<div class="col-md-4 mb-3">'+
+                    '<img class="tab-img" src="<?= base_url()?>uploads/'+data[i].property_title_slug+'/facade/'+data[i].property_facade+'" alt="'+data[i].property_facade+'"></div>'+
+                    '<div class="table-data col-md-8 mb-3">'+
+                    '<h6 class="price mb-3">Price: Php '+data[i].property_price+'/mo.</h6>'+
+                    '<div style="font-size:20px;">'+data[i].property_sample_view+'</div>'+
+                    '<a href="<?= site_url()?>main/propertysingle/'+data[i].property_id+'/'+data[i].property_title_slug+'" class="link-c link-icon mr-3 position-static">'+
+                    '<button type="button" class="btn btn-outline-primary">More Photos</button></a>'+
+                    ' <a href="<?= site_url()?>main/propertysingle/'+data[i].property_id+'/'+data[i].property_title_slug+'/#inquiry-form" class="link-c link-icon">'+
+                    '<button type="button" class="btn btn-outline-warning">Inquire</button></a></div></div><hr>'
+
+           }$('#showcase').html(html);
+        },
+        error: function()
+        {
+          alert('Could not Load Properties');
+        }
+      })
+    }
+  });
+</script>
+
+<!-- 
+  
+          
+        
+    
+  
+  
+ 
+
+  
+
+    
+    
+    -->
+    
+   

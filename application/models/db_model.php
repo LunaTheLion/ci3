@@ -96,7 +96,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						property_additional_details VARCHAR(10000) NOT NULL,
 						property_date_posted DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 						property_date_edited DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-						property_status TINYINT(1) NOT NULL DEFAULT 1 ,
+						property_status VARCHAR(13) NOT NULL DEFAULT 1 ,
 						property_system_status TINYINT(1) NOT NULL DEFAULT 1,
 						property_date_deleted DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 					);

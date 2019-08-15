@@ -8,12 +8,44 @@ class Main extends CI_CONTROLLER
 		parent:: __construct();
 		$this->load->model('Main_Model','mm');
 	}
-	public function projects()
+	public function showproperties()
 	{
 		// echo "This is Projects";
-		$projects = $this->mm->projects();
-		echo json_encode($projects);
+		$properties = $this->mm->retrieve_properties();
+		echo json_encode($properties);
 	}
+	public function propertysingle($id,$slug)
+	{
+		$get = $this->mm->get_property_by_id($id);
+		
+		$property_details = array(
+			"id" =>$get->property_id,
+			"title" =>$get->property_title,
+			"title_slug"=>$get->property_title_slug,
+			"facade" => $get->property_facade,
+			"price" =>$get->property_price,
+			"sample_view" => $get->property_sample_view,
+			"address" =>$get->property_address,
+			'building' =>$get->property_building,
+			"details" =>$get->property_additional_details,
+			"facade" => $get->property_facade,
+			"bed" => $get->property_bed,
+			"pet" => $get->property_pet,
+			"property_type" =>$get->property_type,
+			"property_status" =>$get->property_status,
+			"garden" =>$get->property_garden,
+			"parking" =>$get->property_parking,
+			"bath" => $get->property_bath,
+			"floor_area" => $get->property_floor_area,
+			"lot_area" => $get->property_lot_area,
+			"code" => $get->property_code,
+		);
+		$this->session->set_flashdata($property_details);
+		$this->load->view('template/header');
+		$this->load->view('pages/property-single', $property_details);
+		$this->load->view('template/footer');
+	}
+
 	public function luzon()
 	{
 		// echo "This is Projects";

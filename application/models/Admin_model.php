@@ -249,7 +249,7 @@ class Admin_model extends CI_Model{
 	public function count_prop()
 	{
 		$this->db->select('*');
-		$this->db->order_by('property_date_uploaded', 'DESC');
+		$this->db->order_by('property_date_posted', 'DESC');
 		$this->db->where('property_system_status !=', 3 );
 		$query = $this->db->get('property_tbl');
 		return $query->num_rows();

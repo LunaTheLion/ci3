@@ -15,8 +15,8 @@ class Inquiry extends CI_Controller{
 			'protocol' => 'smtp',
 			'smtp_host' => 'ssl://smtp.googlemail.com',
 			'smtp_port' => '465',
-			'smtp_user' => 'megaworldcondotel',//@gmail.com
-			'smtp_pass' => 'megaworld101',
+			'smtp_user' => 'iassistumak',//@gmail.com
+			'smtp_pass' => 'iassistumakdeveloper',
 			'mailtype' => 'html',
 			'charset' => 'iso-8859-1',
 			'wordwrap' => TRUE
@@ -24,23 +24,24 @@ class Inquiry extends CI_Controller{
 
 		$this->load->library('email', $config);
 		$this->email->from($this->input->post('email'), $this->input->post('name'));
-		$this->email->to('megaworldcondotel@gmail.com');
+		$this->email->to('iassistumak@gmail.com');
 		$this->email->subject('Inquiry! for "'.$this->input->post('project').'"');
 		//$verification_code = "AAABBB";
 		//$msg = 'Click on this link to sign in - <a></a>'
-		$msg = '<b>Megaworld Condotel Projects</b><br> Name: <b>'.$this->input->post('name').'</b><br>Contact: <b>'.$this->input->post('contact').'</b><br> Email: <b>'.$this->input->post('email').'</b><br> Interested in: <b>'.$this->input->post('project').'</b><br> Message: '.$this->input->post('message').'';
+		$msg = '<b>Rent and Sales Property</b><br> Name: <b>'.$this->input->post('name').'</b><br>Contact: <b>'.$this->input->post('contact').'</b><br> Email: <b>'.$this->input->post('email').'</b><br> Interested in: <b>'.$this->input->post('project').'</b><br> Message: '.$this->input->post('message').'';
 		//http://localhost/iAssist/users/general/
 		$this->email->message($msg);
 		$this->email->set_newline("\r\n");
 
 		if($this->email->send()){
 			$inquiry = array(
-				'contact_no' => $this->input->post('contact'),
-				'email' => $this->input->post('email'),
-				'name' => $this->input->post('name'),
-				'project' => $this->input->post('project'),
-				'message' => $this->input->post('message'),
-				'date_received' => date('Y-m-d g:i')
+				'inquiry_contact_no' => $this->input->post('contact'),
+				'inquiry_email' => $this->input->post('email'),
+				'inquiry_name' => $this->input->post('name'),
+				'inquiry_project' => $this->input->post('project'),
+				'inquiry_message' => $this->input->post('message'),
+				'inquiry_date_received' => date('Y-m-d g:i'),
+				
 				);
 
 			$this->mm->save_inquiry($inquiry);
@@ -50,15 +51,15 @@ class Inquiry extends CI_Controller{
 				'protocol' => 'smtp',
 				'smtp_host' => 'ssl://smtp.googlemail.com',
 				'smtp_port' => '465',
-				'smtp_user' => 'megaworldcondotel',//@gmail.com
-				'smtp_pass' => 'megaworld101',
+				'smtp_user' => 'iassistumak',//@gmail.com
+				'smtp_pass' => 'iassistumakdeveloper',
 				'mailtype' => 'html',
 				'charset' => 'iso-8859-1',
 				'wordwrap' => TRUE
 			);
 
 			$this->load->library('email', $config);
-			$this->email->from('megaworldcondotel@gmail.com');
+			$this->email->from('iassistumak@gmail.com');
 			$this->email->to($this->input->post('email'));
 			$this->email->subject('Thank you for your inquiry!');
 		
@@ -86,9 +87,7 @@ class Inquiry extends CI_Controller{
 	
 		function confirmation_email()
 		{
-				$this->load->view('templates/header');
-			    $this->load->view('pages/email-sent');
-			    $this->load->view('templates/footer');
+				redirect(base_url());
 		}
 	}
 

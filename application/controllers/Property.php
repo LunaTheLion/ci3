@@ -20,33 +20,32 @@ class Property extends CI_CONTROLLER
 		$id = $this->input->post('data');
 		if($this->pm->add_sample_view($desc,$id))
 		{
-			redirect(base_url('admin/mng_rent'));
+			redirect(base_url('admin/dashboard/'.$this->session->userdata('useremail')));
 		}
 		else
 		{
-			redirect(base_url('admin/mng_rent'));
+			redirect(base_url('admin/mng_dashboard/'.$this->session->userdata('useremail')));
 		}
 	}
 	public function update_sample_view()
 	{
-		echo $this->input->post('sampledescription');
-		echo  $this->input->post('data');
 
-		// $desc = $this->input->post('sampledescription');
-		// $id = $this->input->post('data');
-		// if($this->pm->edit_sample_view($desc,$id))
-		// {
-		// 	redirect(base_url('admin/mng_rent'));
-		// }
-		// else
-		// {
-		// 	redirect(base_url('admin/mng_rent'));
-		// }
+		$desc = $this->input->post('sampledescription');
+		$id = $this->input->post('data');
+		if($this->pm->edit_sample_view($desc,$id))
+		{
+			redirect(base_url('admin/dashboard/'.$this->session->userdata('useremail')));
+		}
+		else
+		{
+			redirect(base_url('admin/mng_dashboard/'.$this->session->userdata('useremail')));
+		}
 	}
 
 
 	public function create_project()
 	{
+
 		
 		$title = urlencode($this->input->post('projectTitle'));
 		
@@ -142,7 +141,7 @@ class Property extends CI_CONTROLLER
 			
 			sleep(3);
 
-			redirect('admin/dashboard');
+			redirect('admin/dashboard/'.$this->session->userdata('useremail'));
 
 		}//FACADE
 		
@@ -246,7 +245,7 @@ class Property extends CI_CONTROLLER
 			
 			sleep(3);
 
-			redirect('admin/dashboard');
+			redirect('admin/dashboard/'.$this->session->userdata('useremail'));
 
 		}//FACADE
 		

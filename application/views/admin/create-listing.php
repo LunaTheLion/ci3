@@ -75,18 +75,22 @@
                      ?>
                      <label for="turnover">Property Type</label><br>
                     <?php 
+                    if(!empty($this->session->flashdata('property_type')))
+                    {
+
                         $type = $this->session->flashdata('property_type');
+                    }
                      ?>
                      <div class="row">
                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                       <input type="radio" name="propertyType" id="propertyType" value="Condo" <?php if($type === "Condo"){echo "checked";} ?>> Condo<br> 
+                       <input type="radio" name="propertyType" id="propertyType" value="Condo" <?php if(!empty($type) && $type === "Condo"){echo "checked";} ?>> Condo<br> 
                        </div>
                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                       <input type="radio" name="propertyType" id="propertyType" value="House and Lot" <?php if($type === "House and Lot"){echo "checked";} ?>>House and Lot<br>
+                       <input type="radio" name="propertyType" id="propertyType" value="House and Lot" <?php if( !empty($type) && $type === "House and Lot"){echo "checked";} ?>>House and Lot<br>
                        </div>
                        
                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                       <input type="radio" name="propertyType" id="propertyType" value="Lot" <?php if($type === "Lot"){echo "checked";} ?>> Lot<br>
+                       <input type="radio" name="propertyType" id="propertyType" value="Lot" <?php if( !empty($type) && $type === "Lot"){echo "checked";} ?>> Lot<br>
                        </div>
 
                      </div>

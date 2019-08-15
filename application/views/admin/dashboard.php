@@ -209,11 +209,11 @@
           <form action="<?php echo base_url('property/create_sample_view') ?>" method="POST" id="viewForm">
            <div class="form-group">
               <input type="hidden" name="data" id="data">
-               
-                <div id='readdescription'>
+                <label id="sampleonly"></label>
+                <div id='readdescription'></div>
                   <textarea class="textarea" name="sampledescription" id="sampledescription" placeholder="Place Details here"
                 style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" required></textarea>
-                </div>  
+                  
                 <!-- <textarea  name="sample"></textarea> -->
              </div>
         </div>
@@ -427,11 +427,9 @@
           {
             console.log(data);
             $('input[name=data]').val(data.property_id);
-            // $('#sampledescription').text(data.property_sample_view);
-            // $('textarea[name=sampledescription]').text(data.property_sample_view);
-            //$('textarea[name=sampledescription]').html(data.property_sample_view);
-             //$('textarea[name=sampledescription]').find('.textarea').text(data.property_sample_view);
-             $('#sampledescription').append(data.property_sample_view);
+            $('#sampleonly').append('This is your Previous Summary');
+             $('#readdescription').addClass('box box-solid bg-light-blue-gradient');
+             $('#readdescription').append(data.property_sample_view);
              //$('textarea[name=sampledescription]').append(data.property_sample_view);
              //$('#readdescription').append(data.property_sample_view);
             $('#modal-dashboard').find('.btn-primary').text('Update');
