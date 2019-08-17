@@ -1,8 +1,10 @@
 <!--/ Intro Single star /-->
+
   <section class="intro-single">
     <div class="container">
       <div class="row">
         <div class="col-md-12 col-lg-8">
+        <a href="<?php echo base_url('admin/dashboard/'.$this->session->userdata('useremail')) ?>" class="btn btn-danger">Back to Admin</a>
           <div class="title-single-box" id="showcase">
             <h1 class="title-single"><?php echo $this->session->flashdata('title');?></h1>
             <h5 class="color-text-a">Php <?php echo $this->session->flashdata('price') ?></h5>
@@ -306,7 +308,6 @@
   </section>
   <!--/ Property Single End /-->
 <script type="text/javascript">
-  <script type="text/javascript">
   function numberWithCommas(number) {
     var parts = number.toString().split(".");
     parts[0] = parts[0].replace(/\B(?=(\d{3})(?!\d))/g, ",");
@@ -319,5 +320,4 @@ $(document).ready(function() {
     $(this).text(commaNum);
   });
 });
-</script>
 </script>

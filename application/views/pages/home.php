@@ -193,6 +193,7 @@
             <div class="title-box">
               <h2 class="title-a">For Rent Properties</h2>
             </div>
+           
            <!--  <div class="title-link">
               <a href="#">All Property
                 <span class="ion-ios-arrow-forward"></span>
@@ -794,6 +795,21 @@
  
 <script type="text/javascript">
   $('document').ready(function(){
+
+
+function numberWithCommas(number) {
+    var parts = number.toString().split(".");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})(?!\d))/g, ",");
+    return parts.join(".");
+}
+$(document).ready(function() {
+  $("#showcase h6").each(function() {
+    var num = $(this).text();
+    var commaNum = numberWithCommas(num);
+    $(this).text(commaNum);
+  });
+});
+
     all_properties();
     function all_properties()
     {
@@ -813,8 +829,11 @@
                     '<div class="col-md-4 mb-3">'+
                     '<img class="tab-img" src="<?= base_url()?>uploads/'+data[i].property_title_slug+'/facade/'+data[i].property_facade+'" alt="'+data[i].property_facade+'"></div>'+
                     '<div class="table-data col-md-8 mb-3">'+
-                    '<h6 class="price mb-3">Price: Php '+data[i].property_price+'/mo.</h6>'+
-                    '<div style="font-size:20px;">'+data[i].property_sample_view+'</div>'+
+                    '<h6 class="price mb-3">Price: Php '+data[i].property_price+' mo.</h6>'+
+                    '<p><span>• </span>'+data[i].property_title+' </p>'+
+                    '<p><span>• </span> Bedroom : '+data[i].property_bed+' </p>'+
+                    '<p><span>• </span> Parking Slot: '+data[i].property_parking+'</p>'+
+                    '<p><span>• </span> Floor Area : '+data[i].property_floor_area+' sqm </p>'+
                     '<a href="<?= site_url()?>main/propertysingle/'+data[i].property_id+'/'+data[i].property_title_slug+'" class="link-c link-icon mr-3 position-static">'+
                     '<button type="button" class="btn btn-outline-primary">More Photos</button></a>'+
                     ' <a href="<?= site_url()?>main/propertysingle/'+data[i].property_id+'/'+data[i].property_title_slug+'/#inquiry-form" class="link-c link-icon">'+

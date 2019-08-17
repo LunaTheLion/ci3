@@ -139,6 +139,7 @@
           favorite.push($(this).val());
         });
         alert('May selected are:'+favorite.join(", "));
+        
       });
       $('#inquiries').on('click', '#reademail', function(){
           var id = $(this).attr('data');

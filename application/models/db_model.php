@@ -20,6 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						admin_email VARCHAR(50) NOT NULL,
 						admin_username VARCHAR(30) NOT NULL,
 						admin_verified VARCHAR(30) NOT NULL,
+						admin_code VARCHAR(20),
 						admin_password VARCHAR(32) NOT NULL,
 						admin_type CHAR(11) NOT NULL,
 						admin_date_joined DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -40,6 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					'admin_type'=>'super_admin',
 					'admin_username' => 'rentsandsale',
 					'admin_verified' => 'verified',
+
 				);
 				$this->db->insert('admin_tbl',$admin_data);
 				return true;
@@ -96,8 +98,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						property_additional_details VARCHAR(10000) NOT NULL,
 						property_date_posted DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 						property_date_edited DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-						property_status VARCHAR(13) NOT NULL DEFAULT 1 ,
-						property_system_status TINYINT(1) NOT NULL DEFAULT 1,
+						property_status VARCHAR(13) NOT NULL ,
+						property_system_status VARCHAR(13) NOT NULL,
 						property_date_deleted DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 					);
 				");

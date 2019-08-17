@@ -2,7 +2,7 @@
   
 <div class="row">
   <div class="col-md-4"></div>
-  <div class="col-md-4">
+  <div class="col-md-4" style="margin-top: 10%;">
     <div class="login-box">
  <div class="login-box-header" style="backface-visibility: 2px;">
    

@@ -98,16 +98,14 @@
             <!-- /.box-header -->
             <div class="box-body">
               
-             <table id="example1" class="table table-bordered table-hover">
+             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                  <th>Property Code</th>
-                  <th>Street Address</th>
-                  <th>Price</th>
-                  <th>Category</th>
-                  <th>Type</th>
-                  <th>Status</th>
-                  <th>Modified</th>
+                  <th>Rendering engine</th>
+                  <th>Browser</th>
+                  <th>Platform(s)</th>
+                  <th>Engine version</th>
+                  <th>CSS grade</th>
                 </tr>
                 </thead>
                 <tbody id="properties">
@@ -117,16 +115,49 @@
                     foreach($fetch_data->result() as $row)
                     {
                       ?>
-                        <tr data="<?php echo $row->property_id; ?>">
-                          <td><?php echo $row->property_code ?></td>
-                          <td><?php echo $row->property_address ?></td>
-                          <td id="price"> ₱ <?php echo $row->property_price ?></td>
-                          <td><center><?php echo $row->property_type; ?></center></td>
+                        <tr><?php echo $row->property_t ?></td>
+                          <td><center><b>Price: <?php echo $row->property_price; ?> /mo</b>
+                            <?php 
+                              if(empty($row->property_sample_view))
+                              {
+                                ?><br><br>
+                                  <a href='javascript:;' class='btn btn-warning btn-xs item-createview' id='createview' data="<?php echo $row->property_id;?>"><i class='fa fa-eye-slash'></i> Create Preview Details </a>&nbsp;
+                                <?php
+                              }
+                              else
+                              { 
+
+                                echo "</center>".$row->property_sample_view;
+                                ?>
+                                <?php
+                              }
+                           ?>
+                          </center></td>
                           <td><center><?php echo $row->property_status; ?></center></td>
-                          <td><center><?php echo ucfirst($row->property_system_status); ?></center></td>
-                          <td><center><?php echo $row->property_date_posted; ?></center></td>
-                         
-                        </a></tr>
+                          <td style="width: 10%;"><center><br>
+                            <?php 
+                                if($row->property_system_status == '1')
+                                {//active to the website
+                                  ?>
+                                  
+                                    <a href='javascript:;' class='btn btn-danger btn-xs item-hide' id='hide' data="<?php echo $row->property_id;?>"><i class='fa fa-eye-slash'></i> Hide </a>&nbsp;<br>
+                                  <?php
+                                }
+                                elseif($row->property_system_status == '2')
+                                  {//hidden to the website
+                                  ?>
+
+                                  <a href='javascript:;' class='btn btn-primary btn-xs item-unhide ' id='unhide'  data="<?php echo $row->property_id;?>" ><i class='fa fa-eye'></i> Unhide </a>&nbsp;<br>
+                                  <?php
+                                }
+                             ?>&nbsp;<br>
+                              <a href='<?php echo base_url('Admin/edit_property/'.$row->property_id.'/'.$row->property_title_slug) ?>' class='btn btn-success btn-xs item-view'><i class='fa fa-folder-open'></i>View</a><Br>&nbsp;<br>
+                              
+                                     
+                              <a href='<?php echo base_url('admin/preview_post/'.$row->property_id.'') ?>' class='btn btn-primary btn-xs item-editview' id='editview' data="<?php echo $row->property_id;?>"><i class='fa fa-eye-slash'></i> Preview </a><center> 
+
+                          </center></td>
+                        </tr>
 
                       <?php
                     }
@@ -146,14 +177,11 @@
                 </tbody>
                 <tfoot>
                 <tr>
-                   <th>Property Code</th>
-                  <th>Street Address</th>
-                  <th>Price</th>
-                  <th>Category</th>
-                  <th>Type</th>
-                  <th>Status</th>
-                  <th>Modified</th>
-
+                  <th>Rendering engine</th>
+                  <th>Browser</th>
+                  <th>Platform(s)</th>
+                  <th>Engine version</th>
+                  <th>CSS grade</th>
                 </tr>
                 </tfoot>
               </table>
@@ -215,45 +243,6 @@
 <!-- ./wrapper -->
 <script type="text/javascript">
   $('document').ready(function(){
-    function numberWithCommas(number) {
-        var parts = number.toString().split(".");
-        parts[0] = parts[0].replace(/\B(?=(\d{3})(?!\d))/g, ",");
-        return parts.join(".");
-    }
-  $("#properties #price").each(function() {
-    var num = $(this).text();
-    var commaNum = numberWithCommas(num);
-    $(this).text(commaNum);
-  });
-
-  $('#properties tr').click(function(){
-    var id = $(this).attr('data');
-    alert(id);
-    $.ajax({
-      type: 'ajax',
-      url: '<?php echo base_url()?>admin/preview_post/',
-      async: false,
-      dataType: 'json',
-      success: function(data)
-      {
-        console.log(data);
-        if(data == 0 )
-        {
-          $('#countarticle').html("0");
-        }
-        else
-        {
-          $('#countarticle').html(data);
-        }
-        
-      },
-      error: function()
-      {
-        // alert('Could not count new Inquiries');
-      }
-    });
-
-  });
     count_inq();
     count_owner();
     count_article();

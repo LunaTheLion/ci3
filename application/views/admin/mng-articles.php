@@ -137,6 +137,8 @@
         <!-- /.col -->
       </div>
     </section>
+
+    
    <div class="modal fade " id="modal-dashboard">
     <div class="modal-dialog modal-lg ">
       <div class="modal-content ">

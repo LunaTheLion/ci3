@@ -159,7 +159,7 @@ class Admin_model extends CI_Model{
 	{
 		$this->db->select('*');
 		$this->db->order_by('property_date_posted', 'DESC');
-		$this->db->where("(property_system_status='1' OR property_system_status='2')");
+		$this->db->where("(property_system_status='active' OR property_system_status='pending')");
 		$query = $this->db->get('property_tbl');
 		return $query->result();
 	}
@@ -167,7 +167,7 @@ class Admin_model extends CI_Model{
 	{
 		$this->db->select('*');
 		$this->db->order_by('property_date_posted', 'DESC');
-		$this->db->where("(property_system_status='1' OR property_system_status='2')");
+		$this->db->where("(property_system_status='active' OR property_system_status='pending')");
 		$query = $this->db->get('property_tbl');
 		return $query;
 	}
@@ -175,7 +175,7 @@ class Admin_model extends CI_Model{
 	{
 		$this->db->select('*');
 		$this->db->order_by('property_date_posted', 'DESC');
-		$this->db->where("(property_system_status='1' OR property_system_status='2')");
+		$this->db->where("(property_system_status='active' OR property_system_status='pending')");
 		$this->db->where('property_status', 'Sale Only');
 		$query = $this->db->get('property_tbl');
 		return $query;
@@ -184,7 +184,7 @@ class Admin_model extends CI_Model{
 	{
 		$this->db->select('*');
 		$this->db->order_by('property_date_posted', 'DESC');
-		$this->db->where("(property_system_status='1' OR property_system_status='2')");
+		$this->db->where("(property_system_status='active' OR property_system_status='pending')");
 		$this->db->where('property_status', 'Rent Only');
 		$query = $this->db->get('property_tbl');
 		return $query;
@@ -410,7 +410,7 @@ class Admin_model extends CI_Model{
 			'title' => $this->input->post('projectTitle'),
 			'title_slug' => urlencode($this->input->post('projectTitle')),
 			'content' =>$this->input->post('articleAbout'),
-			'date_uploaded' => date('Y-m-d g:i'),
+			'date_uploaded' => date('M "-" DD "-" y g:i'),
 			'admin_name' => "Elona Mae",
 		);
 		// echo "<pre>";
@@ -437,7 +437,7 @@ class Admin_model extends CI_Model{
 			'title' => $this->input->post('projectTitle'),
 			'title_slug' => urlencode($this->input->post('projectTitle')),
 			'about' =>$this->input->post('articleAbout'),
-			'date_uploaded' => date('Y-m-d g:i'),
+			'date_uploaded' => date('M "-" DD "-" y g:i'),
 			'admin_name' => "Elona Mae",
 		);
 		// echo "<pre>";
@@ -590,7 +590,7 @@ class Admin_model extends CI_Model{
 		
 		$stat = array(
 			'property_system_status' => 3,
-			'property_date_deleted' => date('Y-m-d g:i'),
+			'property_date_deleted' => date('M "-" DD "-" y g:i'),
 		);
 		$this->db->where('property_id', $id);
 		$this->db->update('property_tbl',$stat);
@@ -610,7 +610,7 @@ class Admin_model extends CI_Model{
 		
 		$stat = array(
 			'article_system_status' => 3,
-			'article_date_deleted' => date('Y-m-d g:i'),
+			'article_date_deleted' => date('M "-" DD "-" y g:i'),
 		);
 		$this->db->where('article_id', $id);
 		$this->db->update('article_tbl',$stat);
@@ -663,7 +663,7 @@ class Admin_model extends CI_Model{
 	{
 		$array = array(
 			'logo_img' => $image,
-			'date_posted' => date('Y-m-d g:i'),
+			'date_posted' => date('	M "-" DD "-" y g:i'),
 			'posted_by'=> 'Elona Mae',
 			'status' => 0,
 
@@ -684,7 +684,7 @@ class Admin_model extends CI_Model{
 	{
 		$verified = array(
 			'admin_verified'=> 'verified',
-			'admin_date_joined' => date('Y-m-d g:i'),
+			'admin_date_joined' => date('	M "-" DD "-" y g:i'),
 
 		);
 		$this->db->select('*');

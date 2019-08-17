@@ -86,7 +86,7 @@ class Property_Model extends CI_Model
 			'property_floor_area'=>$this->input->post('propertyFloorArea'),
 			'property_code'=> strtoupper($pass),
 			'property_additional_details'=> $this->input->post('propertyDescription'),
-			'property_date_posted' =>date('Y-m-d g:i'),
+			'property_date_posted' =>date('	M "-" DD "-" y g:i'),
 			'property_status' => $this->input->post('propertyStatus'),
 		);
 		// echo "<pre>";
@@ -117,7 +117,7 @@ class Property_Model extends CI_Model
 			'property_lot_area' =>$this->input->post('propertyLotArea'),
 			'property_floor_area'=>$this->input->post('propertyFloorArea'),
 			'property_additional_details'=> $this->input->post('propertyDescription'),
-			'property_date_edited' =>date('Y-m-d g:i'),
+			'property_date_edited' =>date('	M "-" DD "-" y g:i'),
 			'property_status' => $this->input->post('propertyStatus'),
 			
 		);
