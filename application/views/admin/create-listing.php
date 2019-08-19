@@ -89,52 +89,290 @@
                      <button type="button" class="btn btn-default btn-circle" data-toggle="tab" href="#menu4"><i class="fa fa-cogs fa-3x"></i></button>
                      <p><small>Configure<br />display</small></p>
                     </div>
-                    <div class="process-step">
+                   <!--  <div class="process-step">
                      <button type="button" class="btn btn-default btn-circle" data-toggle="tab" href="#menu5"><i class="fa fa-check fa-3x"></i></button>
-                     <p><small>Save<br />result</small></p>
-                    </div>
+                     <p><small>Preview<br />result</small></p>
+                    </div> -->
                    </div>
                 </div>
                 <div class="tab-content">
                    <div id="menu1" class="tab-pane fade active in">
-                    <h3>Menu 1</h3>
-                    <p>Some content in menu 1.</p>
+                    <div class="content">
+                    <div class="row">
+                      <div class="col-lg-3"></div>
+                      <div class="col-lg-6">
+                          <center><h3>Fill Information</h3></center>
+                       <br>
+                        <form method="POST" action="">
+                          <table>
+                            <tr>
+                              <td style="width:20%; "><label style="margin-bottom: 10%;">Property Code:</label></td>
+                              <td style="width: 40%;">
+                                <div class="form-group">
+                                  <?php 
+
+                                  $chars = "abcdefghijkmnopqrstuvwxyz023456789"; 
+                                  srand((double)microtime()*1000000); 
+                                  $i = 0; 
+                                  $pass = '' ; 
+
+                                  while ($i <= 7) { 
+                                      $num = rand() % 33; 
+                                      $tmp = substr($chars, $num, 1); 
+                                      $pass = $pass . $tmp; 
+                                      $i++; 
+                                  } 
+
+                                   ?>
+                                  <input type="text" name="propertyAddress" class="form-control" disabled value="<?php echo strtoupper($pass) ?>">
+                                </div>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td style="width:20%; "><label style="margin-bottom: 10%;">Property Type:</label></td>
+                              <td style="width: 40%;">
+                                <div class="form-group">
+                                  <select class="form-control" name="propertyType">
+                                    <option value="Condominium">Condominium</option>
+                                    <option value="House and Lot">House and Lot</option>
+                                  </select>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="width:20%; "><label style="margin-bottom: 10%;">Property Address:</label></td>
+                              <td style="width: 40%;">
+                                <div class="form-group">
+                                  <input type="text" name="propertyAddress" class="form-control">
+                                </div>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td style="width:20%; "><label style="margin-bottom: 10%;">Property Building:</label></td>
+                              <td style="width: 40%;">
+                                <div class="form-group">
+                                  <input type="text" name="propertyBuilding" class="form-control">
+                                </div>
+                              </td>
+                            </tr>
+                          </table>
+                        </form>
+                      </div>
+                      <div class="col-lg-3"></div>
+                    </div>
+                    </div>
                     <ul class="list-unstyled list-inline pull-right">
                      <li><button type="button" class="btn btn-info next-step">Next <i class="fa fa-chevron-right"></i></button></li>
                     </ul>
                    </div>
                    <div id="menu2" class="tab-pane fade">
-                    <h3>Menu 2</h3>
-                    <p>Some content in menu 2.</p>
+                    <div class="content">
+                    <div class="row">
+                      <center><h3>Fill Description</h3></center>
+                      <div class="col-lg-3"></div>
+                      <div class="col-lg-6">
+                          
+                       <br>
+                        <form method="POST" action="">
+                          <table>
+                            <tr>
+                              <td style="width:20%; "><label style="margin-bottom: 10%;">Bedroom Count:</label></td>
+                              <td style="width: 40%;">
+                                <div class="form-group">
+                                  <input type="number" name="propertyBed" class="form-control" >
+                                </div>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td style="width:20%; "><label style="margin-bottom: 10%;">Bathroom Count:</label></td>
+                              <td style="width: 40%;">
+                                <div class="form-group">
+                                  <input type="number" name="propertyBath" class="form-control" >
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="width:20%; "><label style="margin-bottom: 10%;">Parking Count:</label></td>
+                              <td style="width: 40%;">
+                                <div class="form-group">
+                                  <input type="number" name="propertyParking" class="form-control">
+                                </div>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td style="width:20%; "><label style="margin-bottom: 10%;">Floor Area:</label></td>
+                              <td style="width: 40%;">
+                                <div class="form-group">
+                                  <input type="number" name="propertyFloorArea" class="form-control">
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="width:20%; "><label style="margin-bottom: 10%;">Lot Area:</label></td>
+                              <td style="width: 40%;">
+                                <div class="form-group">
+                                  <input type="number" name="propertylotArea" class="form-control">
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="width:20%; "><label style="margin-bottom: 10%;"></label></td>
+                              <td style="width: 40%;">
+                                <div class="form-group">
+                                  <input type="checkbox" name="propertyPet" id="propertyPet" value="1" checked="<?php 
+                                  if(!empty($this->session->flashdata('title')))
+                                  {
+                                   if($this->session->flashdata('pet') == 1)
+                                   {
+                                     echo "checked";
+                                   }
+                                   
+                                  }
+                                   ?>">Pet Friendly<br>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="width:20%; "><label style="margin-bottom: 10%;"></label></td>
+                              <td style="width: 40%;">
+                                <div class="form-group">
+                                  
+                                   <input type="checkbox" name="propertyGarden" id="propertyGarden" value="1" checked="<?php 
+                                   if($this->session->flashdata('garden') == 1)
+                                   {
+                                     echo "checked";
+                                   }
+                                   
+                                    ?>">With Garden  
+                                </div>
+                              </td>
+                            </tr>
+                            
+                          </table>
+                          
+                        </form>
+                      </div>
+                      <div class="col-lg-3"></div>
+                    </div>
+                    </div>
+
                     <ul class="list-unstyled list-inline pull-right">
                      <li><button type="button" class="btn btn-default prev-step"><i class="fa fa-chevron-left"></i> Back</button></li>
                      <li><button type="button" class="btn btn-info next-step">Next <i class="fa fa-chevron-right"></i></button></li>
                     </ul>
                    </div>
                    <div id="menu3" class="tab-pane fade">
-                    <h3>Menu 3</h3>
-                    <p>Some content in menu 3.</p>
+                    <div class="content">
+                    <div class="row">
+                      <div class="col-lg-3"></div>
+                      <div class="col-lg-6">
+                          <center><h3>Upload Images</h3></center>
+                       <br>
+                        <form method="POST" action="">
+
+                          <center></center>
+
+                          <div class="container">
+                            <label for="files">Upload the Amenities</label>
+                           <input type="file" id="files" name="files[]" multiple />
+                            <div id="modelPreview">
+                              <?php 
+                                if(!empty($this->session->flashdata('title')))
+                                {
+                                  ?>
+                                   <img src="<?php echo base_url('uploads/'.$this->session->flashdata('title_slug')."/facade/".$this->session->flashdata('facade'))?>" class="imageThumb"/> 
+
+                                  <?php
+                                }
+                               ?>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="col-lg-3"></div>
+                    </div>
+                    </div>
                     <ul class="list-unstyled list-inline pull-right">
                      <li><button type="button" class="btn btn-default prev-step"><i class="fa fa-chevron-left"></i> Back</button></li>
                      <li><button type="button" class="btn btn-info next-step">Next <i class="fa fa-chevron-right"></i></button></li>
                     </ul>
                    </div>
                    <div id="menu4" class="tab-pane fade">
-                    <h3>Menu 4</h3>
-                    <p>Some content in menu 4.</p>
+                    
+                    <div class="content">
+                    <div class="row">
+                      <div class="col-lg-3"></div>
+                      <div class="col-lg-6">
+                          <center><h3>Configure Display</h3></center>
+                       <br>
+                       
+                          <label for="file">Upload the display photo for the property</label>
+                         <input type="file" id="files" name="files[]" multiple />
+                          <div id="modelPreview">
+                            <?php 
+                              if(!empty($this->session->flashdata('title')))
+                              {
+                                ?>
+                                 <img src="<?php echo base_url('uploads/'.$this->session->flashdata('title_slug')."/facade/".$this->session->flashdata('facade'))?>" class="imageThumb"/> 
+
+                                <?php
+                              }
+                             ?>
+                          </div>
+                          <table>
+                           <tr>
+                             <td style="width:20%; "><label style="margin-bottom: 10%;">Status :</label></td>
+                             <td style="width: 40%;">
+                               <div class="form-group">
+                                 <input type="number" name="propertyPrice" class="form-control" >
+                               </div>
+                             </td>
+                           </tr>
+                           <tr>
+                             <td style="width:20%; "><label style="margin-bottom: 10%;">Price :</label></td>
+                             <td style="width: 40%;">
+                               <div class="form-group">
+                                 <input type="number" name="propertyPrice" class="form-control" >
+                               </div>
+                             </td>
+                           </tr>
+                           <tr>
+                             <td style="width:20%; "><label style="margin-bottom: 10%;">Property Heading :</label></td>
+                             <td style="width: 40%;">
+                               <div class="form-group">
+                                 <input type="number" name="propertyPrice" class="form-control" >
+                               </div>
+                             </td>
+                           </tr>
+                           <tr>
+                             <td style="width:20%; "><label style="margin-bottom: 10%;">Property Description :</label></td>
+                             <td style="width: 40%;">
+                               <textarea class="form-control"></textarea>
+                             </td>
+                           </tr>
+                          </table>
+                        
+                      </div>
+                      <div class="col-lg-3"></div>
+                    </div>
+                    </div>
                     <ul class="list-unstyled list-inline pull-right">
                      <li><button type="button" class="btn btn-default prev-step"><i class="fa fa-chevron-left"></i> Back</button></li>
-                     <li><button type="button" class="btn btn-info next-step">Next <i class="fa fa-chevron-right"></i></button></li>
+                     <li><button type="button" class="btn btn-success"><i class="fa fa-check"></i> Done!</button></li>
                     </ul>
                    </div>
-                   <div id="menu5" class="tab-pane fade">
+                  <!--  <div id="menu5" class="tab-pane fade">
                     <h3>Menu 5</h3>
                     <p>Some content in menu 5.</p>
                     <ul class="list-unstyled list-inline pull-right">
                      <li><button type="button" class="btn btn-default prev-step"><i class="fa fa-chevron-left"></i> Back</button></li>
                      <li><button type="button" class="btn btn-success"><i class="fa fa-check"></i> Done!</button></li>
                     </ul>
-                   </div>
+                   </div> -->
                   </div>
               </div>
             </div>            
@@ -186,6 +424,41 @@
 
 
  <script type="text/javascript">
+  $(document).ready(function() {
+    if (window.File && window.FileList && window.FileReader) {
+      $("#files").on("change", function(e) {
+        var files = e.target.files,
+          filesLength = files.length;
+        for (var i = 0; i < filesLength; i++) {
+          var f = files[i]
+          var fileReader = new FileReader();
+          fileReader.onload = (function(e) {
+            var file = e.target;
+            $("<span class=\"pip\">" +
+              "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+              "<br/><span class=\"remove\">Remove image</span>" +
+              "</span>").insertAfter("#files");
+            $(".remove").click(function(){
+              $(this).parent(".pip").remove();
+            });
+            
+            // Old code here
+            /*$("<img></img>", {
+              class: "imageThumb",
+              src: e.target.result,
+              title: file.name + " | Click to remove"
+            }).insertAfter("#files").click(function(){$(this).remove();});*/
+            
+          });
+          fileReader.readAsDataURL(f);
+        }
+      });
+    } else {
+      alert("Your browser doesn't support to File API")
+    }
+  });
+
+
   $('document').ready(function() {
 
 

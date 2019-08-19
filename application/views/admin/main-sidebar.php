@@ -69,12 +69,12 @@
             </span>
           </a>
         </li>
-        <li >
+        <!-- <li >
           <a href="<?php echo base_url('admin/mng_view_accounts') ?>">
             <i class="fa fa-user"></i>
             <span>Manage Accounts</span>       
           </a>
-        </li>
+        </li> -->
         <li >
           <a href="<?php echo base_url('admin/mng_articles') ?>">
             <i class="fa fa-user"></i>
