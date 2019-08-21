@@ -14,44 +14,45 @@ class Property extends CI_CONTROLLER
 		$result = $this->pm->view_sample_view();
 		echo json_encode($result);
 	}
-	public function example()
-	{
-		echo $this->input->post('property_code');
-	}
-	public function create_sample_view()
-	{
-		$desc = $this->input->post('sampledescription');
-		$id = $this->input->post('data');
-		if($this->pm->add_sample_view($desc,$id))
-		{
-			redirect(base_url('admin/dashboard/'.$this->session->userdata('useremail')));
-		}
-		else
-		{
-			redirect(base_url('admin/mng_dashboard/'.$this->session->userdata('useremail')));
-		}
-	}
-	public function update_sample_view()
-	{
 
-		$desc = $this->input->post('sampledescription');
-		$id = $this->input->post('data');
-		if($this->pm->edit_sample_view($desc,$id))
-		{
-			redirect(base_url('admin/dashboard/'.$this->session->userdata('useremail')));
-		}
-		else
-		{
-			redirect(base_url('admin/mng_dashboard/'.$this->session->userdata('useremail')));
-		}
-	}
+	public function ajax()
+	{	
 
+			$upload_path = 'uploads/';
+			for( $x = 0 ; $x < count($_FILES['files']['name']);  $x++)
+			{
+				 $tmp_name = $_FILES['files']['tmp_name'][$x];
+				 move_uploaded_file($tmp_name,$upload_path.$_FILES['files']['name']);
+			}
+	}
 
 	public function create_project()
 	{
+			$result = array(
+			'property_type'=> $this->input->post('property_type'),
+			'property_title' => $this->input->post('property_title'),
+			'property_title_slug' =>urlencode($this->input->post('property_title')),
+			'property_address'=>$this->input->post('property_address'),
+			'property_bath' => $this->input->post('property_bath'),
+			'property_building'=>$this->input->post('property_building'),
+			'property_price' => $this->input->post('property_price'),
+			'property_garden' =>$this->input->post('property_garden'),
+			'property_pet' => $this->input->post('property_pet'),
+			'property_parking' => $this->input->post('property_parking'),
+			'property_bed' => $this->input->post('property_bed'),
+			'property_lot_area' =>$this->input->post('property_lot_area'),
+			'property_floor_area'=>$this->input->post('property_floor_area'),
+			'property_code'=> strtoupper($this->input->post('property_code')),
+			'property_additional_details'=> $this->input->post('property_additional_details'),
+			'property_date_posted' =>date('F j, Y  g:i'),
+			'property_status' => $this->input->post('property_status'),
+			); 
 
+
+			 
+			
 		
-		$title = urlencode($this->input->post('projectTitle'));
+		$title = urlencode($this->input->post('project_title'));
 		
 		$phpFileUploadErrors = array(
 			0=>'There is no error, the file uploaded with success',
@@ -82,10 +83,10 @@ class Property extends CI_CONTROLLER
 		 $int = 0;
 
 		//FACADE
-		if(isset($_FILES['model']))
+		if(isset($_FILES['property_file']))
 		{
 
-			$file_array = reArrayFiles($_FILES['model']);
+			$file_array = reArrayFiles($_FILES['property_file']);
 
 			for($i=0; $i<count($file_array); $i++)
 			{
@@ -140,7 +141,12 @@ class Property extends CI_CONTROLLER
 			
 
 
-			$this->pm->add_property($facade);
+			if($this->pm->add_property($facade))
+			{
+				$result = "okay";
+				echo json_encode($result);
+			}
+
 			echo "<script>alert('Successfully Created a New Property')</script>";
 			
 			sleep(3);

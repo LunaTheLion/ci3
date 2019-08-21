@@ -563,18 +563,24 @@ class Admin extends CI_CONTROLLER
 		$this->load->view('admin/create-listing');
 		$this->load->view('admin/templates/footer');	
 	}
-	public function filldescription()
+	public function ajax()
 	{
-		$result =  $this->input->post('property_code');
-		echo json_encode($result);
-	}
-	public function upload_images()
-	{
-
-	}
-	public function configure_display()
-	{
-
+		$data['title'] = "Create Listing";
+		$namepart = $this->session->userdata('useremail');
+		$get = $this->mm->acc($namepart);
+		$admin = array(
+		'admin_id' => $get->admin_id,
+		'admin_username'=>$get->admin_username,
+		'admin_type'=>$get->admin_type,
+		'admin_email' => $get->admin_email,
+		'admin_status' =>$get->admin_status, 
+		);
+		$this->session->set_userdata($admin);
+		$this->load->view('admin/templates/header', $admin);
+		$this->load->view('admin/main-header');
+		$this->load->view('admin/main-sidebar');
+		$this->load->view('admin/uploadimageusingajax');
+		$this->load->view('admin/templates/footer');
 	}
 
 

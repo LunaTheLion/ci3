@@ -37,7 +37,7 @@
 
     <!-- Main content -->
     <section class="content">
-    
+  <a href="<?php echo base_url('admin/ajax') ?>">Ajax</a>
       <div class="row">
         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
           <div class="box box-info">
@@ -405,7 +405,7 @@
                       </div>
                       <div class="col-lg-4">
                          <label for="file">Upload the display photo for the property</label>
-                        <input type="file" id="files" name="files[]" required />
+                        <input type="file" id="files" name="files" required />
                          <div id="modelPreview">
                            <?php 
                              if(!empty($this->session->flashdata('title')))
@@ -616,22 +616,93 @@
         num +='1';
       }
 
+     
+
+
 
       if(num == '')
       {
-        var property_value = {
-            'property_code' : $('textarea[name=propertyDescription]').val(),
-            
-        };
+        // var data = new FormData();
+        // jQuery.each(jQuery('#files')[0].files, function(i, file) {
+        //     data.append('files-'+i, file);
+        // });
+
+        // var data1 = new FormData();
+        // jQuery.each(jQuery('#imageAmenities')[0].files, function(i, file) {
+        //     data.append('imageAmenities-'+i, file);
+        // });
+
+        // var files = $('#imageAmenities')[0].files;
+        // var error ='';
+        // var form_data = new FormData();
+        // for (var count = 0 ; count < files.length; count++)
+        // {
+        //   var name =  files[count].name;
+        //   var extension = name.split('.').pop().toLowerCase();
+        //   if(jQuery.inArray(extension,['gif','png','jpg','jpeg']) == -1)
+        //   {
+        //     error += "Invalid " + count + " Image File";
+        //   }
+        //   else
+        //   {
+        //     form_data.append("imageAmenities[]",files[count]);
+
+        //   }
+        // }
+
+         
+
+
+
+
+        // var property_value = {
+        //     'property_code' : $('input[name=propertyCode]').val(),
+        //     'property_type' : $('select[name=propertyType]').val(),
+        //     'property_address' : $('input[name=propertyAddress]').val(),
+        //     'property_building' : $('input[name=propertyBuilding]').val(),
+        //     'property_bed' : $('input[name=propertyBed]').val(),
+        //     'property_bath' : $('input[name=propertyBath]').val(),
+        //     'property_parking' : $('input[name=propertyParking]').val(),
+        //     'property_floor_area' : $('input[name=propertyFloorArea]').val(),
+        //     'property_lot_area' : $('input[name=propertyLotArea]').val(),
+        //     'property_pet' : $('input[name=propertyPet]').val(),
+        //     'property_garden' : $('input[name=propertyGarden]').val(),
+        //     'property_status' : $('select[name=propertyStatus]').val(),
+        //     'property_price' : $('input[name=propertyPrice]').val(),
+        //     'property_title' : $('input[name=propertyTitle]').val(),
+        //     'property_additional_details' : $('textarea[name=propertyDescription]').val(),
+
+
+        //     // 'property_file' : $('file[name=files').val(),
+        //     // 'imageAmenities[]' : $('file[name=imageAmenities').val(),
+
+        //     // 'property_file' : $('file[name=files').val(),
+        //     // 'imageAmenities[]' : $('file[name=imageAmenities').val(),
+        // };
+
+
+
+
+        var form_data = new FormData();
+        var files_images =$('#files')[0].files;
+
+        for( var x = 0 ; x < files_images.length; x++)
+        {
+          form_data.append('files[]', files_images[x]);
+        }
+
+
+
         $.ajax({
           method: 'POST',
-          url: '<?php base_url()?>/ci3/admin/filldescription',
+          url: '<?php base_url()?>/ci3/property/create_project',
           dataType: 'json',
-          data: property_value,
+          data: form_data,
+        
           success: function(result)
           {
-            alert(result);
-            console.log(result);
+            // alert(result);
+            // console.log(result);
           },
           error: function()
           {
