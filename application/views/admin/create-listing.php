@@ -17,7 +17,7 @@
           echo "Create Property Listing";
         }
         ?>
-        <small>advanced tables</small>
+      
       </h1>
 
       <ol class="breadcrumb">
@@ -37,14 +37,23 @@
 
     <!-- Main content -->
     <section class="content">
-     <!--  <?php echo form_open_multipart('property/create_project') ?> -->
     
       <div class="row">
         <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
           <div class="box box-info">
 
             <div class="box-header with-border">
+              <!-- <?php
+                if(!empty($this->session->flashdata('title')))
+                {
+                   echo form_open_multipart('property/update_project/'.$this->session->flashdata('id').'');
+                }
+                else
+                {
+                   echo form_open_multipart('property/create_project');
+                }
 
+               ?> -->
 
               <h3 class="box-title">
                <?php if(!empty($this->session->flashdata('title')))
@@ -58,7 +67,7 @@
                 ?> 
 
               </h3>
-              <!-- <a href="<?php echo base_url('upload_multiple/sample') ?>" class="btn btn-info">Sample</a> -->
+        
               <?php
                 if(!empty($this->session->flashdata('title')))
                 {
@@ -111,7 +120,7 @@
                 </div>
                 <div class="tab-content">
 
-
+                  
                   <!-- Step 1 ----------------------------------------------------------------------------------------------- -->
 
                    <div id="menu1" class="tab-pane fade active in">
@@ -121,7 +130,7 @@
                       <div class="col-lg-6">
                           <center><h3>Fill Information</h3></center>
                        <br>
-                        <form method="POST" action="">
+                        
                           <table>
                             <tr>
                               <td style="width:20%; "><label style="margin-bottom: 10%;">Property Code:</label></td>
@@ -163,7 +172,7 @@
                               </td>
                             </tr>
                           </table>
-                        </form>
+                       
                       </div>
                       <div class="col-lg-3"></div>
                     </div>
@@ -267,7 +276,7 @@
                            
                           </table>
                           
-                        </form>
+                     
                       </div>
                       <div class="col-lg-3"></div>
 
@@ -290,8 +299,6 @@
                       <div class="col-lg-6">
                           <center><h3>Upload Images</h3></center>
                        <br>
-                        <form method="POST" action="">
-
                           <center></center>
 
                           <div class="container">
@@ -331,7 +338,7 @@
                          </div>
 
                           </div>
-                        </form>
+                        
                         <div id="erroramenity" type="hidden"><center><span id="errorspan" class="text-red"></span></center></div>
                       </div>
                       <div class="col-lg-3"></div>
@@ -354,7 +361,7 @@
                       
                       <div class="col-lg-8">
                        <br>   
-                          <div id="errorfile" type="hidden"><center><span id="errorspan" class="text-red"></span></center></div>
+                          
                           <table>
                            <tr>
                              <td style="width:20%; "><label style="margin-bottom: 10%;">Status :</label> <small class="text-red"><b>*</b></small></td>
@@ -364,6 +371,7 @@
                                    <option value="Active">Active</option>
                                    <option value="Rented">Rented</option>
                                  </select>
+
                                </div>
                              </td>
                            </tr>
@@ -371,7 +379,8 @@
                              <td style="width:20%; "><label style="margin-bottom: 10%;">Price :</label> <small class="text-red"><b>*</b></small></td>
                              <td style="width: 40%;">
                                <div class="form-group">
-                                 <input type="number" name="propertyPrice" class="form-control" >
+                                 <input type="number" id="propertyPrice" name="propertyPrice" class="form-control" >
+                                 <div id="errorPrice" type="hidden"><center><span id="errorspan" class="text-red"></span></center></div>
                                </div>
                              </td>
                            </tr>
@@ -380,6 +389,7 @@
                              <td style="width: 40%;">
                                <div class="form-group">
                                  <input type="text" name="propertyTitle" class="form-control" >
+                                 <div id="errortitle" type="hidden"><center><span id="errorspan" class="text-red"></span></center></div>
                                </div>
                              </td>
                            </tr>
@@ -387,6 +397,7 @@
                              <td style="width:20%; "><label style="margin-bottom: 10%;">Property Description :</label> <small class="text-red"><b>*</b></small></td>
                              <td style="width: 40%;">
                                <textarea class="form-control" name="propertyDescription" style="height: 100px;"></textarea>
+                               <div id="errordescription" type="hidden"><center><span id="errorspan" class="text-red"></span></center></div>
                              </td>
                            </tr>
                           </table>
@@ -406,13 +417,14 @@
                              }
                             ?>
                          </div>
+                         <div id="errorfile" type="hidden"><center><span id="errorspan" class="text-red"></span></center></div>
                       </div>
                       <!-- <div class="col-lg-2"></div> -->
                     </div>
                     </div>
                     <ul class="list-unstyled list-inline pull-right">
                      <li><button type="button" class="btn btn-default prev-step"><i class="fa fa-chevron-left"></i> Back</button></li>
-                     <li><button type="button" class="btn btn-success" id="done"><i class="fa fa-check"></i> Done!</button></li>
+                     <li><button type="submit" class="btn btn-success" id="done"><i class="fa fa-check"></i> Done!</button></li>
                     </ul>
                    </div>
                   <!--  <div id="menu5" class="tab-pane fade">
@@ -476,7 +488,20 @@
  <script type="text/javascript">
   $(document).ready(function() {
 
+      function numberWithCommas(number) {
+          var parts = number.toString().split(".");
+          parts[0] = parts[0].replace(/\B(?=(\d{3})(?!\d))/g, ",");
+          return parts.join(".");
+      }
+    $("input[name=propertyPrice]").each(function() {
+      var num = $(this).text();
+      var commaNum = numberWithCommas(num);
+      $(this).text(commaNum);
+    });
+
+
     $('#step1').on('click',function(){
+      $('#erroraddress').hide();
       var propaddress = $('#propertyAddress').val();
 
       if( propaddress == "")
@@ -487,7 +512,6 @@
       }
       else
       {
-       //$('#step1').addClass("next-step");
        $('#menu1').removeClass('active in');
        $('#menu2').addClass('active in');
        $('#1').removeClass('btn-info');
@@ -500,8 +524,8 @@
     });
 
     $('#step2').on('click',function(){
-      
-      // var bed = $('#propertyBed').val();
+      $('#errorbath').hide();
+      $('#errorfloor').hide();
       var bath = $('#propertyBath').val();
       var floor = $('#propertyFloorArea').val();
       var num = '';
@@ -520,7 +544,6 @@
       }
       if(num == '')
       {
-       //$('#step1').addClass("next-step");
        $('#menu2').removeClass('active in');
        $('#menu3').addClass('active in');
        $('#2').removeClass('btn-info');
@@ -532,6 +555,7 @@
 
 
       $('#step3').on('click',function(){
+        $('#erroramenity').hide();
       var amenities = $('#amenities').val();
 
       if( amenities == "")
@@ -553,35 +577,69 @@
     });
 
       $('#done').on('click',function(){
+        $('#errorfile').hide();
+        $('#errorprice').hide();
+        $('#errortitle').hide();
+        $('#errordescription').hide();
       var property_model = $('#files').val();
-      var property_price = $('#propertyPrice').val();
-      var property_title = $('#propertyTitle').val();
-      var property_description = $('#propertyDescription').val();
+      var property_price = $('input[name=propertyPrice]').val();
+      var property_title = $('input[name=propertyTitle]').val();
+      var property_description = $('textarea[name=propertyDescription]').val();
       var num = '';
 
       if( property_model == "")
       {
        $('#errorfile').show();
        $('#errorfile #errorspan').text('Photos are required');
+       $('input[name=file]').focus();
        num +='1';
       }
       else if (property_price == "")
       {
         $('#errorprice').show();
         $('#errorprice #errorspan').text('Price is required');
+        $('input[name=propertyPrice]').focus();
         num +='1';
       }
       else if ( property_title == "")
       {
         $('#errortitle').show();
-        $('#errortitle #errorspan').text('Property Title is required');
+        $('#errortitle #errorspan').text('Property Heading is required');
+        $('input[name=propertyTitle]').focus();
         num +='1';
       }
       else if ( property_description == "")
       {
         $('#errordescription').show();
-        $('#errordescription #errorspan').text('Property are required');
+        $('#errordescription #errorspan').text('Property Decription is required');
+        $('textarea[name=propertyDescription]').focus();
         num +='1';
+      }
+
+
+      if(num == '')
+      {
+        var property_value = {
+            'property_code' : $('textarea[name=propertyDescription]').val(),
+            
+        };
+        $.ajax({
+          method: 'POST',
+          url: '<?php base_url()?>/ci3/admin/filldescription',
+          dataType: 'json',
+          data: property_value,
+          success: function(result)
+          {
+            alert(result);
+            console.log(result);
+          },
+          error: function()
+          {
+            alert("Cannot Submit");
+          },
+
+        });
+        event.preventDefault();
       }
    
     });

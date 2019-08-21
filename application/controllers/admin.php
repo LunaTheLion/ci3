@@ -563,6 +563,21 @@ class Admin extends CI_CONTROLLER
 		$this->load->view('admin/create-listing');
 		$this->load->view('admin/templates/footer');	
 	}
+	public function filldescription()
+	{
+		$result =  $this->input->post('property_code');
+		echo json_encode($result);
+	}
+	public function upload_images()
+	{
+
+	}
+	public function configure_display()
+	{
+
+	}
+
+
 	public function create_article()
 	{
 		$data['title'] = "Create Article";

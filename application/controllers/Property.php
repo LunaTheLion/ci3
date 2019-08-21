@@ -14,6 +14,10 @@ class Property extends CI_CONTROLLER
 		$result = $this->pm->view_sample_view();
 		echo json_encode($result);
 	}
+	public function example()
+	{
+		echo $this->input->post('property_code');
+	}
 	public function create_sample_view()
 	{
 		$desc = $this->input->post('sampledescription');
