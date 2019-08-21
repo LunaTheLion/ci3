@@ -147,7 +147,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						article_status TINYINT(1) DEFAULT 0,
 						article_system_status TINYINT(1) DEFAULT 0,
 						article_date_uploaded DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,
-						article_date_deleted DATETIME NOT NULL DEFAULT
+						article_date_deleted DATETIME NOT NULL
 					);
 				");
 				return True;

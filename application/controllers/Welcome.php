@@ -11,7 +11,16 @@ class Welcome extends CI_Controller {
 			$this->load->view('admin/'.$page,$data);
 			$this->load->view('admin/templates/footer');
 
-		}else
+		}
+		else if($page === 'setup')
+		{
+			$data['title'] = ucfirst($page);
+			$this->load->view('admin/templates/header');
+			$this->load->view('admin/'.$page,$data);
+			$this->load->view('admin/templates/footer');
+
+		}
+		else
 		{
 			if(!file_exists(APPPATH.'views/pages/'.$page.'.php'))
 			{

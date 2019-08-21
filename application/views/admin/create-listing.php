@@ -68,25 +68,39 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
+              <?php 
 
+              $chars = "abcdefghijkmnopqrstuvwxyz023456789"; 
+              srand((double)microtime()*1000000); 
+              $i = 0; 
+              $pass = '' ; 
+
+              while ($i <= 7) { 
+                  $num = rand() % 33; 
+                  $tmp = substr($chars, $num, 1); 
+                  $pass = $pass . $tmp; 
+                  $i++; 
+              } 
+
+               ?>
              <div class="row">
               <div class="col-lg-12">
                 <div class="process">
                    <div class="process-row nav nav-tabs">
                     <div class="process-step">
-                     <button type="button" class="btn btn-info btn-circle" data-toggle="tab" href="#menu1"><i class="fa fa-info fa-3x"></i></button>
+                     <button type="button" class="btn btn-info btn-circle" id="1" data-toggle="tab" href="#menu1"><i class="fa fa-info fa-3x"></i></button>
                      <p><small>Fill<br />information</small></p>
                     </div>
                     <div class="process-step">
-                     <button type="button" class="btn btn-default btn-circle" data-toggle="tab" href="#menu2"><i class="fa fa-file-text-o fa-3x"></i></button>
+                     <button type="button" class="btn btn-default btn-circle" id="2" data-toggle="tab" href="#menu2"><i class="fa fa-file-text-o fa-3x"></i></button>
                      <p><small>Fill<br />description</small></p>
                     </div>
                     <div class="process-step">
-                     <button type="button" class="btn btn-default btn-circle" data-toggle="tab" href="#menu3"><i class="fa fa-image fa-3x"></i></button>
+                     <button type="button" class="btn btn-default btn-circle" id="3" data-toggle="tab" href="#menu3"><i class="fa fa-image fa-3x"></i></button>
                      <p><small>Upload<br />images</small></p>
                     </div>
                     <div class="process-step">
-                     <button type="button" class="btn btn-default btn-circle" data-toggle="tab" href="#menu4"><i class="fa fa-cogs fa-3x"></i></button>
+                     <button type="button" class="btn btn-default btn-circle" id="4" data-toggle="tab" href="#menu4"><i class="fa fa-cogs fa-3x"></i></button>
                      <p><small>Configure<br />display</small></p>
                     </div>
                    <!--  <div class="process-step">
@@ -96,6 +110,10 @@
                    </div>
                 </div>
                 <div class="tab-content">
+
+
+                  <!-- Step 1 ----------------------------------------------------------------------------------------------- -->
+
                    <div id="menu1" class="tab-pane fade active in">
                     <div class="content">
                     <div class="row">
@@ -109,22 +127,8 @@
                               <td style="width:20%; "><label style="margin-bottom: 10%;">Property Code:</label></td>
                               <td style="width: 40%;">
                                 <div class="form-group">
-                                  <?php 
-
-                                  $chars = "abcdefghijkmnopqrstuvwxyz023456789"; 
-                                  srand((double)microtime()*1000000); 
-                                  $i = 0; 
-                                  $pass = '' ; 
-
-                                  while ($i <= 7) { 
-                                      $num = rand() % 33; 
-                                      $tmp = substr($chars, $num, 1); 
-                                      $pass = $pass . $tmp; 
-                                      $i++; 
-                                  } 
-
-                                   ?>
-                                  <input type="text" name="propertyAddress" class="form-control" disabled value="<?php echo strtoupper($pass) ?>">
+                                  
+                                  <input type="text" name="propertyCode" Class="form-control" disabled value="<?php echo strtoupper($pass) ?>">
                                 </div>
                               </td>
                             </tr>
@@ -133,18 +137,19 @@
                               <td style="width:20%; "><label style="margin-bottom: 10%;">Property Type:</label></td>
                               <td style="width: 40%;">
                                 <div class="form-group">
-                                  <select class="form-control" name="propertyType">
+                                  <select class="form-control" name="propertyType" >
                                     <option value="Condominium">Condominium</option>
                                     <option value="House and Lot">House and Lot</option>
                                   </select>
                                 </div>
                               </td>
-                            </tr>
+                            </tr> 
                             <tr>
-                              <td style="width:20%; "><label style="margin-bottom: 10%;">Property Address:</label></td>
+                              <td style="width:20%; "><label style="margin-bottom: 10%;">Property Address:  </label> <small class="text-red"><b>*</b></small></td>
                               <td style="width: 40%;">
                                 <div class="form-group">
-                                  <input type="text" name="propertyAddress" class="form-control">
+                                  <input type="text" name="propertyAddress" id="propertyAddress" class="form-control">
+                                  <div id="erroraddress" type="hidden"><center><span id="errorspan" class="text-red"></span></center></div>
                                 </div>
                               </td>
                             </tr>
@@ -153,7 +158,7 @@
                               <td style="width:20%; "><label style="margin-bottom: 10%;">Property Building:</label></td>
                               <td style="width: 40%;">
                                 <div class="form-group">
-                                  <input type="text" name="propertyBuilding" class="form-control">
+                                  <input type="text" name="propertyBuilding" id="propertyBuilding" class="form-control">
                                 </div>
                               </td>
                             </tr>
@@ -164,10 +169,15 @@
                     </div>
                     </div>
                     <ul class="list-unstyled list-inline pull-right">
-                     <li><button type="button" class="btn btn-info next-step">Next <i class="fa fa-chevron-right"></i></button></li>
+
+                     <li><button type="button" class="btn btn-info" id="step1">Next <i class="fa fa-chevron-right"></i></button></li>
                     </ul>
                    </div>
+
+                   <!-- Step 2 ----------------------------------------------------------------------------------------------- -->
+
                    <div id="menu2" class="tab-pane fade">
+
                     <div class="content">
                     <div class="row">
                       <center><h3>Fill Description</h3></center>
@@ -175,22 +185,23 @@
                       <div class="col-lg-6">
                           
                        <br>
-                        <form method="POST" action="">
+                    
                           <table>
                             <tr>
                               <td style="width:20%; "><label style="margin-bottom: 10%;">Bedroom Count:</label></td>
                               <td style="width: 40%;">
                                 <div class="form-group">
-                                  <input type="number" name="propertyBed" class="form-control" >
+                                  <input type="number" name="propertyBed" id="propertyBed" class="form-control" >
                                 </div>
                               </td>
                             </tr>
 
                             <tr>
-                              <td style="width:20%; "><label style="margin-bottom: 10%;">Bathroom Count:</label></td>
+                              <td style="width:20%; "><label style="margin-bottom: 10%;"> Bathroom Count:</label> <small class="text-red"><b>*</b></small></td>
                               <td style="width: 40%;">
                                 <div class="form-group">
-                                  <input type="number" name="propertyBath" class="form-control" >
+                                  <input type="number" name="propertyBath" id="propertyBath" class="form-control" >
+                                  <div id="errorbath" type="hidden"><center><span id="errorspan" class="text-red"></span></center></div>
                                 </div>
                               </td>
                             </tr>
@@ -198,16 +209,18 @@
                               <td style="width:20%; "><label style="margin-bottom: 10%;">Parking Count:</label></td>
                               <td style="width: 40%;">
                                 <div class="form-group">
-                                  <input type="number" name="propertyParking" class="form-control">
+                                  <input type="number" name="propertyParking" id="propertyParking" class="form-control">
                                 </div>
                               </td>
                             </tr>
 
                             <tr>
-                              <td style="width:20%; "><label style="margin-bottom: 10%;">Floor Area:</label></td>
+                              <td style="width:20%; "><label style="margin-bottom: 10%;"> Floor Area:</label> <small class="text-red"><b>*</b></small></td>
                               <td style="width: 40%;">
                                 <div class="form-group">
-                                  <input type="number" name="propertyFloorArea" class="form-control">
+                                  <input type="number" name="propertyFloorArea" id="propertyFloorArea" class="form-control">
+                                  <div id="errorfloor" type="hidden"><center><span id="errorspan" class="text-red"></span></center></div>
+                                  
                                 </div>
                               </td>
                             </tr>
@@ -215,7 +228,7 @@
                               <td style="width:20%; "><label style="margin-bottom: 10%;">Lot Area:</label></td>
                               <td style="width: 40%;">
                                 <div class="form-group">
-                                  <input type="number" name="propertylotArea" class="form-control">
+                                  <input type="number" name="propertyLotArea" id="propertyLotArea" class="form-control">
                                 </div>
                               </td>
                             </tr>
@@ -251,20 +264,25 @@
                                 </div>
                               </td>
                             </tr>
-                            
+                           
                           </table>
                           
                         </form>
                       </div>
                       <div class="col-lg-3"></div>
+
                     </div>
+                    
                     </div>
 
                     <ul class="list-unstyled list-inline pull-right">
                      <li><button type="button" class="btn btn-default prev-step"><i class="fa fa-chevron-left"></i> Back</button></li>
-                     <li><button type="button" class="btn btn-info next-step">Next <i class="fa fa-chevron-right"></i></button></li>
+                     <li><button type="button" class="btn btn-info " id="step2">Next <i class="fa fa-chevron-right"></i></button></li>
                     </ul>
                    </div>
+
+                   <!-- Step 3 ----------------------------------------------------------------------------------------------- -->
+
                    <div id="menu3" class="tab-pane fade">
                     <div class="content">
                     <div class="row">
@@ -278,54 +296,79 @@
 
                           <div class="container">
                             <label for="files">Upload the Amenities</label>
-                           <input type="file" id="files" name="files[]" multiple />
-                            <div id="modelPreview">
-                              <?php 
-                                if(!empty($this->session->flashdata('title')))
-                                {
-                                  ?>
-                                   <img src="<?php echo base_url('uploads/'.$this->session->flashdata('title_slug')."/facade/".$this->session->flashdata('facade'))?>" class="imageThumb"/> 
+                         <input type="file" id="amenities" name="imageAmenities[]" multiple required />
+                         <div id="amenitiesPreview">
+                           <?php 
+                             if(!empty($this->session->flashdata('title')))
+                             {
+                                
+                                   $dirname = "uploads/".$this->session->flashdata('title_slug')."/amenities";
+                                   $files = glob($dirname."*.*");
+                                   $dir_path =  "uploads/".$this->session->flashdata('title_slug')."/amenities";
+                                   $extensions_array = array('jpg','png','jpeg');
 
-                                  <?php
-                                }
-                               ?>
-                            </div>
+                                   if(is_dir($dir_path))
+                                   {
+                                     $files = scandir($dir_path);
+                                                     
+                                     for($i = 0; $i < count($files); $i++)
+                                     {
+                                       if($files[$i] !='.' && $files[$i] !='..')
+                                       {                     
+                                         $file = pathinfo($files[$i]);
+                                         //getting images from the root folder.  
+                                       ?>
+
+                                       <img src="<?php echo base_url('uploads/'.$this->session->flashdata('title_slug')."/amenities/".$files[$i])?>" class="imageThumb">
+
+                                   <?php
+                                   }
+                                   }
+                                   }
+                           
+                             }
+                            ?>
+                         </div>
+
                           </div>
                         </form>
+                        <div id="erroramenity" type="hidden"><center><span id="errorspan" class="text-red"></span></center></div>
                       </div>
                       <div class="col-lg-3"></div>
                     </div>
                     </div>
                     <ul class="list-unstyled list-inline pull-right">
                      <li><button type="button" class="btn btn-default prev-step"><i class="fa fa-chevron-left"></i> Back</button></li>
-                     <li><button type="button" class="btn btn-info next-step">Next <i class="fa fa-chevron-right"></i></button></li>
+                     <li><button type="button" class="btn btn-info " id="step3">Next <i class="fa fa-chevron-right"></i></button></li>
                     </ul>
                    </div>
+
+                   <!-- Step 4 ----------------------------------------------------------------------------------------------- -->
+
+
                    <div id="menu4" class="tab-pane fade">
                     
                     <div class="content">
                     <div class="row">
-                      <div class="col-lg-3"></div>
-                      <div class="col-lg-6">
-                          <center><h3>Configure Display</h3></center>
-                       <br>
-                       
-                          <label for="file">Upload the display photo for the property</label>
-                         <input type="file" id="files" name="files[]" multiple />
-                          <div id="modelPreview">
-                            <?php 
-                              if(!empty($this->session->flashdata('title')))
-                              {
-                                ?>
-                                 <img src="<?php echo base_url('uploads/'.$this->session->flashdata('title_slug')."/facade/".$this->session->flashdata('facade'))?>" class="imageThumb"/> 
-
-                                <?php
-                              }
-                             ?>
-                          </div>
+                       <center><h3>Configure Display</h3></center>
+                      
+                      <div class="col-lg-8">
+                       <br>   
+                          <div id="errorfile" type="hidden"><center><span id="errorspan" class="text-red"></span></center></div>
                           <table>
                            <tr>
-                             <td style="width:20%; "><label style="margin-bottom: 10%;">Status :</label></td>
+                             <td style="width:20%; "><label style="margin-bottom: 10%;">Status :</label> <small class="text-red"><b>*</b></small></td>
+                             <td style="width: 40%;">
+                               <div class="form-group">
+                                 <select class="form-control" name="propertyStatus" id="propertyStatus">
+                                   <option value="Active">Active</option>
+                                   <option value="Rented">Rented</option>
+                                 </select>
+                               </div>
+                             </td>
+                           </tr>
+                           <tr>
+                             <td style="width:20%; "><label style="margin-bottom: 10%;">Price :</label> <small class="text-red"><b>*</b></small></td>
                              <td style="width: 40%;">
                                <div class="form-group">
                                  <input type="number" name="propertyPrice" class="form-control" >
@@ -333,36 +376,43 @@
                              </td>
                            </tr>
                            <tr>
-                             <td style="width:20%; "><label style="margin-bottom: 10%;">Price :</label></td>
+                             <td style="width:20%; "><label style="margin-bottom: 10%;">Property Heading :</label> <small class="text-red"><b>*</b></small></td>
                              <td style="width: 40%;">
                                <div class="form-group">
-                                 <input type="number" name="propertyPrice" class="form-control" >
+                                 <input type="text" name="propertyTitle" class="form-control" >
                                </div>
                              </td>
                            </tr>
                            <tr>
-                             <td style="width:20%; "><label style="margin-bottom: 10%;">Property Heading :</label></td>
+                             <td style="width:20%; "><label style="margin-bottom: 10%;">Property Description :</label> <small class="text-red"><b>*</b></small></td>
                              <td style="width: 40%;">
-                               <div class="form-group">
-                                 <input type="number" name="propertyPrice" class="form-control" >
-                               </div>
-                             </td>
-                           </tr>
-                           <tr>
-                             <td style="width:20%; "><label style="margin-bottom: 10%;">Property Description :</label></td>
-                             <td style="width: 40%;">
-                               <textarea class="form-control"></textarea>
+                               <textarea class="form-control" name="propertyDescription" style="height: 100px;"></textarea>
                              </td>
                            </tr>
                           </table>
                         
                       </div>
-                      <div class="col-lg-3"></div>
+                      <div class="col-lg-4">
+                         <label for="file">Upload the display photo for the property</label>
+                        <input type="file" id="files" name="files[]" required />
+                         <div id="modelPreview">
+                           <?php 
+                             if(!empty($this->session->flashdata('title')))
+                             {
+                               ?>
+                                <img src="<?php echo base_url('uploads/'.$this->session->flashdata('title_slug')."/facade/".$this->session->flashdata('facade'))?>" class="imageThumb"/> 
+
+                               <?php
+                             }
+                            ?>
+                         </div>
+                      </div>
+                      <!-- <div class="col-lg-2"></div> -->
                     </div>
                     </div>
                     <ul class="list-unstyled list-inline pull-right">
                      <li><button type="button" class="btn btn-default prev-step"><i class="fa fa-chevron-left"></i> Back</button></li>
-                     <li><button type="button" class="btn btn-success"><i class="fa fa-check"></i> Done!</button></li>
+                     <li><button type="button" class="btn btn-success" id="done"><i class="fa fa-check"></i> Done!</button></li>
                     </ul>
                    </div>
                   <!--  <div id="menu5" class="tab-pane fade">
@@ -425,6 +475,123 @@
 
  <script type="text/javascript">
   $(document).ready(function() {
+
+    $('#step1').on('click',function(){
+      var propaddress = $('#propertyAddress').val();
+
+      if( propaddress == "")
+      {
+       $('#erroraddress').show();
+       $('#erroraddress #errorspan').text('Please put Address'); 
+        $('#propertyAddress').focus();
+      }
+      else
+      {
+       //$('#step1').addClass("next-step");
+       $('#menu1').removeClass('active in');
+       $('#menu2').addClass('active in');
+       $('#1').removeClass('btn-info');
+       $('#1').addClass('btn-default');
+       $('#2').removeClass('btn-default');
+       $('#2').addClass('btn-info');
+      } 
+
+
+    });
+
+    $('#step2').on('click',function(){
+      
+      // var bed = $('#propertyBed').val();
+      var bath = $('#propertyBath').val();
+      var floor = $('#propertyFloorArea').val();
+      var num = '';
+
+      if( bath == "")
+      {
+        $('#errorbath').show();
+        $('#errorbath #errorspan').text('Please put Bathroom Count');
+       num +='1';
+      }
+      else if( floor == "")
+      {
+        $('#errorfloor').show();
+        $('#errorfloor #errorspan').text('Please put Floor Count Count');
+        num +='1';
+      }
+      if(num == '')
+      {
+       //$('#step1').addClass("next-step");
+       $('#menu2').removeClass('active in');
+       $('#menu3').addClass('active in');
+       $('#2').removeClass('btn-info');
+       $('#2').addClass('btn-default');
+       $('#3').removeClass('btn-default');
+       $('#3').addClass('btn-info');
+      } 
+    });
+
+
+      $('#step3').on('click',function(){
+      var amenities = $('#amenities').val();
+
+      if( amenities == "")
+      {
+        $('#erroramenity').show();
+        $('#erroramenity #errorspan').text('Photos are required');
+      }
+      else
+      {
+
+       $('#menu3').removeClass('active in');
+       $('#menu4').addClass('active in');
+       $('#3').removeClass('btn-info');
+       $('#3').addClass('btn-default');
+       $('#4').removeClass('btn-default');
+       $('#4').addClass('btn-info');
+     
+      } 
+    });
+
+      $('#done').on('click',function(){
+      var property_model = $('#files').val();
+      var property_price = $('#propertyPrice').val();
+      var property_title = $('#propertyTitle').val();
+      var property_description = $('#propertyDescription').val();
+      var num = '';
+
+      if( property_model == "")
+      {
+       $('#errorfile').show();
+       $('#errorfile #errorspan').text('Photos are required');
+       num +='1';
+      }
+      else if (property_price == "")
+      {
+        $('#errorprice').show();
+        $('#errorprice #errorspan').text('Price is required');
+        num +='1';
+      }
+      else if ( property_title == "")
+      {
+        $('#errortitle').show();
+        $('#errortitle #errorspan').text('Property Title is required');
+        num +='1';
+      }
+      else if ( property_description == "")
+      {
+        $('#errordescription').show();
+        $('#errordescription #errorspan').text('Property are required');
+        num +='1';
+      }
+   
+    });
+
+
+
+
+
+
+
     if (window.File && window.FileList && window.FileReader) {
       $("#files").on("change", function(e) {
         var files = e.target.files,
@@ -435,7 +602,7 @@
           fileReader.onload = (function(e) {
             var file = e.target;
             $("<span class=\"pip\">" +
-              "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+              "<img class=\"imageThumbnail\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
               "<br/><span class=\"remove\">Remove image</span>" +
               "</span>").insertAfter("#files");
             $(".remove").click(function(){
@@ -454,8 +621,44 @@
         }
       });
     } else {
-      alert("Your browser doesn't support to File API")
-    }
+      alert("Your browser doesn't support to File API");
+    };
+
+    if (window.File && window.FileList && window.FileReader) {
+      $("#amenities").on("change", function(e) {
+        var files = e.target.files,
+          filesLength = files.length;
+        for (var i = 0; i < filesLength; i++) {
+          var f = files[i]
+          var fileReader = new FileReader();
+          fileReader.onload = (function(e) {
+            var file = e.target;
+            $("<span class=\"pip\">" +
+              "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+              "<br/><span class=\"remove\">Remove image</span>" +
+              "</span>").insertAfter("#amenities");
+            $(".remove").click(function(){
+              $(this).parent(".pip").remove();
+            });
+            
+            // Old code here
+            /*$("<img></img>", {
+              class: "imageThumb",
+              src: e.target.result,
+              title: file.name + " | Click to remove"
+            }).insertAfter("#files").click(function(){$(this).remove();});*/
+            
+          });
+          fileReader.readAsDataURL(f);
+        }
+      });
+    } else {
+      alert("Your browser doesn't support to File API");
+    };
+
+
+
+
   });
 
 
@@ -528,41 +731,41 @@
             })
         });
     });
-          var images = function(input, imgPreview) {
+          // var images = function(input, imgPreview) {
       
-              if (input.files) {
-                  var filesAmount = input.files.length;
+          //     if (input.files) {
+          //         var filesAmount = input.files.length;
       
-                  for (i = 0; i < filesAmount; i++) {
-                      var reader = new FileReader();
+          //         for (i = 0; i < filesAmount; i++) {
+          //             var reader = new FileReader();
       
-                      reader.onload = function(event) {
-                          $($.parseHTML("<img class='imageThumb'>")).attr('src', event.target.result).appendTo(imgPreview);
-                      }
-                      reader.readAsDataURL(input.files[i]);
-                  }
-              }
+          //             reader.onload = function(event) {
+          //                 $($.parseHTML("<img class='imageThumb'>")).attr('src', event.target.result).appendTo(imgPreview);
+          //             }
+          //             reader.readAsDataURL(input.files[i]);
+          //         }
+          //     }
       
-          };
+          // };
       
-          $('#model').on('change', function() {
-              images(this, '#modelPreview');
-          });
-          $('#amenities').on('change', function() {
-              images(this, '#amenitiesPreview');
-          });
+          // $('#model').on('change', function() {
+          //     images(this, '#modelPreview');
+          // });
+          // $('#amenities').on('change', function() {
+          //     images(this, '#amenitiesPreview');
+          // });
               
-              //clear the file list when image is clicked
-          $('body').on('click','#amenitiesPreview',function(){
-              $('#amenities').val("");
-              $('#amenitiesPreview').html("");
+          //     //clear the file list when image is clicked
+          // $('body').on('click','#amenitiesPreview',function(){
+          //     $('#amenities').val("");
+          //     $('#amenitiesPreview').html("");
       
-          });
-          $('body').on('click','#modelPreview',function(){
-              $('#model').val("");
-              $('#modelPreview').html("");
+          // });
+          // $('body').on('click','#modelPreview',function(){
+          //     $('#model').val("");
+          //     $('#modelPreview').html("");
           
-          });
+          // });
           
       });
 

@@ -55,12 +55,19 @@
         display:block;
        }
        .imageThumb {
-        max-height: 75px;
+        max-height: 85px;
         border: 2px solid;
         border-color: #3c8dbc;
         margin: 10px 10px 0 0;
         padding: 1px;
         }
+        .imageThumbnail {
+         max-height: 135px;
+         border: 2px solid;
+         border-color: #3c8dbc;
+         margin: 10px 10px 0 0;
+         padding: 1px;
+         }
        .pip {
          display: inline-block;
          margin: 10px 10px 0 0;
