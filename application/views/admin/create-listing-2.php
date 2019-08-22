@@ -92,7 +92,7 @@
               } 
 
                ?>
-              <form method="POST" action="<?php echo base_url('admin/configure_display') ?>">
+              <?php echo form_open_multipart('property/upload_amenities') ?>
 
              <div class="row">
               <div class="col-lg-12">

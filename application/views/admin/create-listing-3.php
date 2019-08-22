@@ -93,7 +93,7 @@
 
                ?>
 
-             <?php echo form_open_multipart('property/sample_upload') ?> 
+             <?php echo form_open_multipart('property/upload_facade') ?> 
 
              <div class="row">
               <div class="col-lg-12">
