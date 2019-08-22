@@ -92,23 +92,22 @@
               } 
 
                ?>
+              <form method="POST" action="<?php echo base_url('admin/configure_display') ?>">
 
-             <form method="POST" action="<?php echo base_url('admin/fill_description') ?>">
              <div class="row">
               <div class="col-lg-12">
                 <div class="process">
                    <div class="process-row nav nav-tabs">
-                    <div class="process-step">
-                     <button type="submit" class="btn btn-info btn-circle"><i class="fa fa-info fa-3x"></i></button>
+                   <div class="process-step">
+                     <button type="submit" class="btn btn-default btn-circle"><i class="fa fa-info fa-3x"></i></button>
                      <p><small>Fill<br />information</small></p>
                     </div>
                     <div class="process-step">
                      <button type="submit" class="btn btn-default btn-circle" ><i class="fa fa-file-text-o fa-3x"></i></button>
-                     
                      <p><small>Fill<br />description</small></p>
                     </div>
                     <div class="process-step">
-                     <button type="submit" class="btn btn-default btn-circle" ><i class="fa fa-image fa-3x"></i></button>
+                     <button type="submit" class="btn btn-info btn-circle" ><i class="fa fa-image fa-3x"></i></button>
                      <p><small>Upload<br />images</small></p>
                     </div>
                     <div class="process-step">
@@ -123,66 +122,65 @@
                 </div>
                 <div class="tab-content">
 
-                  
-                  <!-- Step 1 ----------------------------------------------------------------------------------------------- -->
-               
-                   <div id="menu1" class="tab-pane fade active in">
+
+
+                   <!-- Step 3 ----------------------------------------------------------------------------------------------- -->
+
+                   <div id="menu3" class="tab-pane fade active in">
                     <div class="content">
                     <div class="row">
                       <div class="col-lg-3"></div>
                       <div class="col-lg-6">
-                          <center><h3>Fill Information</h3></center>
+                          <center><h3>Upload Images</h3></center>
                        <br>
+                          <center></center>
+
+                          <div class="container">
+                            <label for="files">Upload the Amenities</label>
+                         <input type="file" id="amenities" name="imageAmenities[]" multiple required />
+                         <div id="amenitiesPreview">
+                           <?php 
+                             if(!empty($this->session->flashdata('title')))
+                             {
+                                
+                                   $dirname = "uploads/".$this->session->flashdata('title_slug')."/amenities";
+                                   $files = glob($dirname."*.*");
+                                   $dir_path =  "uploads/".$this->session->flashdata('title_slug')."/amenities";
+                                   $extensions_array = array('jpg','png','jpeg');
+
+                                   if(is_dir($dir_path))
+                                   {
+                                     $files = scandir($dir_path);
+                                                     
+                                     for($i = 0; $i < count($files); $i++)
+                                     {
+                                       if($files[$i] !='.' && $files[$i] !='..')
+                                       {                     
+                                         $file = pathinfo($files[$i]);
+                                         //getting images from the root folder.  
+                                       ?>
+
+                                       <img src="<?php echo base_url('uploads/'.$this->session->flashdata('title_slug')."/amenities/".$files[$i])?>" class="imageThumb">
+
+                                   <?php
+                                   }
+                                   }
+                                   }
+                           
+                             }
+                            ?>
+                         </div>
+
+                          </div>
                         
-                          <table>
-                            <tr>
-                              <td style="width:20%; "><label style="margin-bottom: 10%;">Property Code:</label></td>
-                              <td style="width: 40%;">
-                                <div class="form-group">
-                                  
-                                  <input type="text" name="propertyCode" Class="form-control" value="<?php echo strtoupper($pass) ?>">
-                                </div>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td style="width:20%; "><label style="margin-bottom: 10%;">Property Type:</label></td>
-                              <td style="width: 40%;">
-                                <div class="form-group">
-                                  <select class="form-control" name="propertyType" >
-                                    <option value="Condominium">Condominium</option>
-                                    <option value="House and Lot">House and Lot</option>
-                                  </select>
-                                </div>
-                              </td>
-                            </tr> 
-                            <tr>
-                              <td style="width:20%; "><label style="margin-bottom: 10%;">Property Address:  </label> <small class="text-red"><b>*</b></small></td>
-                              <td style="width: 40%;">
-                                <div class="form-group">
-                                  <input type="text" name="propertyAddress" id="propertyAddress" class="form-control" required>
-                                 
-                                </div>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td style="width:20%; "><label style="margin-bottom: 10%;">Property Building:</label></td>
-                              <td style="width: 40%;">
-                                <div class="form-group">
-                                  <input type="text" name="propertyBuilding" id="propertyBuilding" class="form-control">
-                                </div>
-                              </td>
-                            </tr>
-                          </table>
-                       
+                        <div id="erroramenity" type="hidden"><center><span id="errorspan" class="text-red"></span></center></div>
                       </div>
                       <div class="col-lg-3"></div>
                     </div>
                     </div>
                     <ul class="list-unstyled list-inline pull-right">
-
-                     <li><button type="submit" class="btn btn-info" >Next <i class="fa fa-chevron-right"></i></button></li>
+                     <li><button type="button" class="btn btn-default prev-step"><i class="fa fa-chevron-left"></i> Back</button></li>
+                     <li><button type="submit" class="btn btn-info " id="step3">Next <i class="fa fa-chevron-right"></i></button></li>
                     </ul>
                    </div>
                  </form>
@@ -192,7 +190,11 @@
                 
             </div>
             <div class="box-footer">
-                
+                <?php 
+                echo "<pre>";
+                print_r($this->session->userdata());
+                echo "</pre>";
+                 ?>
              
             </div>
           </div>
@@ -200,7 +202,6 @@
       </div>
         
     </section>
-    <!-- /.content -->
 
   </div>
   <!-- /.content-wrapper -->

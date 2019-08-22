@@ -93,18 +93,18 @@
 
                ?>
 
-             <form method="POST" action="<?php echo base_url('admin/fill_description') ?>">
+             <?php echo form_open_multipart('property/sample_upload') ?> 
+
              <div class="row">
               <div class="col-lg-12">
                 <div class="process">
                    <div class="process-row nav nav-tabs">
                     <div class="process-step">
-                     <button type="submit" class="btn btn-info btn-circle"><i class="fa fa-info fa-3x"></i></button>
+                     <button type="submit" class="btn btn-default btn-circle" ><i class="fa fa-info fa-3x"></i></button>
                      <p><small>Fill<br />information</small></p>
                     </div>
                     <div class="process-step">
                      <button type="submit" class="btn btn-default btn-circle" ><i class="fa fa-file-text-o fa-3x"></i></button>
-                     
                      <p><small>Fill<br />description</small></p>
                     </div>
                     <div class="process-step">
@@ -112,7 +112,7 @@
                      <p><small>Upload<br />images</small></p>
                     </div>
                     <div class="process-step">
-                     <button type="submit" class="btn btn-default btn-circle"><i class="fa fa-cogs fa-3x"></i></button>
+                     <button type="submit" class="btn btn-info btn-circle" ><i class="fa fa-cogs fa-3x"></i></button>
                      <p><small>Configure<br />display</small></p>
                     </div>
                    <!--  <div class="process-step">
@@ -123,66 +123,82 @@
                 </div>
                 <div class="tab-content">
 
-                  
-                  <!-- Step 1 ----------------------------------------------------------------------------------------------- -->
-               
-                   <div id="menu1" class="tab-pane fade active in">
+                   </div>
+
+                   <!-- Step 4 ----------------------------------------------------------------------------------------------- -->
+
+                   <div id="menu4" class="tab-pane fade active in">
+                    
                     <div class="content">
                     <div class="row">
-                      <div class="col-lg-3"></div>
-                      <div class="col-lg-6">
-                          <center><h3>Fill Information</h3></center>
-                       <br>
-                        
+                       <center><h3>Configure Display</h3></center>
+                      
+                      <div class="col-lg-8">
+                       <br>   
+                          
                           <table>
-                            <tr>
-                              <td style="width:20%; "><label style="margin-bottom: 10%;">Property Code:</label></td>
-                              <td style="width: 40%;">
-                                <div class="form-group">
-                                  
-                                  <input type="text" name="propertyCode" Class="form-control" value="<?php echo strtoupper($pass) ?>">
-                                </div>
-                              </td>
-                            </tr>
+                           <tr>
+                             <td style="width:20%; "><label style="margin-bottom: 10%;">Status :</label> <small class="text-red"><b>*</b></small></td>
+                             <td style="width: 40%;">
+                               <div class="form-group">
+                                 <select class="form-control" name="propertyStatus" id="propertyStatus">
+                                   <option value="Active">Active</option>
+                                   <option value="Rented">Rented</option>
+                                 </select>
 
-                            <tr>
-                              <td style="width:20%; "><label style="margin-bottom: 10%;">Property Type:</label></td>
-                              <td style="width: 40%;">
-                                <div class="form-group">
-                                  <select class="form-control" name="propertyType" >
-                                    <option value="Condominium">Condominium</option>
-                                    <option value="House and Lot">House and Lot</option>
-                                  </select>
-                                </div>
-                              </td>
-                            </tr> 
-                            <tr>
-                              <td style="width:20%; "><label style="margin-bottom: 10%;">Property Address:  </label> <small class="text-red"><b>*</b></small></td>
-                              <td style="width: 40%;">
-                                <div class="form-group">
-                                  <input type="text" name="propertyAddress" id="propertyAddress" class="form-control" required>
-                                 
-                                </div>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td style="width:20%; "><label style="margin-bottom: 10%;">Property Building:</label></td>
-                              <td style="width: 40%;">
-                                <div class="form-group">
-                                  <input type="text" name="propertyBuilding" id="propertyBuilding" class="form-control">
-                                </div>
-                              </td>
-                            </tr>
+                               </div>
+                             </td>
+                           </tr>
+                           <tr>
+                             <td style="width:20%; "><label style="margin-bottom: 10%;">Price :</label> <small class="text-red"><b>*</b></small></td>
+                             <td style="width: 40%;">
+                               <div class="form-group">
+                                 <input type="number" id="propertyPrice" name="propertyPrice" class="form-control" required >
+                                 <div id="errorPrice" type="hidden"><center><span id="errorspan" class="text-red"></span></center></div>
+                               </div>
+                             </td>
+                           </tr>
+                           <tr>
+                             <td style="width:20%; "><label style="margin-bottom: 10%;">Property Heading :</label> <small class="text-red"><b>*</b></small></td>
+                             <td style="width: 40%;">
+                               <div class="form-group">
+                                 <input type="text" name="propertyTitle" class="form-control" required >
+                                 <div id="errortitle" type="hidden"><center><span id="errorspan" class="text-red"></span></center></div>
+                               </div>
+                             </td>
+                           </tr>
+                           <tr>
+                             <td style="width:20%; "><label style="margin-bottom: 10%;">Property Description :</label> <small class="text-red"><b>*</b></small></td>
+                             <td style="width: 40%;">
+                               <textarea class="form-control" name="propertyDescription" style="height: 100px;" required></textarea>
+                               <div id="errordescription" type="hidden"><center><span id="errorspan" class="text-red"></span></center></div>
+                             </td>
+                           </tr>
                           </table>
-                       
+                        
                       </div>
-                      <div class="col-lg-3"></div>
+                      <div class="col-lg-4">
+                         <label for="file">Upload the display photo for the property</label>
+                        <input type="file" id="files" name="fileToUpload" required />
+                         <div id="modelPreview">
+                           <?php 
+                             if(!empty($this->session->flashdata('title')))
+                             {
+                               ?>
+                                <img src="<?php echo base_url('uploads/'.$this->session->flashdata('title_slug')."/facade/".$this->session->flashdata('facade'))?>" class="imageThumb"/> 
+
+                               <?php
+                             }
+                            ?>
+                         </div>
+                         <div id="errorfile" type="hidden"><center><span id="errorspan" class="text-red"></span></center></div>
+                      </div>
+                      <!-- <div class="col-lg-2"></div> -->
                     </div>
                     </div>
                     <ul class="list-unstyled list-inline pull-right">
-
-                     <li><button type="submit" class="btn btn-info" >Next <i class="fa fa-chevron-right"></i></button></li>
+                     <li><button type="button" class="btn btn-default prev-step"><i class="fa fa-chevron-left"></i> Back</button></li>
+                     <li><button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Done!</button></li>
                     </ul>
                    </div>
                  </form>
@@ -192,7 +208,11 @@
                 
             </div>
             <div class="box-footer">
-                
+                <?php 
+                echo "<pre>";
+                print_r($this->session->userdata());
+                echo "</pre>";
+                 ?>
              
             </div>
           </div>
@@ -200,7 +220,6 @@
       </div>
         
     </section>
-    <!-- /.content -->
 
   </div>
   <!-- /.content-wrapper -->

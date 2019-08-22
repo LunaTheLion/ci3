@@ -9,6 +9,116 @@ class Property extends CI_CONTROLLER
 		$this->load->model('Property_Model','pm');
 		$this->load->helper(array('form','url'));
 	}
+	public function sample_upload()
+	{
+		$target_dir = "uploads/";
+		$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+		$uploadOk = 1;
+		$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+		// Check if image file is a actual image or fake image
+		if(isset($_POST["submit"])) {
+		    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+		    if($check !== false) {
+		        echo "File is an image - " . $check["mime"] . ".";
+		        $uploadOk = 1;
+		    } else {
+		        echo "File is not an image.";
+		        $uploadOk = 0;
+		    }
+		}
+		// Check if file already exists
+		if (file_exists($target_file)) {
+		    echo "Sorry, file already exists.";
+		    $uploadOk = 0;
+		}
+		// Check file size
+		if ($_FILES["fileToUpload"]["size"] > 500000) {
+		    echo "Sorry, your file is too large.";
+		    $uploadOk = 0;
+		}
+		// Allow certain file formats
+		if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+		&& $imageFileType != "gif" ) {
+		    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+		    $uploadOk = 0;
+		}
+		// Check if $uploadOk is set to 0 by an error
+		if ($uploadOk == 0) {
+		    echo "Sorry, your file was not uploaded.";
+		// if everything is ok, try to upload file
+		} else {
+		    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+		        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+		    } else {
+		        echo "Sorry, there was an error uploading your file.";
+		    }
+		}
+		
+	}
+	public function read_all()
+	{
+		$data = array(
+			'property_code' => $this->session->userdata('property_code'),
+			'property_type' => $this->session->userdata('property_type'),
+			'property_address' => $this->session->userdata('property_address'),
+			'property_building' => $this->session->userdata('property_building'),
+			
+			
+			'property_bath' => $this->session->userdata('property_bath'),
+			'property_parking' => $this->session->userdata('property_parking'),
+			'property_floor_area' => $this->session->userdata('property_floor_area'),
+			'property_lot_area' => $this->session->userdata('property_lot_area'),
+			'property_pet' => $this->session->userdata('property_pet'),
+			'property_garden' => $this->session->userdata('property_garden'),
+
+			'property_amenities' => $this->session->userdata('property_amenities'),
+			'property_date_posted' =>date('F j, Y  g:i'),
+
+			'property_additional_details'=> $this->input->post('property_additional_details'),
+			'property_price' => $this->input->post('property_price'),
+			'property_status' => $this->input->post('property_status'),
+			'property_title' => $this->input->post('propertyTitle'),
+			'property_title_slug' => urlencode($this->input->post('propertyTitle')),
+		);
+
+		$facade = $this->input->post('files');
+		$amenities = $this->session->userdata('property_amenities');
+
+		// if(isset($_FILES['files']))
+		// {
+		// 	echo "ELONA LABS YU";
+		// }
+
+
+
+		// if(!empty($facade))
+		// {
+		// 	echo $facade;
+		// 	$directory = '/uploads/';
+		// 	if(move_uploaded_file($facade, $directory))
+		// 	{
+		// 		echo "Move success";
+		// 	}
+		// 	else
+		// 	{
+		// 		echo "Move fail";
+		// 	}
+
+		// 	if(!empty($amenities))
+		// 	{
+		// 		echo "<pre>";
+		// 		print_r($amenities);
+		// 		echo "</pre>";
+		// 	}
+		// }
+
+
+		//make an array to place all the image in array and place it in the directory
+
+
+
+		 
+	}
 	public function view_sample()
 	{
 		$result = $this->pm->view_sample_view();
@@ -17,13 +127,42 @@ class Property extends CI_CONTROLLER
 
 	public function ajax()
 	{	
+		sleep(3);
+		if($_FILES["file"]["name"] != '')
+		{
+			$name = "erlona";
+			echo json_encode($_FILES["file"]["name"]);
+			// $output = '';
+			// $config['upload_path'] = './upload/';
+			// $config['allowed_types'] = 'gif|jpg|png|jpeg';
+			// $this->load->library('upload', $config)
+			// $this->upload->initialize($config);
+			// if($count = 0 ; $count < count($_FILES['files']['name']); $count++)
+			// {
+			// 	$_FILES['file']['name'] = $_FILES['files']['name'][$count];
+			// 	$_FILES['file']['type'] = $_FILES['files']['type'][$count];
+			// 	$_FILES['file']['tmp_name'] = $_FILES['files']['tmp_name'][$count];
+			// 	$_FILES['file']['error'] = $_FILES['files']['error'][$count];
+			// 	$_FILES['file']['size'] = $_FILES['files']['size'][$count];
+			// 	if($this->upload->do_upload('file'))
+			// 	{
+			// 		$data = $this->upload->data();
+			// 		$output .='
+			// 			<div class="col-md-3">
+			// 				<img src= "'.base_url().'upload/'.$data["file_name"].'" class="img-responsive img-thumbnail"/>
+			// 			</div>
+			// 		';
+			// 	}
+			// }
+			// echo $output;
 
-			$upload_path = 'uploads/';
-			for( $x = 0 ; $x < count($_FILES['files']['name']);  $x++)
-			{
-				 $tmp_name = $_FILES['files']['tmp_name'][$x];
-				 move_uploaded_file($tmp_name,$upload_path.$_FILES['files']['name']);
-			}
+		}
+			// $upload_path = 'uploads/';
+			// for( $x = 0 ; $x < count($_FILES['files']['name']);  $x++)
+			// {
+			// 	 $tmp_name = $_FILES['files']['tmp_name'][$x];
+			// 	 move_uploaded_file($tmp_name,$upload_path.$_FILES['files']['name']);
+			// }
 	}
 
 	public function create_project()
@@ -49,10 +188,10 @@ class Property extends CI_CONTROLLER
 			); 
 
 
-			 
+
 			
 		
-		$title = urlencode($this->input->post('project_title'));
+		$title = urlencode($this->input->post('propertyTitle'));
 		
 		$phpFileUploadErrors = array(
 			0=>'There is no error, the file uploaded with success',
@@ -83,11 +222,10 @@ class Property extends CI_CONTROLLER
 		 $int = 0;
 
 		//FACADE
-		if(isset($_FILES['property_file']))
+		if(isset($_FILES['files']))
 		{
 
-			$file_array = reArrayFiles($_FILES['property_file']);
-
+			$file_array = reArrayFiles($_FILES['files']);			
 			for($i=0; $i<count($file_array); $i++)
 			{
 				
@@ -141,17 +279,17 @@ class Property extends CI_CONTROLLER
 			
 
 
-			if($this->pm->add_property($facade))
-			{
-				$result = "okay";
-				echo json_encode($result);
-			}
+			// if($this->pm->add_property($facade))
+			// {
+			// 	$result = "okay";
+			// 	echo json_encode($result);
+			// }
 
-			echo "<script>alert('Successfully Created a New Property')</script>";
+			// echo "<script>alert('Successfully Created a New Property')</script>";
 			
-			sleep(3);
+			// sleep(3);
 
-			redirect('admin/dashboard/'.$this->session->userdata('useremail'));
+			// redirect('admin/dashboard/'.$this->session->userdata('useremail'));
 
 		}//FACADE
 		

@@ -57,32 +57,34 @@ class Property_Model extends CI_Model
 	public function add_property($facade)
 	{
 
-		$propertydetails = array(
-			'property_type'=> $this->input->post('property_type'),
-			'property_facade' => $facade,
-			'property_title' => $this->input->post('property_title'),
-			'property_title_slug' =>urlencode($this->input->post('property_title')),
-			'property_address'=>$this->input->post('property_address'),
-			'property_bath' => $this->input->post('property_bath'),
-			'property_building'=>$this->input->post('property_building'),
-			'property_price' => $this->input->post('property_price'),
-			'property_garden' =>$this->input->post('property_garden'),
-			'property_pet' => $this->input->post('property_pet'),
-			'property_parking' => $this->input->post('property_parking'),
-			'property_bed' => $this->input->post('property_bed'),
-			'property_lot_area' =>$this->input->post('property_lot_area'),
-			'property_floor_area'=>$this->input->post('property_floor_area'),
-			'property_code'=> strtoupper($this->input->post('property_code')),
-			'property_additional_details'=> $this->input->post('property_additional_details'),
-			'property_date_posted' =>date('F j, y  g:i'),
-			'property_status' => $this->input->post('property_status'),
-		);
-
+		// $propertydetails = array(
+		// 	'property_type'=> $this->input->post('property_type'),
+		// 	'property_facade' => $facade,
+		// 	'property_title' => $this->input->post('property_title'),
+		// 	'property_title_slug' =>urlencode($this->input->post('property_title')),
+		// 	'property_address'=>$this->input->post('property_address'),
+		// 	'property_bath' => $this->input->post('property_bath'),
+		// 	'property_building'=>$this->input->post('property_building'),
+		// 	'property_price' => $this->input->post('property_price'),
+		// 	'property_garden' =>$this->input->post('property_garden'),
+		// 	'property_pet' => $this->input->post('property_pet'),
+		// 	'property_parking' => $this->input->post('property_parking'),
+		// 	'property_bed' => $this->input->post('property_bed'),
+		// 	'property_lot_area' =>$this->input->post('property_lot_area'),
+		// 	'property_floor_area'=>$this->input->post('property_floor_area'),
+		// 	'property_code'=> strtoupper($this->input->post('property_code')),
+		// 	'property_additional_details'=> $this->input->post('property_additional_details'),
+		// 	'property_date_posted' =>date('F j, y  g:i'),
+		// 	'property_status' => $this->input->post('property_status'),
+		// );
+		echo "<pre>";
+		print_r($facade);
+		echo "</pre><br>";
 
 		// echo "<pre>";
 		// print_r($propertydetails);
 		// echo "</pre>";
-		return $this->db->insert('property_tbl', $propertydetails);
+		//return $this->db->insert('property_tbl', $propertydetails);
 	}
 	public function update_project($facade,$id)
 	{

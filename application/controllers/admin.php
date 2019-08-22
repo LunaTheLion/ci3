@@ -563,6 +563,114 @@ class Admin extends CI_CONTROLLER
 		$this->load->view('admin/create-listing');
 		$this->load->view('admin/templates/footer');	
 	}
+
+	public function fill_description()
+	{
+		$info = array(
+			'property_code' => $this->input->post('propertyCode'),
+			'property_type' => $this->input->post('propertyType'),
+			'property_address' => $this->input->post('propertyAddress'),
+			'property_building' => $this->input->post('propertyBuilding'),
+		);
+
+
+		$data['title'] = "Fill Description";
+		$namepart = $this->session->userdata('useremail');
+		$get = $this->mm->acc($namepart);
+		$admin = array(
+		'admin_id' => $get->admin_id,
+		'admin_username'=>$get->admin_username,
+		'admin_type'=>$get->admin_type,
+		'admin_email' => $get->admin_email,
+		'admin_status' =>$get->admin_status, 
+		);
+		$this->session->set_userdata($admin);
+		$this->session->set_userdata($info);
+		$this->load->view('admin/templates/header', $admin, $info);
+		$this->load->view('admin/main-header');
+		$this->load->view('admin/main-sidebar');
+		$this->load->view('admin/create-listing-1');
+		$this->load->view('admin/templates/footer');
+	}
+
+	public function upload_images()
+	{
+		//submit images
+
+		$info = array(
+			'property_code' => $this->session->userdata('property_code'),
+			'property_type' => $this->session->userdata('property_type'),
+			'property_address' => $this->session->userdata('property_address'),
+			'property_building' => $this->session->userdata('property_building'),
+			
+			'property_bath' => $this->input->post('propertyBath'),
+			'property_parking' => $this->input->post('propertyParking'),
+			'property_floor_area' => $this->input->post('propertyFloorArea'),
+			'property_lot_area' => $this->input->post('propertyLotArea'),
+			'property_pet' => $this->input->post('propertyPet'),
+			'property_garden' => $this->input->post('propertyGarden'),
+			
+		);
+
+
+		$data['title'] = "Create Listing";
+		$namepart = $this->session->userdata('useremail');
+		$get = $this->mm->acc($namepart);
+		$admin = array(
+		'admin_id' => $get->admin_id,
+		'admin_username'=>$get->admin_username,
+		'admin_type'=>$get->admin_type,
+		'admin_email' => $get->admin_email,
+		'admin_status' =>$get->admin_status, 
+		);
+		$this->session->set_userdata($admin);
+		$this->session->set_userdata($info);
+		$this->load->view('admin/templates/header', $admin, $info);
+		$this->load->view('admin/main-header');
+		$this->load->view('admin/main-sidebar');
+		$this->load->view('admin/create-listing-2');
+		$this->load->view('admin/templates/footer');
+	}
+
+	public function configure_display()
+	{
+		$info = array(
+			'property_code' => $this->session->userdata('property_code'),
+			'property_type' => $this->session->userdata('property_type'),
+			'property_address' => $this->session->userdata('property_address'),
+			'property_building' => $this->session->userdata('property_building'),
+			
+			
+			'property_bath' => $this->session->userdata('property_bath'),
+			'property_parking' => $this->session->userdata('property_parking'),
+			'property_floor_area' => $this->session->userdata('property_floor_area'),
+			'property_lot_area' => $this->session->userdata('property_lot_area'),
+			'property_pet' => $this->session->userdata('property_pet'),
+			'property_garden' => $this->session->userdata('property_garden'),
+
+			'property_amenities' => $this->input->post('imageAmenities'),
+		);
+
+		$data['title'] = "Create Listing";
+		$namepart = $this->session->userdata('useremail');
+		$get = $this->mm->acc($namepart);
+		$admin = array(
+		'admin_id' => $get->admin_id,
+		'admin_username'=>$get->admin_username,
+		'admin_type'=>$get->admin_type,
+		'admin_email' => $get->admin_email,
+		'admin_status' =>$get->admin_status, 
+		);
+		$this->session->set_userdata($admin);
+		$this->session->set_userdata($info);
+		$this->load->view('admin/templates/header', $admin, $info);
+		$this->load->view('admin/main-header');
+		$this->load->view('admin/main-sidebar');
+		$this->load->view('admin/create-listing-3');
+		$this->load->view('admin/templates/footer');
+	}
+
+
 	public function ajax()
 	{
 		$data['title'] = "Create Listing";

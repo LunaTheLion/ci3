@@ -1,5 +1,6 @@
 
 <!-- jQuery 3 -->
+
 <script src="<?php echo base_url('assets/bower_components/jquery/dist/jquery.min.js') ?>"></script>
 <script src="<?php echo base_url('assets/bower_components/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -42,6 +43,7 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url('assets/dist/js/demo.js') ?>"></script>
 
+	
 </body>
 </html>
 <!-- data table -->

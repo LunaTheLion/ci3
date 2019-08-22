@@ -93,22 +93,21 @@
 
                ?>
 
-             <form method="POST" action="<?php echo base_url('admin/fill_description') ?>">
+            <form method="POST" action="<?php echo base_url('admin/upload_images') ?>">
              <div class="row">
               <div class="col-lg-12">
                 <div class="process">
                    <div class="process-row nav nav-tabs">
-                    <div class="process-step">
-                     <button type="submit" class="btn btn-info btn-circle"><i class="fa fa-info fa-3x"></i></button>
+                   <div class="process-step">
+                     <button type="submit" class="btn btn-default btn-circle"><i class="fa fa-info fa-3x"></i></button>
                      <p><small>Fill<br />information</small></p>
                     </div>
                     <div class="process-step">
-                     <button type="submit" class="btn btn-default btn-circle" ><i class="fa fa-file-text-o fa-3x"></i></button>
-                     
+                     <button type="submit" class="btn btn-info btn-circle"><i class="fa fa-file-text-o fa-3x"></i></button>
                      <p><small>Fill<br />description</small></p>
                     </div>
                     <div class="process-step">
-                     <button type="submit" class="btn btn-default btn-circle" ><i class="fa fa-image fa-3x"></i></button>
+                     <button type="submit" class="btn btn-default btn-circle"><i class="fa fa-image fa-3x"></i></button>
                      <p><small>Upload<br />images</small></p>
                     </div>
                     <div class="process-step">
@@ -123,66 +122,111 @@
                 </div>
                 <div class="tab-content">
 
-                  
-                  <!-- Step 1 ----------------------------------------------------------------------------------------------- -->
-               
-                   <div id="menu1" class="tab-pane fade active in">
+
+                   <!-- Step 2 ----------------------------------------------------------------------------------------------- -->
+
+                   <div id="menu2" class="tab-pane fade active in">
+
                     <div class="content">
                     <div class="row">
+                      <center><h3>Fill Description</h3></center>
                       <div class="col-lg-3"></div>
                       <div class="col-lg-6">
-                          <center><h3>Fill Information</h3></center>
+                          
                        <br>
-                        
+                    
                           <table>
                             <tr>
-                              <td style="width:20%; "><label style="margin-bottom: 10%;">Property Code:</label></td>
+                              <td style="width:20%; "><label style="margin-bottom: 10%;">Bedroom Count:</label></td>
+                              <td style="width: 40%;">
+                                <div class="form-group">
+                                  <input type="number" name="propertyBed" id="propertyBed" class="form-control" >
+                                </div>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td style="width:20%; "><label style="margin-bottom: 10%;"> Bathroom Count:</label> <small class="text-red"><b>*</b></small></td>
+                              <td style="width: 40%;">
+                                <div class="form-group">
+                                  <input type="number" name="propertyBath" id="propertyBath" class="form-control" required >
+                                  <div id="errorbath" type="hidden"><center><span id="errorspan" class="text-red"></span></center></div>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="width:20%; "><label style="margin-bottom: 10%;">Parking Count:</label></td>
+                              <td style="width: 40%;">
+                                <div class="form-group">
+                                  <input type="number" name="propertyParking" id="propertyParking" class="form-control">
+                                </div>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td style="width:20%; "><label style="margin-bottom: 10%;"> Floor Area:</label> <small class="text-red"><b>*</b></small></td>
+                              <td style="width: 40%;">
+                                <div class="form-group">
+                                  <input type="number" name="propertyFloorArea" id="propertyFloorArea" class="form-control" required>
+                                  <div id="errorfloor" type="hidden"><center><span id="errorspan" class="text-red"></span></center></div>
+                                  
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="width:20%; "><label style="margin-bottom: 10%;">Lot Area:</label></td>
+                              <td style="width: 40%;">
+                                <div class="form-group">
+                                  <input type="number" name="propertyLotArea" id="propertyLotArea" class="form-control">
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="width:20%; "><label style="margin-bottom: 10%;"></label></td>
+                              <td style="width: 40%;">
+                                <div class="form-group">
+                                  <input type="checkbox" name="propertyPet" id="propertyPet" value="1" checked="<?php 
+                                  if(!empty($this->session->flashdata('title')))
+                                  {
+                                   if($this->session->flashdata('pet') == 1)
+                                   {
+                                     echo "checked";
+                                   }
+                                   
+                                  }
+                                   ?>">Pet Friendly<br>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td style="width:20%; "><label style="margin-bottom: 10%;"></label></td>
                               <td style="width: 40%;">
                                 <div class="form-group">
                                   
-                                  <input type="text" name="propertyCode" Class="form-control" value="<?php echo strtoupper($pass) ?>">
+                                   <input type="checkbox" name="propertyGarden" id="propertyGarden" value="1" checked="<?php 
+                                   if($this->session->flashdata('garden') == 1)
+                                   {
+                                     echo "checked";
+                                   }
+                                   
+                                    ?>">With Garden  
                                 </div>
                               </td>
                             </tr>
-
-                            <tr>
-                              <td style="width:20%; "><label style="margin-bottom: 10%;">Property Type:</label></td>
-                              <td style="width: 40%;">
-                                <div class="form-group">
-                                  <select class="form-control" name="propertyType" >
-                                    <option value="Condominium">Condominium</option>
-                                    <option value="House and Lot">House and Lot</option>
-                                  </select>
-                                </div>
-                              </td>
-                            </tr> 
-                            <tr>
-                              <td style="width:20%; "><label style="margin-bottom: 10%;">Property Address:  </label> <small class="text-red"><b>*</b></small></td>
-                              <td style="width: 40%;">
-                                <div class="form-group">
-                                  <input type="text" name="propertyAddress" id="propertyAddress" class="form-control" required>
-                                 
-                                </div>
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <td style="width:20%; "><label style="margin-bottom: 10%;">Property Building:</label></td>
-                              <td style="width: 40%;">
-                                <div class="form-group">
-                                  <input type="text" name="propertyBuilding" id="propertyBuilding" class="form-control">
-                                </div>
-                              </td>
-                            </tr>
+                           
                           </table>
-                       
+                          
+                     
                       </div>
                       <div class="col-lg-3"></div>
-                    </div>
-                    </div>
-                    <ul class="list-unstyled list-inline pull-right">
 
-                     <li><button type="submit" class="btn btn-info" >Next <i class="fa fa-chevron-right"></i></button></li>
+                    </div>
+                    
+                    </div>
+
+                    <ul class="list-unstyled list-inline pull-right">
+                     <li><button type="button" class="btn btn-default prev-step"><i class="fa fa-chevron-left"></i> Back</button></li>
+                     <li><button type="submit" class="btn btn-info ">Next <i class="fa fa-chevron-right"></i></button></li>
                     </ul>
                    </div>
                  </form>
@@ -192,7 +236,11 @@
                 
             </div>
             <div class="box-footer">
-                
+                <?php 
+                echo "<pre>";
+                print_r($this->session->userdata());
+                echo "</pre>";
+                 ?>
              
             </div>
           </div>

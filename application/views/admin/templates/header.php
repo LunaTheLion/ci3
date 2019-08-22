@@ -49,6 +49,7 @@
   <!-- from footer -->
   <script src="<?php echo base_url('assets/bower_components/jquery/dist/jquery.min.js') ?>"></script>
   <script src="<?php echo base_url('assets/bower_components/morris.js/morris.min.js') ?>"></script>
+  
 </head>
 <style>
        input[type="file"] {
