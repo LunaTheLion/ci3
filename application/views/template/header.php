@@ -153,10 +153,10 @@
       <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
         <ul class="navbar-nav ml-auto">
            <li class="nav-item">
-            <a class="nav-link" href="<?= site_url()?>/home">Home</a>
+            <a class="nav-link" href="<?= site_url()?>home">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= site_url()?>/#section-property-rent">Properties for Rent</a>
+            <a class="nav-link" href="<?= site_url()?>#section-property-rent">Properties for Rent</a>
           </li>
           <!-- <li class="nav-item">
             <a class="nav-link" href="<?= site_url()?>/#section-property-sale">For Sale</a>
@@ -165,13 +165,13 @@
             <a class="nav-link " href="<?= site_url()?>/property-grid">Property</a>
           </li> -->
           <li class="nav-item">
-            <a class="nav-link" href="<?= site_url()?>/owner">List your Properties</a>
+            <a class="nav-link" href="<?= site_url()?>owner">List your Properties</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="<?= site_url()?>/about">Contact Us</a>
+            <a class="nav-link " href="<?= site_url()?>about">Contact Us</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="<?= site_url()?>/blog">Blog</a>
+            <a class="nav-link " href="<?= site_url()?>blog">Blog</a>
           </li>
          <!--  <li class="nav-item">
             <a class="nav-link" href="<?= site_url()?>/blog-grid">Blog</a>
