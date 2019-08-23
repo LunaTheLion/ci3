@@ -37,10 +37,6 @@
     Author: BootstrapMade.com
     License: https://bootstrapmade.com/license/
   ======================================================= -->
-  <!-- ELONA -->
-
-  <script src="<?php echo base_url('assets/bower_components/jquery/dist/jquery.min.js') ?>"></script>
-
 </head>
 
 <body>
@@ -155,12 +151,12 @@
         <span class="fa fa-search" aria-hidden="true"></span>
       </button>
       <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
-        <ul class=" navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto">
            <li class="nav-item">
-            <a class="nav-link" href="<?= site_url()?>home">Home</a>
+            <a class="nav-link" href="<?= site_url()?>/home">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= site_url()?>#section-property-rent">For Rent</a>
+            <a class="nav-link" href="<?= site_url()?>/#section-property-rent">Properties for Rent</a>
           </li>
           <!-- <li class="nav-item">
             <a class="nav-link" href="<?= site_url()?>/#section-property-sale">For Sale</a>
@@ -169,13 +165,13 @@
             <a class="nav-link " href="<?= site_url()?>/property-grid">Property</a>
           </li> -->
           <li class="nav-item">
-            <a class="nav-link" href="<?= site_url()?>owner">For Owners</a>
+            <a class="nav-link" href="<?= site_url()?>/owner">List your Properties</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="<?= site_url()?>about">About/Contact</a>
+            <a class="nav-link " href="<?= site_url()?>/about">Contact Us</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="<?= site_url()?>blog">Blog</a>
+            <a class="nav-link " href="<?= site_url()?>/blog">Blog</a>
           </li>
          <!--  <li class="nav-item">
             <a class="nav-link" href="<?= site_url()?>/blog-grid">Blog</a>

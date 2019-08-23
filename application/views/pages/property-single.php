@@ -3,9 +3,9 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 col-lg-8">
-          <div class="title-single-box" id="showcase">
-            <h1 class="title-single"><?php echo $this->session->flashdata('title');?></h1>
-            <h5 class="color-text-a">Php <?php echo $this->session->flashdata('price') ?></h5>
+          <div class="title-single-box">
+            <h1 class="title-single">Avida Cityflex</h1>
+            <h5 class="color-text-a">Php 10,000,000</h5>
           </div>
         </div>
         <!-- <div class="col-md-12 col-lg-4">
@@ -34,38 +34,15 @@
       <div class="row">
         <div class="col-md-12">
           <div id="property-single-carousel" class="owl-carousel owl-arrow">
-            <?php 
-              if(!empty($this->session->flashdata('title')))
-              {
-                 
-                    $dirname = "uploads/".$this->session->flashdata('title_slug')."/amenities";
-                    $files = glob($dirname."*.*");
-                    $dir_path =  "uploads/".$this->session->flashdata('title_slug')."/amenities";
-                    $extensions_array = array('jpg','png','jpeg');
-
-                    if(is_dir($dir_path))
-                    {
-                      $files = scandir($dir_path);
-                                      
-                      for($i = 0; $i < count($files); $i++)
-                      {
-                        if($files[$i] !='.' && $files[$i] !='..')
-                        {                     
-                          $file = pathinfo($files[$i]);
-                          //getting images from the root folder.  
-                        ?>
-
-                        
-                        <div class="carousel-item-b">
-                          <img  src="<?php echo base_url('uploads/'.$this->session->flashdata('title_slug')."/amenities/".$files[$i])?>" alt="<?php echo $files[$i] ?> ">
-                        </div>
-                    <?php
-                    }
-                    }
-                    }
-            
-              }
-             ?>
+            <div class="carousel-item-b">
+              <img src="<?= base_url()?>assets/img/slide-2.jpg" alt="">
+            </div>
+            <div class="carousel-item-b">
+              <img src="<?= base_url()?>assets/img/slide-3.jpg" alt="">
+            </div>
+            <div class="carousel-item-b">
+              <img src="<?= base_url()?>assets/img/slide-1.jpg" alt="">
+            </div>
           </div>
         </div>
             <div class="col-sm-12 quick-details text-center mb-3">
@@ -73,31 +50,26 @@
                 <i class="fa fa-circle fa-stack-1x"></i>
                 <i class="fa fa-bed fa-stack-1x"></i>
               </span>
-              <span class="bathroom mr-3"><?php echo $this->session->flashdata('bath') ?></span>
+              <span class="bathroom mr-3">2</span>
               <span class="fa-stack fa-1x">
                 <i class="fa fa-circle fa-stack-1x"></i>
                 <i class="fa fa-bath fa-stack-1x"></i>
               </span>
-              <span class="bedroom mr-3"><?php echo $this->session->flashdata('bed') ?></span>
-
-              <!-- if their is a garden available -->
-              <?php if(!empty($this->session->flashdata('garden'))){ echo '<span class="fa-stack fa-1x">
+              <span class="bedroom mr-3">2</span>
+              <span class="fa-stack fa-1x">
                 <i class="fa fa-circle fa-stack-1x"></i>
                 <i class="fa fa-leaf fa-stack-1x"></i>
               </span>
-              <span class="garden mr-3">'."✔ </span>"; }  ?>
-
-
-              <!-- If pet is allowed -->
-              <?php if(!empty($this->session->flashdata('pet'))){ echo '<span class="fa-stack fa-1x">
+              <span class="garden mr-3">✔</span>
+              <span class="fa-stack fa-1x">
                 <i class="fa fa-circle fa-stack-1x"></i>
                 <i class="fa fa-paw fa-stack-1x"></i>
               </span>
-              <span class="pet">'."✔</span>"; }  ?>
+              <span class="pet">✔</span>
             </div>
             <div class="col-sm-12 text-center mb-3">
-              <span class="mr-3">Lot Area: <b><?php echo $this->session->flashdata('lot_area') ?> SQM</b></span>
-              <span class="">Floor Area: <b><?php echo $this->session->flashdata('floor_area') ?> SQM</b></span>
+              <span class="mr-3">Lot Area: <b>150 SQM</b></span>
+              <span class="">Floor Area: <b>150 SQM</b></span>
             </div>
         
          <!--  <div class="col-md-5 col-lg-4">
@@ -168,7 +140,18 @@
             </div>
           </div>
           <div class="property-description">
-            <?php echo $this->session->flashdata('details') ?>
+            <p class="description">
+              Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit
+              neque, auctor sit amet
+              aliquam vel, ullamcorper sit amet ligula. Cras ultricies ligula sed magna dictum porta.
+              Curabitur aliquet quam id dui posuere blandit. Mauris blandit aliquet elit, eget tincidunt
+              nibh pulvinar quam id dui posuere blandit.
+            </p>
+            <p class="description no-margin">
+              Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Donec rutrum congue leo eget
+              malesuada. Quisque velit nisi,
+              pretium ut lacinia in, elementum id enim. Donec sollicitudin molestie malesuada.
+            </p>
           </div>
           <ul class="nav nav-pills-a nav-pills mb-3 section-t3" id="pills-tab" role="tablist">
             <li class="nav-item">
@@ -181,7 +164,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" id="pills-map-tab" data-toggle="pill" href="#pills-map" role="tab" aria-controls="pills-map"
-                aria-selected="false">Ubication</a>
+                aria-selected="false">Map</a>
             </li>
           </ul>
           <div class="tab-content" id="pills-tabContent">
@@ -219,18 +202,18 @@
           </div> -->
         </div>
         <div class="col-md-4 col-lg-4">
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="title-box-d">
-                <h3 class="title-d">Inquiry Form</h3>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12 mb-5">
-            <img src="<?= base_url('uploads/'.$this->session->flashdata('title_slug').'/facade/'.$this->session->flashdata('facade'))?>" alt="<?php echo $this->session->flashdata('facade') ?>" title="<?php echo $this->session->flashdata('title') ?>" class="img-fluid">
-          </div>
+          <!-- <div class="col-md-12 mb-5">
+            <img src="<?= base_url()?>assets/img/post-4.jpg" alt="" class="img-fluid">
+          </div> -->
           <div class="col-sm-12 contact">
-            <form class="form-a contactForm" action="<?php echo base_url() ?>" method="post" role="form">
+            <form class="form-a contactForm" action="" method="post" role="form">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="title-box-d">
+                    <h3 class="title-d">Inquiry Form</h3>
+                  </div>
+                </div>
+              </div>
               <div id="sendmessage">Your message has been sent. Thank you!</div>
               <div id="errormessage"></div>
               <div class="row">
@@ -272,12 +255,6 @@
                 </div>
                 <div class="col-sm-12">
                   <div class="form-group">
-                    <input type="url" name="subject" class="form-control form-control-sm" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
-                    <div class="validation"></div>
-                  </div>
-                </div>
-                <div class="col-sm-12">
-                  <div class="form-group">
                     <textarea name="message" class="form-control form-control-sm" name="message" cols="45" rows="4" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
                     <div class="validation"></div>
                   </div>
@@ -305,19 +282,3 @@
     </div> 
   </section>
   <!--/ Property Single End /-->
-<script type="text/javascript">
-  <script type="text/javascript">
-  function numberWithCommas(number) {
-    var parts = number.toString().split(".");
-    parts[0] = parts[0].replace(/\B(?=(\d{3})(?!\d))/g, ",");
-    return parts.join(".");
-}
-$(document).ready(function() {
-  $("#showcase h5").each(function() {
-    var num = $(this).text();
-    var commaNum = numberWithCommas(num);
-    $(this).text(commaNum);
-  });
-});
-</script>
-</script>

@@ -1,3 +1,5 @@
+
+
 <!--/ Carousel Star /-->
   <div class="intro intro-carousel">
     <!-- <div id="carousel" class="owl-carousel owl-theme">
@@ -55,32 +57,33 @@
         </div>
       </div>
     </div> -->
-    <header class="masthead"  style="background-image: url(<?= base_url()?>assets/img/slide-1.jpg)">
-    
-      <div class="intro-text">
-        <div class="intro-lead-in">Your Home. A Refuge in the City</div>
-        <div class="intro-heading">Find It Here</div>
+    <div class="masthead"  style="background-image: url(<?= base_url()?>assets/img/image-2.jpg)">
+      <div class="introtext">
+        <div class="intro-text">
+          <div class="intro-lead-in">Your Home. A Refuge in the City</div>
+          <div class="intro-heading">Find It Here</div>
+        </div>
+        <div class="intro-text-2">
+          <div class="intro-lead-in-2">Bonifacio Global City. Makati. Alabang</div>
+        </div>
       </div>
-      <div class="intro-text-2">
-        <div class="intro-lead-in-2">Bonifacio Global City. Makati. Alabang</div>
-      </div>
-   
-  </header>
+    </div>
   </div>
 <!--/ Carousel end /-->
 
 <!--/ Services Star /-->
-  <section id="services" class="section-services section-t8" style="background-image: url(<?= base_url()?>assets/img/slide-1.jpg)">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <div class="title-wrap justify-content-between">
-            <div class="title-a">Let us take you home!
+<div id="services" class="section-services" style="background-image: url(<?= base_url()?>assets/img/image-blurred.jpg)">
+    <div class="services-bg section-t8">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <div class="title-wrap justify-content-between">
+              <div class="title-a">Let us take you Home!
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="row">
+        <div class="row">
         <div class="col-md-6 text-center">
           <div class="card-box-c foo">
            <!--  <div class="card-header-c"></div> -->
@@ -104,7 +107,7 @@
             <div class="card-footer-c">
               <a href="#section-property-rent" class="link-c link-icon">
                 <!-- <span class="ion-ios-arrow-forward"></span> -->
-                <button type="button" class="btn btn-outline">View Listings</button>
+                <button type="button" class="btn btn-warning">View Listings</button>
               </a>
             </div>
           </div>
@@ -120,8 +123,8 @@
               <i class="fa fa-users fa-stack-1x card-box-fa"></i>
             </span>
             <div class="card-title-c align-self-center">
-              <h3 class="title-c">Property Owner?</h3>
-              <h3 class="title-c">Talk to Us!</h3>
+              <h3 class="title-c">List Your Properties</h3>
+              <!-- <h3 class="title-c">Here</h3> -->
             </div>
             <div class="card-body-c">
               <p class="content-c">
@@ -133,7 +136,7 @@
             <div class="card-footer-c">
               <a href="<?= site_url()?>/owner" class="link-c link-icon">
                 <!-- <span class="ion-ios-arrow-forward"></span> -->
-                <button type="button" class="btn btn-outline">Read More</button>
+                <button type="button" class="btn btn-warning">List Here</button>
               </a>
             </div>
           </div>
@@ -159,9 +162,10 @@
             </div>
           </div>
         </div> -->
+        </div>
       </div>
-    </div>
-  </section>
+    </div>  
+</div>
 <!--/ Services End /-->
 
 <!--/ Intro Single star /-->
@@ -193,7 +197,6 @@
             <div class="title-box">
               <h2 class="title-a">For Rent Properties</h2>
             </div>
-           
            <!--  <div class="title-link">
               <a href="#">All Property
                 <span class="ion-ios-arrow-forward"></span>
@@ -202,12 +205,138 @@
           </div>
         </div>
       </div>
-      <div class="listings-box border-bottom border-dark mb-5" id="showcase">
-      
+      <!-- <div class="row mb-5">
+          <div class="col-lg-12">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-studio">Studio</li>
+              <li data-filter=".filter-1br">1 BR</li>
+              <li data-filter=".filter-2br">2 BR</li>
+              <li data-filter=".filter-3br">3 BR</li>
+            </ul>
+          </div>
+        </div> -->
+      <div class="portfolio-container">
+        <div class="listings-box border-bottom border-dark mb-5 portfolio-item filter-studio wow fadeInUp">
+          <div class="row">
+            <div class="col-md-4 mb-3"> 
+              <img class="tab-img" src="<?= base_url()?>assets/img/post-4.jpg" alt="Card image cap">
+            </div>
+            <div class="table-data col-md-8 mb-3">
+              <h6 class="price mb-3">Price: Php 25,000/mo.</h6>
+              <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
+              <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
+              <p><span>• </span></p>
+              <p><span>• </span></p>
+              <p><span>• </span></p>
+              <div class="listing-button text-center">
+                <a href="<?= site_url()?>/property-single" class="link-c link-icon mr-3 position-static">
+                  <button type="button" class="btn btn-primary">More Photos</button>
+                </a>
+                <a href="<?= site_url()?>/property-single/#inquiry-form" class="link-c link-icon">
+                  <button type="button" class="btn btn-warning">Inquire</button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <div class="listings-box border-bottom border-dark mb-5 portfolio-item filter-1br wow fadeInUp">
+        <div class="row">
+          <div class="col-md-4 mb-3"> 
+            <img class="tab-img" src="<?= base_url()?>assets/img/post-4.jpg" alt="Card image cap">
+          </div>
+          <div class="table-data col-md-8 mb-3">
+            <h6 class="price mb-3">Price: Php 25,000/mo.</h6>
+            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
+            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
+            <p><span>• </span></p>
+            <p><span>• </span></p>
+            <p><span>• </span></p>
+            <div class="listing-button text-center">
+              <a href="<?= site_url()?>/property-single" class="link-c link-icon mr-3 position-static">
+                <button type="button" class="btn btn-primary">More Photos</button>
+              </a>
+              <a href="<?= site_url()?>/property-single/#inquiry-form" class="link-c link-icon">
+                <button type="button" class="btn btn-warning">Inquire</button>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
-
+      <div class="listings-box border-bottom border-dark mb-5 portfolio-item filter-2br wow fadeInUp">
+        <div class="row">
+          <div class="col-md-4 mb-3"> 
+            <img class="tab-img" src="<?= base_url()?>assets/img/post-4.jpg" alt="Card image cap">
+          </div>
+          <div class="table-data col-md-8 mb-3">
+            <h6 class="price mb-3">Price: Php 25,000/mo.</h6>
+            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
+            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
+            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
+            <p><span>• </span></p>
+            <p><span>• </span></p>
+            <div class="listing-button text-center">
+              <a href="<?= site_url()?>/property-single" class="link-c link-icon mr-3 position-static">
+                <button type="button" class="btn btn-primary">More Photos</button>
+              </a>
+              <a href="<?= site_url()?>/property-single/#inquiry-form" class="link-c link-icon">
+                <button type="button" class="btn btn-warning">Inquire</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="listings-box border-bottom border-dark mb-5 portfolio-item filter-3br wow fadeInUp">
+        <div class="row">
+          <div class="col-md-4 mb-3"> 
+            <img class="tab-img" src="<?= base_url()?>assets/img/post-4.jpg" alt="Card image cap">
+          </div>
+          <div class="table-data col-md-8 mb-3">
+            <h6 class="price mb-3">Price: Php 25,000/mo.</h6>
+            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
+            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
+            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
+            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
+            <p><span>• </span></p>
+            <div class="listing-button text-center">
+              <a href="<?= site_url()?>/property-single" class="link-c link-icon mr-3 position-static">
+                <button type="button" class="btn btn-primary">More Photos</button>
+              </a>
+              <a href="<?= site_url()?>/property-single/#inquiry-form" class="link-c link-icon">
+                <button type="button" class="btn btn-warning">Inquire</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="listings-box border-bottom border-dark mb-5 portfolio-item filter-1br wow fadeInUp">
+        <div class="row">
+          <div class="col-md-4 mb-3"> 
+            <img class="tab-img" src="<?= base_url()?>assets/img/post-4.jpg" alt="Card image cap">
+          </div>
+          <div class="table-data col-md-8 mb-3">
+            <h6 class="price mb-3">Price: Php 25,000/mo.</h6>
+            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
+            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
+            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
+            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
+            <p><span>• </span>Ample ventilation and daylight enters the unit through the custom windows also providing the city view</p>
+            <div class="listing-button text-center">
+              <a href="<?= site_url()?>/property-single" class="link-c link-icon mr-3 position-static">
+                <button type="button" class="btn btn-primary">More Photos</button>
+              </a>
+              <a href="<?= site_url()?>/property-single/#inquiry-form" class="link-c link-icon">
+                <button type="button" class="btn btn-warning">Inquire</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
     </div>
 </section>
+
+
 <!-- <section id="section-property-sale" class="section-t8">
     <div class="container">
       <div class="row">
@@ -793,76 +922,3 @@
   <!--/ Testimonials End /-->
 
  
-<script type="text/javascript">
-  $('document').ready(function(){
-
-
-function numberWithCommas(number) {
-    var parts = number.toString().split(".");
-    parts[0] = parts[0].replace(/\B(?=(\d{3})(?!\d))/g, ",");
-    return parts.join(".");
-}
-$(document).ready(function() {
-  $("#showcase h6").each(function() {
-    var num = $(this).text();
-    var commaNum = numberWithCommas(num);
-    $(this).text(commaNum);
-  });
-});
-
-    all_properties();
-    function all_properties()
-    {
-      $.ajax({
-        type:'ajax',
-        url: '<?php echo base_url()?>Main/showproperties',
-        async: false,
-        dataType:'json',
-        success: function(data)
-        {
-          console.log(data);
-          var html = '';
-          var i ;
-           for(i=0;i<data.length;i++)
-           {
-            html += '<div class="row">'+
-                    '<div class="col-md-4 mb-3">'+
-                    '<img class="tab-img" src="<?= base_url()?>uploads/'+data[i].property_title_slug+'/facade/'+data[i].property_facade+'" alt="'+data[i].property_facade+'"></div>'+
-                    '<div class="table-data col-md-8 mb-3">'+
-                    '<h6 class="price mb-3">Price: Php '+data[i].property_price+' mo.</h6>'+
-                    '<p><span>• </span>'+data[i].property_title+' </p>'+
-                    '<p><span>• </span> Bedroom : '+data[i].property_bed+' </p>'+
-                    '<p><span>• </span> Parking Slot: '+data[i].property_parking+'</p>'+
-                    '<p><span>• </span> Floor Area : '+data[i].property_floor_area+' sqm </p>'+
-                    '<a href="<?= site_url()?>main/propertysingle/'+data[i].property_id+'/'+data[i].property_title_slug+'" class="link-c link-icon mr-3 position-static">'+
-                    '<button type="button" class="btn btn-outline-primary">More Photos</button></a>'+
-                    ' <a href="<?= site_url()?>main/propertysingle/'+data[i].property_id+'/'+data[i].property_title_slug+'/#inquiry-form" class="link-c link-icon">'+
-                    '<button type="button" class="btn btn-outline-warning">Inquire</button></a></div></div><hr>'
-
-           }$('#showcase').html(html);
-        },
-        error: function()
-        {
-          alert('Could not Load Properties');
-        }
-      })
-    }
-  });
-</script>
-
-<!-- 
-  
-          
-        
-    
-  
-  
- 
-
-  
-
-    
-    
-    -->
-    
-   

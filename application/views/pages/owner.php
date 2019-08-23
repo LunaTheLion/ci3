@@ -1,11 +1,11 @@
 <!--/ Intro Single star /-->
-  <section class="intro-single text-center">
+  <section class="owner-single text-center" style="background-image: url(<?= base_url()?>assets/img/image-2.jpg)">
     <div class="container">
       <div class="row">
         <div class="col-md-12 col-lg-12">
-          <div class="title-single-box">
-            <h1 class="title-single">ADVERTISE YOUR UNIT WITH US</h1>
-            <span class="color-text-a">Aut voluptas consequatur unde sed omnis ex placeat quis eos. Aut natus officia corrupti qui autem fugit consectetur quo. Et ipsum eveniet laboriosam voluptas beatae possimus qui ducimus. Et voluptatem deleniti. Voluptatum voluptatibus amet. Et esse sed omnis inventore hic culpa.</span>
+          <div class="owner-single-box">
+            <h1 class="owner-single-a">ADVERTISE YOUR UNIT WITH US</h1>
+            <span class="owner-text-a">Aut voluptas consequatur unde sed omnis ex placeat quis eos. Aut natus officia corrupti qui autem fugit consectetur quo. Et ipsum eveniet laboriosam voluptas beatae possimus qui ducimus. Et voluptatem deleniti. Voluptatum voluptatibus amet. Et esse sed omnis inventore hic culpa.</span>
           </div>
         </div>
         <!-- <div class="col-md-12 col-lg-4">
@@ -23,9 +23,9 @@
       </div>
     </div>
   </section>
-  <!--/ Intro Single End /-->
+<!--/ Intro Single End /-->
 
-  <!--/ Contact Star /-->
+<!--/ Contact Star /-->
   <section class="contact">
     <div class="container">
       <div class="row">
@@ -49,24 +49,20 @@
             </p>
           </div>
           <div class="col-sm-12 mt-5">
-            <div class="row">
-              <span>EMAIL</span>
-              <div class="col-sm-12 text-center">
-                <span>
-                  <a href="<?= site_url()?>/property-single/#inquiry-form" class="link-c link-icon">
-                    <button type="button" class="btn btn-outline-warning">francisco@gmail.com</button>
-                  </a>
-                </span>
-              </div>
-              <span class="mt-3">SMS/CALL/VIBER</span>
-              <div class="col-sm-12 text-center">
-                <span>
-                  <a href="<?= site_url()?>/property-single" class="link-c link-icon mr-3">
-                    <button type="button" class="btn btn-outline-primary">0919999999</button>
-                  </a>
-                </span>
-              </div>
-            </div>
+            <span class="col-sm-6">EMAIL:</span>
+            <span class="col-sm-6 ml-5 pull-right">
+              <a href="<?= site_url()?>/property-single/#inquiry-form" class="link-c link-icon text-center">
+                  <button type="button" class="btn btn-warning">francisco@gmail.com</button>
+                </a>
+            </span>
+          </div>
+          <div class="col-sm-12 mt-5">
+            <span class="col-sm-6">SMS/CALL/VIBER:</span>
+            <span class="col-sm-6 ml-5 pull-right">
+              <a href="<?= site_url()?>/property-single" class="link-c link-icon">
+                  <button type="button" class="btn btn-primary">0919999999</button>
+              </a>
+            </span>
           </div>  
         </div>
         
@@ -80,44 +76,44 @@
           </div> -->
           <div class="col-sm-5 section-t8">
             <div class="row">
-              <div class="col-sm-12">
-                <div class="title-box-d">
-                  <h3 class="title-d">Inquiry Form</h3>
-                </div>
-              </div>
-            </div>
-            <div class="row">
               <div class="col-md-12">
                 <form class="form-a contactForm" action="" method="post" role="form">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="title-box-d">
+                        <h3 class="title-d">Registration Form</h3>
+                      </div>
+                    </div>
+                  </div>
                   <div id="sendmessage">Your message has been sent. Thank you!</div>
                   <div id="errormessage"></div>
                   <div class="row">
                     <div class="col-md-6 mb-3">
                       <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" name="name" class="form-control form-control-sm form-control-a" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                        <!-- <label for="name">Name:</label> -->
+                        <input type="text" name="name" class="form-control form-control-sm form-control-a" data-rule="minlen:4" data-msg="Please enter at least 4 chars" placeholder="Your Name">
                         <div class="validation"></div>
                       </div>
                     </div>
                     <div class="col-md-6 mb-3">
                       <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input name="email" type="email" class="form-control form-control-sm form-control-a" data-rule="email" data-msg="Please enter a valid email">
+                        <!-- <label for="email">Email:</label> -->
+                        <input name="email" type="email" class="form-control form-control-sm form-control-a" data-rule="email" data-msg="Please enter a valid email" placeholder="Your Email">
                         <div class="validation"></div>
                       </div>
                     </div>
                     <div class="col-md-6 mb-3">
                       <div class="form-group">
-                        <label for="number">Phone Number:</label>
-                        <input name="number" type="text" class="form-control form-control-sm form-control-a" data-rule="number" data-msg="Please enter a valid mobile number">
+                        <!-- <label for="number">Phone Number:</label> -->
+                        <input name="number" type="text" class="form-control form-control-sm form-control-a" data-rule="number" data-msg="Please enter a valid mobile number" placeholder="Your Phone Number">
                         <div class="validation"></div>
                       </div>
                     </div>
                     <div class="col-md-6 mb-3">
                       <div class="form-group">
-                        <label for="unit-type">Unit Type:</label>
+                        <!-- <label for="unit-type">Unit Type:</label> -->
                         <select name="unit-type" type="text" class="form-control form-control-sm form-control-a" data-rule="unit-type" data-msg="Please select Unit Type">
-                          <option>-</option>
+                          <option selected disabled>Unit Type</option>
                           <option>Studio</option>
                           <option>1 BR</option>
                           <option>2 BR</option>
@@ -126,11 +122,11 @@
                         <div class="validation"></div>
                       </div>
                     </div>
-                    <div class="col-md-6 mb-3">
+                    <div class="col-md-12 mb-3">
                       <div class="form-group">
-                        <label for="owner-type">You are:</label>
+                        <!-- <label for="owner-type">User Type:</label> -->
                         <select name="owner-type" type="text" class="form-control form-control-sm form-control-a" data-rule="owner-type" data-msg="Please select Owner Type">
-                          <option>-</option>
+                          <option selected disabled>User Type</option>
                           <option>Owner</option>
                           <option>Broker</option>
                           <option>Representative</option>
@@ -141,22 +137,22 @@
                     </div>
                     <div class="col-md-12 mb-3">
                       <div class="form-group">
-                        <label for="unit-number">Unit Number (Optional):To avoid duplicates (will not be published online)</label>
-                        <input type="text" name="unit-number" class="form-control form-control-sm form-control-a" data-rule="" data-msg="Please enter unit number">
+                        <!-- <label for="unit-number">Unit Number (Optional):To avoid duplicates (will not be published online)</label> -->
+                        <input type="text" name="unit-number" class="form-control form-control-sm form-control-a" data-rule="" data-msg="Please enter unit number" placeholder="Unit Number (Optional):To avoid duplicates">
                         <div class="validation"></div>
                       </div>
                     </div>
                     <div class="col-md-12 mb-3">
                       <div class="form-group">
-                        <label for="condo">Name of Condominium:</label>
-                        <input type="text" name="condo" class="form-control form-control-sm form-control-a" data-rule="" data-msg="Please enter name of condominium">
+                        <!-- <label for="condo">Name of Condominium:</label> -->
+                        <input type="text" name="condo" class="form-control form-control-sm form-control-a" data-rule="" data-msg="Please enter name of condominium" placeholder="Name of Condominium">
                         <div class="validation"></div>
                       </div>
                     </div>
                     <div class="col-md-12 mb-3">
                       <div class="form-group">
-                        <label for="message">Messsage:</label>
-                        <textarea name="message" class="form-control" name="message" cols="45" rows="8" data-rule="required" data-msg="Please write something for us"></textarea>
+                        <!-- <label for="message">Messsage:</label> -->
+                        <textarea name="message" class="form-control form-control-sm" name="message" cols="45" rows="8" data-rule="required" data-msg="Please write something for us" placeholder="Your Message Here"></textarea>
                         <div class="validation"></div>
                       </div>
                     </div>
@@ -248,4 +244,4 @@
       </div>
     </div>
   </section>
-  <!--/ Contact End /-->
+<!--/ Contact End /-->

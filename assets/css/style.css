@@ -954,6 +954,41 @@ a:hover {
   font-size: 2.2rem;
 }
 
+.owner-single {
+  padding: 150px 10px 56px 0px;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-size: cover;
+  width: 100%;
+  height: 60vh;
+}
+
+.onwer-single .owner-single-box {
+  padding: 2rem;
+}
+
+.owner-single .owner-single-box {
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  box-shadow: 0 0 10px 3px rgb(255, 255, 255);
+  -webkit-box-shadow: 0 0 10px 3px rgb(255, 255, 255);
+  -moz-box-shadow: 0 0 10px 3px rgb(255, 255, 255);
+  position: absolute;
+  text-align: center;
+  padding: 35px 25px 25px 25px;
+}
+
+.owner-single .owner-single-box .owner-text-a{
+  color: #f2f2f2;
+}
+
+.owner-single .owner-single-box .owner-single-a {
+  font-weight: 600;
+  font-size: 2.2rem;
+  color: #f2f2f2;
+}
+
 .home-intro-single {
   padding: 5rem 0 3rem;
 }
@@ -1297,7 +1332,9 @@ a:hover {
   background-position: center center;
   background-size: cover;
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  /* filter: blur(4px);
+  -webkit-filter: blur(4px); */
 }
 
 .card-box-c {
@@ -1336,7 +1373,6 @@ a:hover {
 #services .title-a{
   color: white;
   font-size: 50px;
-  font-style: italic;
   font-family: 'Droid Serif',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
 }
 .content-c{
@@ -1706,12 +1742,12 @@ footer .credits {
   box-shadow: 0 0 10px 3px rgba(153, 204, 255, 1);
   -webkit-box-shadow: 0 0 10px 3px rgba(153, 204, 255, 1);
   -moz-box-shadow: 0 0 10px 3px rgba(153, 204, 255, 1);
-  padding: 10px;
+  padding: 30px;
   opacity: 1px;
 }
 #nav-pic img{
-  width: 130px !important;
-  height: 50px !important;
+  width: 133px !important;
+  height: 55px !important;
 }
 
 .tab-img{
@@ -1788,7 +1824,7 @@ footer .credits {
 
   .navbar-default.navbar-trans .nav-item,
   .navbar-default.navbar-reduce .nav-item {
-    margin-left: 15px;
+    margin-left: 48px;
   }
 
   .navbar-default .dropdown .dropdown-menu {
@@ -1828,8 +1864,20 @@ footer .credits {
     font-size: 1.5rem;
   }
 
+  .intro-single {
+    padding: 9rem 0 3rem;
+  }
+
   .intro-single .title-single-box .title-single {
     font-size: 2.1rem;
+  }
+  .owner-single .owner-single-box .owner-single-a {
+    font-size: 2.1rem;
+    color: #f2f2f2;
+  }
+
+  .intro-single .owner-single-box .owner-text-a{
+    color: #f2f2f2;
   }
 
   .grid .card-box-a,
@@ -1926,6 +1974,15 @@ footer .credits {
   .sinse-box .sinse-title {
     font-size: 1.8rem;
   }
+
+  .section-services{
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+  }
 }
 
 @media (min-width: 768px) and (min-width: 768px) {
@@ -1969,8 +2026,17 @@ footer .credits {
     padding-top: 3rem;
   }
 
+  .owner-single .owner-single-box .owner-text-a{
+    color: #f2f2f2;
+  }
+
   .intro-single .title-single-box .title-single {
     font-size: 2.5rem;
+  }
+  
+  .owner-single .owner-single-box .owner-single-a {
+    font-size: 2.5rem;
+    color: #f2f2f2;
   }
 
   .card-box-a .price-a,
@@ -2077,8 +2143,18 @@ footer .credits {
     padding: 4rem 0 2.5rem 0;
   }
 
+  .owner-single {
+    padding: 140px 25px 90px 10px;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+  }
+
   .intro-single {
-    padding-top: 9rem;
+    padding: 8rem 0 3rem;
   }
 
   .card-box-a,
@@ -2119,7 +2195,7 @@ footer .credits {
   }
 }
 
-header.masthead {
+.masthead {
   text-align: center;
   color: white;
   background-repeat: no-repeat;
@@ -2130,64 +2206,96 @@ header.masthead {
   height: 100vh;
 }
 
-header.masthead .intro-text {
-  padding-top: 100px;
-  padding-bottom: 100px;
+.masthead .intro-text {
+  padding-top: 160px;
+  padding-bottom: 0px;
 }
 
-header.masthead .intro-text-2 {
-  padding-top: 290px;
-  padding-bottom: 50px;
+.masthead .intro-text-2 {
+  padding-top: 225px;
+  padding-bottom: 0px;
 }
 
-header.masthead .intro-text .intro-lead-in {
+.masthead .intro-text .intro-lead-in {
   font-size: 25px;
   font-weight: 700;
-  line-height: 22px;
+  line-height: 45px;
   font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-header.masthead .intro-text-2 .intro-lead-in-2 {
+.masthead .intro-text-2 .intro-lead-in-2 {
   font-size: 25px;
-  line-height: 22px;
+  line-height: 35px;
   font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-header.masthead .intro-text .intro-heading {
+.masthead .intro-text .intro-heading {
   font-size: 35px;
   font-weight: 700;
-  line-height: 50px;
+  line-height: 40px;
   font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
 @media (min-width: 768px) {
-  header.masthead .intro-text {
+  .masthead .intro-text {
     padding-top: 100px;
     padding-bottom: 200px;
   }
 
-  header.masthead .intro-text-2 {
-    padding-top: 180px;
-    padding-bottom: 20px;
+  .masthead .intro-text-2 {
+    padding-top: 90px;
+    padding-bottom: 118px;
   }
 
-  header.masthead .intro-text .intro-lead-in {
+  .masthead .intro-text .intro-lead-in {
     font-size: 50px;
     font-weight: 700;
     line-height: 40px;
     font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   }
 
-  header.masthead .intro-text-2 .intro-lead-in-2 {
+  .masthead .intro-text-2 .intro-lead-in-2 {
     font-size: 50px;
     line-height: 40px;
     font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   }
 
-  header.masthead .intro-text .intro-heading {
+  .masthead .intro-text .intro-heading {
     font-size: 65px;
     font-weight: 700;
     line-height: 75px;
     font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   }
+}
+
+#portfolio-flters {
+  padding: 0;
+  margin: 5px 0 35px 0;
+  list-style: none;
+  text-align: center;
+}
+
+#portfolio-flters li {
+  cursor: pointer;
+  margin: 15px 15px 15px 0;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  line-height: 20px;
+  color: #666666;
+  border-radius: 4px;
+  text-transform: uppercase;
+  background: #fff;
+  margin-bottom: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+#portfolio-flters li:hover,
+#portfolio-flters li.filter-active {
+  background: #99ccff;
+  color: #fff;
+}
+
+#portfolio-flters li:last-child {
+  margin-right: 0;
 }

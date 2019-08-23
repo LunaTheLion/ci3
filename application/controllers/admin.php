@@ -603,7 +603,7 @@ class Admin extends CI_CONTROLLER
 			'property_type' => $this->session->userdata('property_type'),
 			'property_address' => $this->session->userdata('property_address'),
 			'property_building' => $this->session->userdata('property_building'),
-			
+			'property_category' => $this->session->userdata('property_category'),
 			'property_bath' => $this->input->post('propertyBath'),
 			'property_parking' => $this->input->post('propertyParking'),
 			'property_floor_area' => $this->input->post('propertyFloorArea'),

@@ -158,7 +158,7 @@ class Admin_model extends CI_Model{
 	public function properties()
 	{
 		$this->db->select('*');
-		$this->db->order_by('property_date_posted', 'DESC');
+		$this->db->order_by('property_date_edited', 'DESC');
 		$this->db->where("(property_status='active' OR property_status='pending')");
 		$query = $this->db->get('property_tbl');
 		return $query->result();
@@ -166,7 +166,7 @@ class Admin_model extends CI_Model{
 	public function all_properties()
 	{
 		$this->db->select('*');
-		$this->db->order_by('property_date_posted', 'DESC');
+		$this->db->order_by('property_date_edited', 'DESC');
 		$this->db->where("(property_status='active' OR property_status='pending')");
 		$query = $this->db->get('property_tbl');
 		return $query;
@@ -174,7 +174,7 @@ class Admin_model extends CI_Model{
 	public function all_sales()
 	{
 		$this->db->select('*');
-		$this->db->order_by('property_date_posted', 'DESC');
+		$this->db->order_by('property_date_edited', 'DESC');
 		$this->db->where("(property_status='active' OR property_status='pending')");
 		$this->db->where('property_status', 'Sale Only');
 		$query = $this->db->get('property_tbl');
@@ -183,7 +183,7 @@ class Admin_model extends CI_Model{
 	public function all_rents()
 	{
 		$this->db->select('*');
-		$this->db->order_by('property_date_posted', 'DESC');
+		$this->db->order_by('property_date_edited', 'DESC');
 		$this->db->where("(property_status='active' OR property_status='pending')");
 		$this->db->where('property_status', 'Rent Only');
 		$query = $this->db->get('property_tbl');

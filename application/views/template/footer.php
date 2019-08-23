@@ -5,7 +5,7 @@
         <div class="col-sm-12 col-md-4">
           <div class="widget-a">
             <div class="w-header-a">
-              <h3 class="w-title-a text-brand">EstateAgency</h3>
+              <h3 class="w-title-a text-brand">Francisco Consolidated Properties</h3>
             </div>
             <div class="w-body-a">
               <p class="w-text-a color-text-a">
@@ -95,14 +95,17 @@
               <li class="list-inline-item">
                 <a href="<?= site_url()?>/home">Home</a>
               </li>
-              <!-- <li class="list-inline-item">
-                <a href="<?= site_url()?>/property-grid">Property</a>
-              </li> -->
               <li class="list-inline-item">
-                <a href="<?= site_url()?>/about">About/Contact</a>
+                <a href="<?= site_url()?>/#section-property-rent">Properties for Rent</a>
               </li>
               <li class="list-inline-item">
-                <a href="<?= site_url()?>/owner">Owner Registration</a>
+                <a href="<?= site_url()?>/owner">List your Properties</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="<?= site_url()?>/about">Contact Us</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="<?= site_url()?>/blog">Blog</a>
               </li>
             </ul>
           </nav>
@@ -138,7 +141,7 @@
           <div class="copyright-footer">
             <p class="copyright color-text-a">
               &copy; Copyright
-              <span class="color-a">Francisco</span> All Rights Reserved.
+              <span class="color-a">Francisco Consolidated Properties</span> All Rights Reserved.
             </p>
           </div>
           <!-- <div class="credits">
@@ -171,11 +174,16 @@
 
   <!-- Template Main Javascript File -->
   <script src="<?php echo base_url()?>assets/js/main.js"></script>
-  <script src="<?php echo base_url()?>assets/js/style.js"></script>
+  
   <script src="<?php echo base_url()?>assets/js/jquery-3.3.1.js"></script>
   <script src="<?php echo base_url()?>assets/js/jquery.dataTables.min.js"></script>
   <script src="<?php echo base_url()?>assets/js/dataTables.bootstrap4.min.js"></script>
   <script src="<?php echo base_url()?>assets/js/dataTables.responsive.min.js"></script>
   <script src="<?php echo base_url()?>assets/js/responsive.bootstrap4.min.js"></script>
+  <script src="<?php echo base_url()?>assets/js/isotope.pkgd.js"></script>
+  <script src="<?php echo base_url()?>assets/js/isotope.pkgd.min.js"></script>
+  
+  <script src="<?php echo base_url()?>assets/js/style.js"></script>
+ 
 </body>
 </html>
