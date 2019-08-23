@@ -69,7 +69,7 @@ class Property extends CI_CONTROLLER
 		if(isset($_FILES['fileToUpload']))
 		{
 			$title = $this->session->userdata('property_code');
-			$target_dir = "uploads/".$title."/facade/";
+			// $target_dir = "uploads/".$title."/facade/";
 			$facade = $_FILES['fileToUpload']['name'];
 			$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 			$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -91,9 +91,9 @@ class Property extends CI_CONTROLLER
 			$this->pm->add_property($facade, $title);
 			// echo "<script>alert('Successfully Created a New Property')</script>";
 			
-			// sleep(3);
+			sleep(3);
 
-			// redirect('admin/dashboard/'.$this->session->userdata('useremail'));
+			redirect('admin/dashboard/'.$this->session->userdata('useremail'));
 		}
 		
 	}

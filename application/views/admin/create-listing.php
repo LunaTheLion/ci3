@@ -136,11 +136,23 @@
                         
                           <table>
                             <tr>
+                              <td style="width:20%; "><label style="margin-bottom: 10%;">Property Type:</label></td>
+                              <td style="width: 40%;">
+                                <div class="form-group">
+                                <select name="propertyType" class="form-control">
+                                  <option value="Sale">Sale</option>
+                                  <option value="Rent">Rent</option>
+                                </select> 
+                                 
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
                               <td style="width:20%; "><label style="margin-bottom: 10%;">Property Code:</label></td>
                               <td style="width: 40%;">
                                 <div class="form-group">
                                   
-                                  <input type="text" name="propertyCode" Class="form-control" value="<?php echo strtoupper($pass) ?>">
+                                  <input type="text" readonly name="propertyCode" Class="form-control" value="<?php echo strtoupper($pass) ?>">
                                 </div>
                               </td>
                             </tr>
@@ -149,7 +161,7 @@
                               <td style="width:20%; "><label style="margin-bottom: 10%;">Property Type:</label></td>
                               <td style="width: 40%;">
                                 <div class="form-group">
-                                  <select class="form-control" name="propertyType" >
+                                  <select class="form-control" name="propertyCategory" >
                                     <option value="Condominium">Condominium</option>
                                     <option value="House and Lot">House and Lot</option>
                                   </select>

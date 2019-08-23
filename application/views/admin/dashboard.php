@@ -117,10 +117,10 @@
                           <td><?php echo $row->property_code ?></td>
                           <td><?php echo $row->property_address ?></td>
                           <td id="price"> ₱ <?php echo $row->property_price ?></td>
+                          <td><center><?php echo $row->property_category; ?></center></td>
                           <td><center><?php echo $row->property_type; ?></center></td>
-                          <td><center><?php echo $row->property_status; ?></center></td>
-                          <td><center><?php echo ucfirst($row->property_system_status); ?></center></td>
-                          <td><center><?php echo $row->property_date_posted; ?></center></td>
+                          <td><center><?php echo ucfirst($row->property_status); ?></center></td>
+                          <td><center><?php echo $row->property_date_edited ?></center></td>
                          
                         </a></tr>
 

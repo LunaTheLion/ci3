@@ -571,6 +571,7 @@ class Admin extends CI_CONTROLLER
 			'property_type' => $this->input->post('propertyType'),
 			'property_address' => $this->input->post('propertyAddress'),
 			'property_building' => $this->input->post('propertyBuilding'),
+			'property_category' => $this->input->post('propertyCategory'),
 		);
 
 

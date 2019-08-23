@@ -13,6 +13,7 @@ class Property_Model extends CI_Model
 			'property_type' => $this->session->userdata('property_type'),
 			'property_address' => $this->session->userdata('property_address'),
 			'property_building' => $this->session->userdata('property_building'),
+			'property_category' => $this->session->userdata('property_category'),
 			'property_bath' =>$this->session->userdata('property_bath'),
 			'property_parking' =>$this->session->userdata('property_parking'),
 			'property_floor_area' => $this->session->userdata('property_floor_area'),
@@ -31,25 +32,28 @@ class Property_Model extends CI_Model
 			'property_garden' => $this->session->userdata('property_garden'),
 			'property_date_posted' =>date('F j, Y  g:i'),
 			'property_facade' => $facade,
-			'property_additional_details'=> $this->input->post('property_additional_details'),
-			'property_price' => $this->input->post('property_price'),
-			'property_status' => $this->input->post('property_status'),
+			'property_additional_details'=> $this->input->post('propertyDescription'),
+			'property_price' => $this->input->post('propertyPrice'),
+			'property_status' => $this->input->post('propertyStatus'),
 			'property_title' => $this->input->post('propertyTitle'),
 			'property_title_slug' => urlencode($this->input->post('propertyTitle')),
+			'property_system_status' => $this->input->post('propertyStatus'),
 		);
-		echo "<pre>";
-		print_r($propertydetails);
-		echo "</pre>";
-		// $this->db->where('property_code',$title);
-		//  $this->db->update('project_tbl', $project);
-		// if($this->db->affected_rows() == 1 )
-		// {
-		// 	return true;
-		// }
-		// else
-		// {
-		// 	return false;
-		// }
+		// echo $title;
+
+		// echo "<pre>";
+		// print_r($propertydetails);
+		// echo "</pre>";
+		$this->db->where('property_code',$title);
+		 $this->db->update('property_tbl', $propertydetails);
+		if($this->db->affected_rows() == 1 )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 		
 	}
 	public function add_sample_view($desc,$id)
@@ -123,7 +127,7 @@ class Property_Model extends CI_Model
 			'property_lot_area' =>$this->input->post('propertyLotArea'),
 			'property_floor_area'=>$this->input->post('propertyFloorArea'),
 			'property_additional_details'=> $this->input->post('propertyDescription'),
-			'property_date_edited' =>date('	M "-" DD "-" y g:i'),
+			'property_date_posted' =>date('	M "-" DD "-" y g:i'),
 			'property_status' => $this->input->post('propertyStatus'),
 			
 		);
