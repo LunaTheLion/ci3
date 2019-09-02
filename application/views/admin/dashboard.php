@@ -224,30 +224,9 @@
 
   $('#properties tr').click(function(){
     var id = $(this).attr('data');
-    alert(id);
-    $.ajax({
-      type: 'ajax',
-      url: '<?php echo base_url()?>admin/preview_post/',
-      async: false,
-      dataType: 'json',
-      success: function(data)
-      {
-        console.log(data);
-        if(data == 0 )
-        {
-          $('#countarticle').html("0");
-        }
-        else
-        {
-          $('#countarticle').html(data);
-        }
-        
-      },
-      error: function()
-      {
-        // alert('Could not count new Inquiries');
-      }
-    });
+    var url = '<?php echo base_url()?>admin/view_listing/'+id;
+    $(location).attr('href',url);
+
 
   });
     count_inq();

@@ -6,14 +6,35 @@ class Admin extends CI_CONTROLLER
 	public function __construct()
 	{
 		parent:: __construct();
-		$this->load->model('Admin_Model','mm');
+		$this->load->model('Admin_model','mm');
 		$this->load->helper(array('form', 'url'));	
 
 	}
+
+	public function ajax()
+	{
+		$data['title'] = "Create Listing";
+		$namepart = $this->session->userdata('useremail');
+		$get = $this->mm->acc($namepart);
+		$admin = array(
+		'admin_id' => $get->admin_id,
+		'admin_username'=>$get->admin_username,
+		'admin_type'=>$get->admin_type,
+		'admin_email' => $get->admin_email,
+		'admin_status' =>$get->admin_status, 
+		);
+		$this->session->set_userdata($admin);
+		$this->load->view('admin/templates/header', $admin);
+		$this->load->view('admin/main-header');
+		$this->load->view('admin/main-sidebar');
+		$this->load->view('admin/uploadimageusingajax');
+		$this->load->view('admin/templates/footer');
+	}
+	
 	public function setup_db()
 	{
 		$this->load->dbutil();
-		if($this->dbutil->database_exists('rentandsales_db'))
+		if($this->dbutil->database_exists('ci3_db'))
 		{
 						
 			$this->load->model('db_model');
@@ -139,6 +160,47 @@ class Admin extends CI_CONTROLLER
 		}
 	}
 
+	public function view_listing($id)
+	{
+		
+		$data['title'] = "Create Listing";
+		$namepart = $this->session->userdata('useremail');
+		$get = $this->mm->acc($namepart);
+		$admin = array(
+		'admin_id' => $get->admin_id,
+		'admin_username'=>$get->admin_username,
+		'admin_type'=>$get->admin_type,
+		'admin_email' => $get->admin_email,
+		'admin_status' =>$get->admin_status, 
+		);
+		$result = $this->mm->get_property_by_id($id);
+		$view_property_details = array(
+			"property_id" => $result->property_id,
+			"property_code" => $result->property_code,
+			"property_type" => $result->property_type,
+			"property_title_slug" => $result->property_title_slug,
+			"property_facade" => $result->property_facade,
+			"property_address" => $result->property_address,
+			"property_building" => $result->property_building,
+			"property_category" => $result->property_category,
+			"property_bath" => $result->property_bath,
+			"property_bed" => $result->property_bed,
+			"property_parking" => $result->property_parking,
+			"property_floor_area" => $result->property_floor_area,
+			"property_lot_area" => $result->property_lot_area,
+			"property_title" => $result->property_title,
+			"property_price" => $result->property_price,
+			"property_additional_details" => $result->property_additional_details,
+
+		);
+		$this->session->set_flashdata($view_property_details);
+		$this->session->set_userdata($admin);
+		$this->load->view('admin/templates/header', $admin, $view_property_details);
+		$this->load->view('admin/main-header');
+		$this->load->view('admin/main-sidebar');
+		$this->load->view('admin/create-listing-form-data');
+		$this->load->view('admin/templates/footer');
+	}
 
 	public function view_inquiry()
 	{
@@ -560,7 +622,7 @@ class Admin extends CI_CONTROLLER
 		$this->load->view('admin/templates/header', $admin);
 		$this->load->view('admin/main-header');
 		$this->load->view('admin/main-sidebar');
-		$this->load->view('admin/create-listing');
+		$this->load->view('admin/create-listing-form-data');
 		$this->load->view('admin/templates/footer');	
 	}
 
@@ -671,10 +733,9 @@ class Admin extends CI_CONTROLLER
 		$this->load->view('admin/templates/footer');
 	}
 
-
-	public function ajax()
+	public function formdata()
 	{
-		$data['title'] = "Create Listing";
+
 		$namepart = $this->session->userdata('useremail');
 		$get = $this->mm->acc($namepart);
 		$admin = array(
@@ -688,9 +749,10 @@ class Admin extends CI_CONTROLLER
 		$this->load->view('admin/templates/header', $admin);
 		$this->load->view('admin/main-header');
 		$this->load->view('admin/main-sidebar');
-		$this->load->view('admin/uploadimageusingajax');
-		$this->load->view('admin/templates/footer');
+		$this->load->view('admin/form-data-multiple-files');
+		$this->load->view('admin/templates/footer');	
 	}
+	
 
 
 	public function create_article()

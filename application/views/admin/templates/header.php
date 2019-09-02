@@ -50,6 +50,8 @@
   <script src="<?php echo base_url('assets/bower_components/jquery/dist/jquery.min.js') ?>"></script>
   <script src="<?php echo base_url('assets/bower_components/morris.js/morris.min.js') ?>"></script>
   
+  <script src="<?=base_url()?>assets/js/jquery.masknumber.min.js"></script>
+
 </head>
 <style>
        input[type="file"] {
@@ -69,10 +71,25 @@
          margin: 10px 10px 0 0;
          padding: 1px;
          }
+        .remove-img{
+          display: block;
+          background:red;
+          color:white;
+          border: 1px solid red;
+          text-align: center;
+          cursor: pointer;
+        }
+        .remove-img:hover
+        {
+          background:black;
+          border: 1px solid black;
+          color:white;
+        }
        .pip {
          display: inline-block;
          margin: 10px 10px 0 0;
        }
+
        .remove {
          display: block;
          background: #444;
@@ -85,6 +102,7 @@
          background: white;
          color: black;
        }
+       
        img{
            cursor: pointer;
            }

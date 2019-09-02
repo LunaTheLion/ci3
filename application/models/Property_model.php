@@ -6,6 +6,32 @@ class Property_Model extends CI_Model
 	public function __construct(){
 		parent::__construct();	
 	}
+	public function add($arr)
+	{
+		// $info = array(
+		// 	'property_code' => $this->input->post('property_code'),
+		// 	'property_type' => $this->input->post('property_type'),
+		// 	'property_address' => $this->input->post('property_address'),
+		// 	'property_building' => $this->input->post('property_building'),
+		// 	'property_category' => $this->input->post('property_category'),
+		// 	'property_bath' =>$this->input->post('property_bath'),
+		// 	'property_parking' =>$this->input->post('property_parking'),
+		// 	'property_floor_area' => $this->input->post('property_floor_area'),
+		// 	'property_lot_area' => $this->input->post('property_lot_area'),
+		// 	'property_pet' => $this->input->post('property_pet'),
+		// 	'property_garden' =>$this->input->post('property_garden'),
+		// 	'property_date_posted' =>date('F j, Y  g:i'),
+		// 	'property_facade' => $facade,
+		// 	'property_additional_details'=> $this->input->post('property_additional_details'),
+		// 	'property_price' => $this->input->post('property_price'),
+		// 	'property_status' => $this->input->post('property_status'),
+		// 	'property_title' => $this->input->post('property_title'),
+		// 	'property_title_slug' => urlencode($this->input->post('property_title')),
+		// 	'property_system_status' => $this->input->post('property_status'),
+			
+		// );
+		return $this->db->insert('property_tbl', $arr);
+	}
 	public function info1()
 	{
 		$info = array(

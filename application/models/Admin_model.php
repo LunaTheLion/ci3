@@ -390,7 +390,7 @@ class Admin_model extends CI_Model{
 		
 		$this->db->select('*');
 		$this->db->Where('property_id', $id);
-		$this->db->where("(property_system_status='1' OR property_system_status='2')");
+		$this->db->where("(property_system_status='Active' OR property_system_status='Pending')");
 		$query = $this->db->get('property_tbl');
 		return $query->row();
 	}
