@@ -159,7 +159,7 @@ class Admin_model extends CI_Model{
 	{
 		$this->db->select('*');
 		$this->db->order_by('property_date_edited', 'DESC');
-		$this->db->where("(property_status='active' OR property_status='pending')");
+		$this->db->where('property_system_status !=', 'Deleted');
 		$query = $this->db->get('property_tbl');
 		return $query->result();
 	}
@@ -167,7 +167,7 @@ class Admin_model extends CI_Model{
 	{
 		$this->db->select('*');
 		$this->db->order_by('property_date_edited', 'DESC');
-		$this->db->where("(property_status='active' OR property_status='pending')");
+		$this->db->where('property_system_status !=', 'Deleted');
 		$query = $this->db->get('property_tbl');
 		return $query;
 	}
@@ -175,7 +175,7 @@ class Admin_model extends CI_Model{
 	{
 		$this->db->select('*');
 		$this->db->order_by('property_date_edited', 'DESC');
-		$this->db->where("(property_status='active' OR property_status='pending')");
+		$this->db->where('property_system_status !=', 'Deleted');
 		$this->db->where('property_status', 'Sale Only');
 		$query = $this->db->get('property_tbl');
 		return $query;
@@ -184,7 +184,7 @@ class Admin_model extends CI_Model{
 	{
 		$this->db->select('*');
 		$this->db->order_by('property_date_edited', 'DESC');
-		$this->db->where("(property_status='active' OR property_status='pending')");
+		$this->db->where('property_system_status !=', 'Deleted');
 		$this->db->where('property_status', 'Rent Only');
 		$query = $this->db->get('property_tbl');
 		return $query;
@@ -250,7 +250,7 @@ class Admin_model extends CI_Model{
 	{
 		$this->db->select('*');
 		$this->db->order_by('property_date_posted', 'DESC');
-		$this->db->where('property_system_status !=', 3 );
+		$this->db->where('property_system_status !=', 'Deleted' );
 		$query = $this->db->get('property_tbl');
 		return $query->num_rows();
 	}
@@ -390,7 +390,7 @@ class Admin_model extends CI_Model{
 		
 		$this->db->select('*');
 		$this->db->Where('property_id', $id);
-		$this->db->where("(property_system_status='Active' OR property_system_status='Pending')");
+		$this->db->where('property_system_status !=', 'Deleted');
 		$query = $this->db->get('property_tbl');
 		return $query->row();
 	}
@@ -589,7 +589,7 @@ class Admin_model extends CI_Model{
 		//echo $id;
 		
 		$stat = array(
-			'property_system_status' => 3,
+			'property_system_status' => 'Deleted',
 			'property_date_deleted' => date('M "-" DD "-" y g:i'),
 		);
 		$this->db->where('property_id', $id);
@@ -609,7 +609,7 @@ class Admin_model extends CI_Model{
 		//echo $id;
 		
 		$stat = array(
-			'article_system_status' => 3,
+			'article_system_status' => "Deleted",
 			'article_date_deleted' => date('M "-" DD "-" y g:i'),
 		);
 		$this->db->where('article_id', $id);

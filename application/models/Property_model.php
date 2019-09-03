@@ -6,6 +6,20 @@ class Property_Model extends CI_Model
 	public function __construct(){
 		parent::__construct();	
 	}
+	public function check_if_code_exist($code)
+	{
+		$this->db->select('*');
+		$this->db->where('property_code', $code);
+		$result = $this->db->get('property_tbl');
+		if($result->num_rows() > 0)
+		{	
+			return true;
+		}
+		else
+		{
+			return true;
+		}
+	}
 	public function add($arr)
 	{
 		// $info = array(

@@ -92,9 +92,9 @@
               <a href="<?php echo base_url('admin/create_listing') ?>" class="btn btn-success pull-right" title="Create a New Property">Create Listing</a>
             </div>
             <!-- /.box-header -->
-            <div class="box-body">
+            <div class="box-body ">
               
-             <table id="example1" class="table table-bordered table-hover">
+             <table id="example1" class="table table-bordered table-hover " width="100%">
                 <thead>
                   <tr>
                   <th>Property Code</th>

@@ -19,7 +19,7 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/skins/_all-skins.min.css') ?>">
   <!-- Morris chart -->
-  <link rel="stylesheet" href="<?php echo base_url('assets/bower_components/morris.js/morris.css') ?>">
+  <!-- <link rel="stylesheet" href="<?php echo base_url('assets/bower_components/morris.js/morris.css') ?>"> 
   <!-- jvectormap -->
   <link rel="stylesheet" href="<?php echo base_url('assets/bower_components/jvectormap/jquery-jvectormap.css') ?>">
   <!-- Date Picker -->
@@ -48,7 +48,7 @@
   <script src="<?php echo base_url('assets/bower_components/raphael/raphael.min.js') ?>"></script>
   <!-- from footer -->
   <script src="<?php echo base_url('assets/bower_components/jquery/dist/jquery.min.js') ?>"></script>
-  <script src="<?php echo base_url('assets/bower_components/morris.js/morris.min.js') ?>"></script>
+  <!-- <script src="<?php echo base_url('assets/bower_components/morris.js/morris.min.js') ?>"></script> -->
   
   <script src="<?=base_url()?>assets/js/jquery.masknumber.min.js"></script>
 

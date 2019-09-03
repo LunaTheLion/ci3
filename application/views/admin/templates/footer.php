@@ -1,6 +1,13 @@
 
 <!-- jQuery 3 -->
+<script type="text/javascript">
+	$(function () {
 
+  // bootstrap WYSIHTML5 - text editor
+ $('.textarea').wysihtml5();
+
+});
+</script>
 <script src="<?php echo base_url('assets/bower_components/jquery/dist/jquery.min.js') ?>"></script>
 <script src="<?php echo base_url('assets/bower_components/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -8,6 +15,7 @@
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button);
+
 </script>
 <!-- DataTables -->
 <script src="<?php echo base_url('assets/bower_components/datatables.net/js/jquery.dataTables.min.js') ?>"></script>
@@ -17,7 +25,7 @@
 <!-- Morris.js charts -->
 
  <script src="<?php echo base_url('assets/bower_components/raphael/raphael.min.js') ?>"></script> 
-<script src="<?php echo base_url('assets/bower_components/morris.js/morris.min.js') ?>"></script>
+<!-- <script src="<?php echo base_url('assets/bower_components/morris.js/morris.min.js') ?>"></script>  -->
 <!-- Sparkline -->
 <script src="<?php echo base_url('assets/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js') ?>"></script>
 <!-- jvectormap -->
@@ -39,7 +47,7 @@
 <!-- AdminLTE App -->
 <script src="<?php echo base_url('assets/dist/js/adminlte.min.js') ?>"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?php echo base_url('assets/dist/js/pages/dashboard.js') ?>"></script> 
+ <!-- <script src="<?php echo base_url('assets/dist/js/pages/dashboard.js') ?>"></script>  -->
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url('assets/dist/js/demo.js') ?>"></script>
 
@@ -47,4 +55,4 @@
 </body>
 </html>
 <!-- data table -->
-
+	

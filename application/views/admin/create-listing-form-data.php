@@ -19,7 +19,7 @@
         ?>
       
       </h1>
-      <a href="<?php echo base_url('Admin/ajax') ?>">Upload Images</a>
+    <!--   <a href="<?php echo base_url('Admin/ajax') ?>">Upload Images</a> -->
       <ol class="breadcrumb">
         <li><a href="<?php echo base_url('admin/dashboard/'.$this->session->userdata('admin_username')) ?>"><i class="fa fa-dashboard"></i>Dashboard</a></li>
        
@@ -437,53 +437,52 @@
                           <div class="btnAddPhoto">
                               <button class="ap btn-info" style="border: 2px solid #00c0ef;"  onclick="OpenFileExplorer()"><h3> <i class='fa fa-upload'></i></h3> <br>Add Photos</button>
                           </div>
+                          <?php 
+                            if(!empty($this->session->flashdata("property_code")))
+                            {
+                               
+                                  $dirname = "uploads/".$this->session->flashdata("property_code")."/amenities";
+                                  $files = glob($dirname."*.*");
+                                  $dir_path =  "uploads/".$this->session->flashdata("property_code")."/amenities";
+                                  $extensions_array = array('jpg','png','jpeg');
+                                  
+                                  if(is_dir($dir_path))
+                                  {
+
+                                    $files = scandir($dir_path);
+                                                    
+                                    for($i = 0; $i < count($files); $i++)
+                                    {
+                                      if($files[$i] !='.' && $files[$i] !='..')
+                                      {                     
+                                        $file = pathinfo($files[$i]);
+
+                                        //getting images from the root folder.  
+                                      ?>
+                                      
+                                     <!--  <span class="pip">
+                                      <img class="imageThumb" src="<?php echo base_url('uploads/'.$this->session->flashdata("property_code")."/amenities/".$files[$i])?>" />
+                                      <br/><span class="remove-img" data="<?php echo $files[$i];?>">Remove image</span></span> -->
+
+                                      <div class="photoPreview" id="<?php echo $i ?>">
+                                        <img src="<?php echo base_url('uploads/'.$this->session->flashdata("property_code")."/amenities/".$files[$i])?>">
+                                        <div class="delete" id="<?php echo $i ?>">
+                                          <button class="btn btn-danger pull-right" title="Click this to remove this photo from your property" onclick="RemovePhoto('<?php echo $i ?>')"><i class="fa fa-trash-o"></i></button>
+                                        </div>
+                                      </div>
+
+
+
+                                  <?php
+                                  } 
+                                  }
+                                  }
+                            }
+                           ?>
                       </div> 
                            <!--  <button class="btn btn-success" id="proceed-button" onclick="SendPhotosToServer()">Post Ad <i class="fa fa-arrow-right"></i></button> -->
                       </div> 
 
-
-                    <!--- <div class="container">
-                      
-                     
-
-<center></center>
-                       <label for="files">Upload the Amenities</label>
-                    <input type="file" id="amenities" name="imageAmenities[]" multiple required />
-                    <span id="amenitiesPreview" style="padding-right: 2%;">
-                     <?php 
-                       if(!empty($this->session->flashdata("property_code")))
-                       {
-                          
-                             $dirname = "uploads/".$this->session->flashdata("property_code")."/amenities";
-                             $files = glob($dirname."*.*");
-                             $dir_path =  "uploads/".$this->session->flashdata("property_code")."/amenities";
-                             $extensions_array = array('jpg','png','jpeg');
-                             
-                             if(is_dir($dir_path))
-                             {
-
-                               $files = scandir($dir_path);
-                                               
-                               for($i = 0; $i < count($files); $i++)
-                               {
-                                 if($files[$i] !='.' && $files[$i] !='..')
-                                 {                     
-                                   $file = pathinfo($files[$i]);
-
-                                   //getting images from the root folder.  
-                                 ?>
-                                 <span class="pip">
-                                 <img class="imageThumb" src="<?php echo base_url('uploads/'.$this->session->flashdata("property_code")."/amenities/".$files[$i])?>" />
-                                 <br/><span class="remove-img" data="<?php echo $files[$i];?>">Remove image</span></span>
-                             <?php
-                             } 
-                             }
-                             }
-                       }
-                      ?>
-                   </span> 
-                     </div>-->
-                   
                    <div id="erroramenity" type="hidden"><center><span id="errorspan" class="text-red"></span></center></div>
                   <!-- <div class="col-lg-3"></div>
                   <div class="col-lg-6">
@@ -612,11 +611,11 @@
               </div>
             </div>
             <div class="box-footer">
-                <?php 
+          <?php 
                 echo "<pre>";
                 print_r($this->session->flashdata());
                 echo "</pre>";
-                 ?>
+                 ?> 
              
             </div>
           </div>
@@ -626,6 +625,26 @@
     </section>
     <!-- /.content -->
 
+  </div>
+  <div class="modal modal-danger fade" id="modal-danger">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Danger Modal</h4>
+        </div>
+        <div class="modal-body">
+          <p>One fine body&hellip;</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+          <button type="button" name="deleteYes" id="deleteYes"  class="btn btn-outline">Yes</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
@@ -657,15 +676,112 @@
         text-align:center;
     }
 </style>
-<script> var property_code = "<?php echo $this->session->flashdata('property_code') ?>"</script>
+<script> 
+  var property_code = "<?php echo $this->session->flashdata('property_code') ?>";
+  var site_url = "<?php echo site_url()?>";
+  var image_dir = "<?php echo site_url()?>uploads/";
+</script>
 <script src="<?php echo base_url('assets/admin-script/upload_images.js') ?>"></script>
-<script src="<?php echo base_url('assets/admin-script/form-process.js') ?>"></script>
+ <script src="<?php echo base_url('assets/admin-script/form-process.js') ?>"></script>
 <script src="<?php echo base_url('assets/admin-script/form-validation.js') ?>"></script>
+<script src="<?php echo base_url('assets/admin-script/property-on-edit.js') ?>"></script>
 <!-- other Functions -->
-
-
  <script type="text/javascript">
+      $(function(){
+   $('.btn-circle').on('click',function(){
+     $('.btn-circle.btn-info').removeClass('btn-info').addClass('btn-default');
+     $(this).addClass('btn-info').removeClass('btn-default').blur();
+   });
+
+   $('.next-step, .prev-step').on('click', function (e){
+     var $activeTab = $('.tab-pane.active');
+
+     $('.btn-circle.btn-info').removeClass('btn-info').addClass('btn-default');
+
+     if ( $(e.target).hasClass('next-step') )
+     {
+        var nextTab = $activeTab.next('.tab-pane').attr('id');
+        $('[href="#'+ nextTab +'"]').addClass('btn-info').removeClass('btn-default');
+        $('[href="#'+ nextTab +'"]').tab('show');
+     }
+     else
+     {
+        var prevTab = $activeTab.prev('.tab-pane').attr('id');
+        $('[href="#'+ prevTab +'"]').addClass('btn-info').removeClass('btn-default');
+        $('[href="#'+ prevTab +'"]').tab('show');
+     }
+   });
+  });
   $(document).ready(function() {
+
+
+
+    $('#delprop').click(function(){
+        var id = $(this).attr('data'); 
+        
+        $('#modal-danger').modal('show');
+        $('#modal-danger').find('.modal-title').text('Delete Property');
+        $('#modal-danger').find('.modal-body').text('Are you sure you want to delete this property?');
+        $('#deleteYes').click(function(){
+            $.ajax({
+              type:'ajax',
+              method: 'get',
+              async: false,
+              url: '<?php echo base_url()?>Admin/delete_property',
+              data:{id,id},
+              dataType:'json',
+              success: function(response)
+              {
+                console.log(id);
+                if(response.success)
+                {
+                 $('#modal-danger').modal('show');
+                 
+                  alert('success');  
+                  window.location.reload();
+                }
+                else
+                {
+                   alert('Could not Hide the Property');
+                   $('#modal-danger').modal('hide');
+                }
+              },
+              error: function()
+              {
+                Alert('Cannot Delete this Property');
+              }
+            })
+        });
+    });
+    //will use the CreateCanvas(id)
+    //will use the RenderImagetoCanvass(image) function
+    // create a function to get the files in the director
+
+
+  // ForEdit();
+  //   function ForEdit()
+  //   {
+  //     var code = property_code;
+  //     if(code  !== '')
+  //     {
+  //       $("#fileToLarge").hide();
+  //       $("#fileLimit").hide();
+  //       $(".btnAddPhoto").hide();
+  //       $("#drop_file_zone").hide();
+  //     }
+  //     else
+  //     {
+  //       var filenames = [];
+  //       var foldernames = [];
+  //       $.get()
+  //     }
+  //   }
+
+    //get files from the directory
+    //store it to the array
+
+
+
     $(".remove-img").click(function(){
       var file_name = $(this).attr('data');
       var property_code = '<?php echo $this->session->flashdata('property_code') ?>';
@@ -759,46 +875,18 @@
   });
 
 
-  $('document').ready(function() {
-    $('#delprop').click(function(){
-        var id = $(this).attr('data'); 
-        $('#modal-danger').modal('show');
-        $('#modal-danger').find('.modal-title').text('Delete Property');
-        $('#modal-danger').find('.modal-body').text('Are you sure you want to delete this property?');
-        $('#deleteYes').click(function(){
-            $.ajax({
-              type:'ajax',
-              method: 'get',
-              async: false,
-              url: '<?php echo base_url()?>Admin/delete_property',
-              data:{id,id},
-              dataType:'json',
-              success: function(response)
-              {
-                console.log(id);
-                if(response.success)
-                {
-                 $('#modal-danger').modal('show');
-                 
-                  alert('success');  
-                  window.location.reload();
-                }
-                else
-                {
-                   alert('Could not Hide the Property');
-                   $('#modal-danger').modal('hide');
-                }
-              },
-              error: function()
-              {
-                Alert('Cannot Delete this Property');
-              }
-            })
-        });
-    });
 
-          
-  });
+
+
+/*
+ * Author: Abdullah A Almsaeed
+ * Date: 4 Jan 2014
+ * Description:
+ *      This is a demo file used only for the main dashboard (index.html)
+ **/
+
+
+
 
 
     

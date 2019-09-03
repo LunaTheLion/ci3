@@ -84,7 +84,7 @@
           var property_title = $('input[name=propertyTitle]').val();
           var property_description = $('textarea[name=propertyDescription]').val();
           var num = '';
-          var mod = proeperty_code;
+          var mod = property_code;
             if(mod == "" && property_model == "")
             {
               
@@ -209,17 +209,31 @@
           //alert("Done");
 
           var form_data = new FormData();
-          // form_data.append(property_value);
-          var files_image = $('#amenities')[0].files;
-          for(var x=0; x<files_image.length ; x++)
+          
+          // var files_image = $('#amenities')[0].files;
+          // for(var x=0; x<files_image.length ; x++)
+          // {
+          //   form_data.append('amenities[]', files_image[x]);
+          // }
+
+          var photos = fileshit;
+          console.log("Files length is " + photos.length);
+          for(var i=0;i<photos.length;i++)
           {
-            form_data.append('amenities[]', files_image[x]);
+             if(photos[i]!="")
+              {
+                form_data.append('amenities[]',photos[i]);
+              }
           }
 
           var facade_image = $('#files')[0].files;
           for(var x=0; x<facade_image.length ; x++)
           {
-            form_data.append('facade[]', facade_image[x]);
+            if(facade_image[i] != "")
+            {
+              form_data.append('facade[]', facade_image[x]);  
+            }
+            
           }
 
           
@@ -244,18 +258,26 @@
           $.ajax({
             data: form_data,
             type: 'POST',
-            url: '<?php echo base_url()?>property/ajax',
+            url: site_url+'property/ajax',// for adding new  property only
             crossOrigin: false,
             contentType: false,
             processData: false,
-            beforeSend: function(){
+            beforeSend: function(data){
+              
                $('#done').prop('disabled',true);
                $('#done').html('Uploading...');
             },
-            success: function(){
+            success: function(data){
+              console.log(data);
+
               $('#done').removeAttr('disabled');
               $('#done').html('Uploaded');
             },
+            error: function(xhr, textStatus, error){
+                  console.log(xhr.statusText);
+                  console.log(textStatus);
+                  console.log(error);
+              }
           });
         }
         else
@@ -266,3 +288,33 @@
         event.preventDefault();
 
         });
+
+// function SendPhotosToServer(){
+//      console.log("Sending..");
+//      var photos = fileshit;
+//      console.log("Files length is " + photos.length);
+//      for(var i=0;i<photos.length;i++){
+//       if(photos[i]!=""){
+//           console.log("Sending File: " + photos[i].name);
+//           var formData = new FormData();  
+//           formData.append('amenities',photos[i]);
+//           formData.append('listing_id',listing_id);
+//           $.ajax({
+//               data:formData,
+//               type:'POST',
+//               datatype:'html',
+//               processData:false,
+//               contentType:false,
+//               url: site_url + 'admin/',
+//               success: function(data){
+//                   console.log('Received: ' + data);
+//               },
+//               error: function(){
+//                   $.dialog('An error has occurred while sending your ad to the server. Please check if you are connected to the internet and try again.');
+//                   return;
+//               }
+//           });
+//       }
+//      }
+     
+//   }

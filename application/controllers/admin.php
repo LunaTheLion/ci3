@@ -11,6 +11,8 @@ class Admin extends CI_CONTROLLER
 
 	}
 
+	
+
 	public function ajax()
 	{
 		$data['title'] = "Create Listing";
@@ -175,22 +177,22 @@ class Admin extends CI_CONTROLLER
 		);
 		$result = $this->mm->get_property_by_id($id);
 		$view_property_details = array(
-			"property_id" => $result->property_id,
-			"property_code" => $result->property_code,
-			"property_type" => $result->property_type,
-			"property_title_slug" => $result->property_title_slug,
-			"property_facade" => $result->property_facade,
-			"property_address" => $result->property_address,
-			"property_building" => $result->property_building,
-			"property_category" => $result->property_category,
-			"property_bath" => $result->property_bath,
-			"property_bed" => $result->property_bed,
-			"property_parking" => $result->property_parking,
-			"property_floor_area" => $result->property_floor_area,
-			"property_lot_area" => $result->property_lot_area,
-			"property_title" => $result->property_title,
-			"property_price" => $result->property_price,
-			"property_additional_details" => $result->property_additional_details,
+			'property_id' => $result->property_id,
+			'property_code' => $result->property_code,
+			'property_type' => $result->property_type,
+			'property_title_slug' => $result->property_title_slug,
+			'property_facade' => $result->property_facade,
+			'property_address' => $result->property_address,
+			'property_building' => $result->property_building,
+			'property_category' => $result->property_category,
+			'property_bath' => $result->property_bath,
+			'property_bed' => $result->property_bed,
+			'property_parking' => $result->property_parking,
+			'property_floor_area' => $result->property_floor_area,
+			'property_lot_area' => $result->property_lot_area,
+			'property_title' => $result->property_title,
+			'property_price' => $result->property_price,
+			'property_additional_details' => $result->property_additional_details,
 
 		);
 		$this->session->set_flashdata($view_property_details);
@@ -917,7 +919,7 @@ class Admin extends CI_CONTROLLER
 			$msg['success'] = true;
 		}
 		echo json_encode($msg);
-		redirect(base_url('admin/mng_articles'));
+		redirect(base_url('admin/dashboard'.$this->session->userdata('useremail')));
 	}
 	public function get_bel()
 	{

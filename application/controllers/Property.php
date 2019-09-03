@@ -8,6 +8,7 @@ class Property extends CI_CONTROLLER
 		parent:: __construct();
 		$this->load->model('Property_Model','pm');
 		$this->load->helper(array('form','url'));
+		$this->load->library('image_lib');
 	}
 	public function remove_img()
 	{
@@ -66,12 +67,32 @@ class Property extends CI_CONTROLLER
 							{
 								mkdir($spes,0755,true);
 								move_uploaded_file($file_array[$i]['tmp_name'],$spes.$file_array[$i]['name']);
-								
+								$config = array();
+									$config['image_library'] = 'GD2';
+									$config['source_image'] = $spes.$file_array[$i]['name'];
+									$config['wm_overlay_path'] = 'assets/img/wmlogo.png';
+									$config['wm_type'] = 'overlay';
+									// $config['wm_opacity'] = '0.2';
+									$config['wm_vrt_alignment'] = 'middle';
+									$config['wm_hor_alignment'] = 'center';
+									$this->load->library('image_lib', $config);
+									$this->image_lib->initialize($config);
+									$this->image_lib->watermark();  
 							}
 							elseif(is_dir($spes))
 							{
 								move_uploaded_file($file_array[$i]['tmp_name'],$spes.$file_array[$i]['name']);
-							
+								$config = array();
+									$config['image_library'] = 'GD2';
+									$config['source_image'] = $spes.$file_array[$i]['name'];
+									$config['wm_overlay_path'] = 'assets/img/wmlogo.png';
+									$config['wm_type'] = 'overlay';
+									// $config['wm_opacity'] = '0.2';
+									$config['wm_vrt_alignment'] = 'middle';
+									$config['wm_hor_alignment'] = 'center';
+									$this->load->library('image_lib', $config);
+									$this->image_lib->initialize($config);
+									$this->image_lib->watermark();  
 							}
 						}
 		
@@ -91,15 +112,39 @@ class Property extends CI_CONTROLLER
 							{
 								mkdir($spes,0755,true);
 								move_uploaded_file($file_array[$i]['tmp_name'],$spes.$file_array[$i]['name']);
-								
+								$config = array();
+								$config['image_library'] = 'GD2';
+								$config['source_image'] = $spes.$file_array[$i]['name'];
+								$config['wm_overlay_path'] = 'assets/img/wmlogo.png';
+								$config['wm_type'] = 'overlay';
+								// $config['wm_opacity'] = '0.2';
+								$config['wm_vrt_alignment'] = 'middle';
+								$config['wm_hor_alignment'] = 'center';
+								$this->load->library('image_lib', $config);
+								$this->image_lib->initialize($config);
+								$this->image_lib->watermark();  
 							}
 							elseif(is_dir($spes))
 							{
 								move_uploaded_file($file_array[$i]['tmp_name'],$spes.$file_array[$i]['name']);
-							
+								$config = array();
+								$config['image_library'] = 'GD2';
+								$config['source_image'] = $spes.$file_array[$i]['name'];
+								$config['wm_overlay_path'] = 'assets/img/wmlogo.png';
+								$config['wm_type'] = 'overlay';
+								// $config['wm_opacity'] = '0.2';
+								$config['wm_vrt_alignment'] = 'middle';
+								$config['wm_hor_alignment'] = 'center';
+								$this->load->library('image_lib', $config);
+								$this->image_lib->initialize($config);
+								$this->image_lib->watermark();  
 							}
 						}
 			
+			}
+			else
+			{
+				$facade = $this->input->flashdata('facade');
 			}
 
 
@@ -125,7 +170,17 @@ class Property extends CI_CONTROLLER
 			'property_system_status' => $this->input->post('property_status'),
 		);
 		
-		$this->pm->add($arr);
+		if($this->pm->check_if_code_exist($title))
+		{
+			echo "Code already Exists";
+			echo json_encode('Code already Exists');
+		}
+		else
+		{
+			$this->pm->add($arr);
+		}
+
+		
 
 		// echo "<pre>";
 		// print_r($arr);
@@ -240,6 +295,33 @@ class Property extends CI_CONTROLLER
 
 	public function sample_upload()
 	{
+		$code = $this->input->post("property_code");
+
+		// echo json_encode($code);
+		// $facade = "sample.jpg";
+		// $arr = array(
+		// 	'property_code' => $this->input->post('property_code'),
+		// 	'property_type' => $this->input->post('property_type'),
+		// 	'property_category' => $this->input->post('property_category'),
+		// 	'property_address' => $this->input->post('property_address'),
+		// 	'property_building' => $this->input->post('property_building'),
+		// 	'property_facade' => $facade,
+		// 	'property_bed' => $this->input->post('property_bed'),
+		// 	'property_bath' => $this->input->post('property_bath'),
+		// 	'property_parking' => $this->input->post('property_parking'),
+		// 	'property_floor_area' => $this->input->post('property_floor_area'),
+		// 	'property_lot_area' => $this->input->post('property_lot_area'),
+		// 	'property_pet' => $this->input->post('property_pet'),
+		// 	'property_garden' => $this->input->post('property_garden'),
+		// 	'property_price' => $this->input->post('property_price'),
+		// 	'property_title' => $this->input->post('property_title'),
+		// 	'property_title_slug' => urlencode($this->input->post('property_title')),
+		// 	'property_additional_details' => $this->input->post('property_additional_details'),
+		// 	'property_status' => $this->input->post('property_status'),
+		// 	'property_system_status' => $this->input->post('property_status'),
+		// );
+		
+		// $this->pm->add($arr);
 	}
 	public function read_all()
 	{
